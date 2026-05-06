@@ -35,4 +35,15 @@ class AdminPanelTest extends TestCase
 
         $response->assertForbidden();
     }
+
+    public function test_admin_user_can_access_admin_panel(): void
+    {
+        $user = User::factory()->create([
+            'is_admin' => true,
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response->assertOk();
+    }
 }

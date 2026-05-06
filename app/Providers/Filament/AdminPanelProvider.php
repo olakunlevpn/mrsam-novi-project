@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->darkMode(false)
-            ->brandName('Novi Agro Admin')
+            ->brandName(__('admin.brand_name'))
             ->colors([
                 'primary' => Color::Amber,
             ])
