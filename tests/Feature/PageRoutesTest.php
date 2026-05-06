@@ -117,4 +117,40 @@ class PageRoutesTest extends TestCase
         // First CSS rule in the inline style block, unique to the home page
         $response->assertSee('.video-hero-one {', false);
     }
+
+    public function test_products_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/products.html');
+        $response->assertOk();
+        // page-header-products block
+        $response->assertSee('Our Products', false);
+        // breadcrumb-products block
+        $response->assertSee('grdeen-breadcrumb', false);
+        // product-catalog block — catalog listing wrapper
+        $response->assertSee('catalog-listing', false);
+        // product-catalog block — filter sidebar
+        $response->assertSee('product-type-filters', false);
+        // product-catalog block — product container slot
+        $response->assertSee('product-container', false);
+        // product-catalog block — product detail view
+        $response->assertSee('product-details', false);
+        // product-catalog block — sort controls
+        $response->assertSee('sort-dropdown', false);
+    }
+
+    public function test_products_loads_catalog_scripts(): void
+    {
+        $response = $this->get('/products.html');
+        $response->assertOk();
+        $response->assertSee('/assets/js/products-data.js', false);
+        $response->assertSee('/assets/js/state/app.state.js', false);
+        $response->assertSee('/assets/js/main.js', false);
+    }
+
+    public function test_home_does_not_load_catalog_scripts(): void
+    {
+        $response = $this->get('/');
+        $response->assertDontSee('/assets/js/products-data.js', false);
+        $response->assertDontSee('/assets/js/state/app.state.js', false);
+    }
 }
