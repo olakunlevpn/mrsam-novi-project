@@ -12,6 +12,8 @@
 /storage/framework/views
 /bootstrap/cache/*.php
 /vendor
+/database/*.sqlite
+/database/*.sqlite-journal
 
 .env
 .env.backup
