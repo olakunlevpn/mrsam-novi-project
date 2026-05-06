@@ -80,6 +80,28 @@ class PageRoutesTest extends TestCase
         $response->assertSee('Partnering with Global Leaders in', false);
     }
 
+    public function test_about_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/about.html');
+        $response->assertOk();
+        // page-header-about block
+        $response->assertSee('committed to providing quality livestock additives', false);
+        // breadcrumb-about block
+        $response->assertSee('About Us', false);
+        // about-detail block
+        $response->assertSee('We offer expert livestock solutions', false);
+        // feature-grid-about block
+        $response->assertSee('Trusted by over 2,000 farmers across Nigeria', false);
+        // benefits-about block
+        $response->assertSee('Our expertise in', false);
+        // journey-growth block
+        $response->assertSee('Novi-Agro began its journey in 2022', false);
+        // customer-growth block
+        $response->assertSee('Growth Metrics', false);
+        // testimonials block
+        $response->assertSee('Hear from our happy', false);
+    }
+
     public function test_home_emits_organization_jsonld(): void
     {
         $response = $this->get('/');
