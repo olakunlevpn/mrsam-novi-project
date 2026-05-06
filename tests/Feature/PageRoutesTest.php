@@ -45,4 +45,11 @@ class PageRoutesTest extends TestCase
         $this->get('/poultry.html')->assertSee('data-category="Poultry"', false);
         $this->get('/products.html')->assertSee('data-category="All"', false);
     }
+
+    public function test_non_catalog_pages_omit_body_category(): void
+    {
+        foreach (['/', '/about.html', '/services.html', '/contact.html', '/faq.html'] as $url) {
+            $this->get($url)->assertDontSee('data-category=', false);
+        }
+    }
 }

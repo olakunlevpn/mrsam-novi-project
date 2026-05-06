@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="footer-widget__col footer-widget__col__col1">
                             <div class="footer-widget footer-widget--about">
-                                <a href="/" class="footer-widget__logo">
+                                <a href="{{ route('home') }}" class="footer-widget__logo">
                                     <span class="footer-widget__logo-text">Novi <span>Agro</span></span>
                                 </a>
                                 <p class="footer-widget__experience-text">Dedicated to providing premium products,
@@ -21,11 +21,11 @@
                             <div class="footer-widget footer-widget--links">
                                 <h6 class="footer-widget__title">Categories</h6>
                                 <ul class="list-unstyled footer-widget__links">
-                                    <li><a href="/cattle.html">Cattle Solutions</a></li>
-                                    <li><a href="/pigs.html">Swine Care</a></li>
-                                    <li><a href="/poultry.html">Poultry Products</a></li>
-                                    <li><a href="/products.html">All Products</a></li>
-                                    <li><a href="/faq.html">FAQ</a></li>
+                                    <li><a href="{{ route('animals.cattle') }}">Cattle Solutions</a></li>
+                                    <li><a href="{{ route('animals.pigs') }}">Swine Care</a></li>
+                                    <li><a href="{{ route('animals.poultry') }}">Poultry Products</a></li>
+                                    <li><a href="{{ route('products') }}">All Products</a></li>
+                                    <li><a href="{{ route('faq') }}">FAQ</a></li>
                                 </ul><!-- /.list-unstyled footer-widget__links -->
                             </div><!-- /.footer-widget -->
                         </div><!-- /.col-md-6 -->
@@ -68,7 +68,7 @@
                                             <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
                                                 <span> 02 Mar 2026</span>
                                             </span>
-                                            <h6 class="footer-widget__post-heading"><a href="/products.html">Products
+                                            <h6 class="footer-widget__post-heading"><a href="{{ route('products') }}">Products
                                                 </a></h6>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                             <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
                                                 <span> 05 Mar 2026</span>
                                             </span>
-                                            <h6 class="footer-widget__post-heading"><a href="/products.html">Products
+                                            <h6 class="footer-widget__post-heading"><a href="{{ route('products') }}">Products
                                                 </a></h6>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="/" aria-label="logo image"><img src="/assets/images/images-removebg-preview.png"
+                <a href="{{ route('home') }}" aria-label="logo image"><img src="/assets/images/images-removebg-preview.png"
                         alt="Novi-Agro Logo" /></a>
             </div>
             <!-- /.logo-box -->

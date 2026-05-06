@@ -3,7 +3,7 @@
             <div class="container-fluid">
                 <div class="topbar-one__inner">
                     <div class="topbar-one__logo">
-                        <a href="/">
+                        <a href="{{ route('home') }}">
                             <img src="/assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
                         </a>
                     </div><!-- /.main-header__logo -->
@@ -15,7 +15,7 @@
                             </div>
                             <div class="topbar-one__info__address d-flex flex-wrap">
                                 <small class="topbar-one__info__address__text">Company address</small>
-                                <a href="/contact.html">New Garage, Ibadan.</a>
+                                <a href="{{ route('contact') }}">New Garage, Ibadan.</a>
                             </div>
                         </li>
                         <li class="topbar-one__info__item">
@@ -60,30 +60,30 @@
             <div class="container-fluid">
                 <div class="main-header__inner">
                     <div class="main-header__logo">
-                        <a href="/">
+                        <a href="{{ route('home') }}">
                             <img src="/assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
                         </a>
                     </div><!-- /.main-header__logo -->
                     <div class="main-header__wellcome d-flex align-items-center">
                         <p class="main-header__wellcome__tagline">@yield('header_tagline', 'Quality Feed - Healthy Life')</p>
-                        <a href="/contact.html" class="grdeen-btn main-header__wellcome__btn">
+                        <a href="{{ route('contact') }}" class="grdeen-btn main-header__wellcome__btn">
                             <span>Contact</span>
                         </a>
                     </div><!-- /.main-header__logo -->
 
                     <nav class="main-header__nav main-menu">
                         <ul class="main-menu__list">
-                            <li class="current"><a href="/">Home</a></li>
-                            <li class="dropdown">
-                                <a href="/products.html">Products</a>
+                            <li class="{{ request()->routeIs('home') ? 'current' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="dropdown {{ request()->routeIs('products', 'animals.*') ? 'current' : '' }}">
+                                <a href="{{ route('products') }}">Products</a>
                                 <ul>
-                                    <li><a href="/cattle.html">Cattle</a></li>
-                                    <li><a href="/pigs.html">Pigs</a></li>
-                                    <li><a href="/poultry.html">Poultry</a></li>
+                                    <li><a href="{{ route('animals.cattle') }}">Cattle</a></li>
+                                    <li><a href="{{ route('animals.pigs') }}">Pigs</a></li>
+                                    <li><a href="{{ route('animals.poultry') }}">Poultry</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/services.html">Services</a></li>
-                            <li><a href="/about.html">About</a></li>
+                            <li class="{{ request()->routeIs('services') ? 'current' : '' }}"><a href="{{ route('services') }}">Services</a></li>
+                            <li class="{{ request()->routeIs('about') ? 'current' : '' }}"><a href="{{ route('about') }}">About</a></li>
                         </ul>
                     </nav><!-- /.main-header__nav -->
                     <div class="main-header__right">
@@ -92,7 +92,7 @@
                             <span></span>
                             <span></span>
                         </div><!-- /.mobile-nav__toggler -->
-                        <a href="/faq.html" class="grdeen-btn main-header__btn">
+                        <a href="{{ route('faq') }}" class="grdeen-btn main-header__btn">
                             <span>Insights</span>
                         </a><!-- /.thm-btn main-header__btn -->
                     </div><!-- /.main-header__right -->
