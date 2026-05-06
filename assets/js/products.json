@@ -1,0 +1,434 @@
+[
+    {
+        "id": "CT-001",
+        "category": "Cattle",
+        "type": "Feed additive",
+        "title": "Ruminant Plus Growth Optimizer",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Premium feed additive designed to enhance rumen function and maximize weight gain in beef cattle.",
+        "composition": "Live yeast cultures, bypass proteins, and organic trace minerals."
+    },
+    {
+        "id": "CT-002",
+        "category": "Cattle",
+        "type": "Liquid vitamin mixture",
+        "title": "Cattle-Vital Liquid Recovery",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Quick-acting liquid vitamin supplement for cattle recovering from stress or illness.",
+        "composition": "High-dose Vitamin A, D3, E, and B-complex with electrolytes."
+    },
+    {
+        "id": "CT-003",
+        "category": "Cattle",
+        "type": "Acidifier",
+        "title": "Bovi-Safe Rumen Buffer",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Natural acidifier and buffer to prevent acidosis and maintain optimal rumen pH levels.",
+        "composition": "Encapsulated organic acids, sodium bicarbonate, and calcium carbonate."
+    },
+    {
+        "id": "CT-004",
+        "category": "Cattle",
+        "type": "Probiotic",
+        "title": "Dairy-Flora Probiotic Boost",
+        "image": "assets/images/products/product-1-4.jpg",
+        "description": "Specialized probiotic strain to improve milk yield and immune system health in dairy cows.",
+        "composition": "Lactobacillus acidophilus, Bifidobacterium animalis, and prebiotic fibers."
+    },
+    {
+        "id": "CT-005",
+        "category": "Cattle",
+        "type": "Vitamin",
+        "title": "Mega-Cal D3 Supplement",
+        "image": "assets/images/products/product-1-5.jpg",
+        "description": "Essential vitamin and mineral complex for bone development and milk production.",
+        "composition": "Calcium, Phosphorus, Vitamin D3, and Magnesium."
+    },
+    {
+        "id": "CT-006",
+        "category": "Cattle",
+        "type": "Flavoring",
+        "title": "Sweet-Malt Feed Appetizer",
+        "image": "assets/images/products/product-1-6.jpg",
+        "description": "Palatable flavoring agent to encourage higher feed intake during transition periods.",
+        "composition": "Natural malt extracts, vanilla aroma, and molasses solids."
+    },
+    {
+        "id": "CT-007",
+        "category": "Cattle",
+        "type": "Disinfectant",
+        "title": "Barn-Shield Broad Spectrum",
+        "image": "assets/images/products/product-1-7.jpg",
+        "description": "Safe and effective disinfectant for cattle housing and milking equipment.",
+        "composition": "Glutaraldehyde, Quaternary Ammonium Compounds, and Essential Oils."
+    },
+    {
+        "id": "CT-008",
+        "category": "Cattle",
+        "type": "Enzyme",
+        "title": "Fiber-Digester Complex",
+        "image": "assets/images/products/product-1-8.jpg",
+        "description": "Multi-enzyme complex to improve the digestibility of low-quality forage and silage.",
+        "composition": "Cellulase, Xylanase, and Amylase enzymes."
+    },
+    {
+        "id": "CT-009",
+        "category": "Cattle",
+        "type": "Hoof care",
+        "title": "Hoof-Tough Hardening Gel",
+        "image": "assets/images/products/product-1-9.jpg",
+        "description": "Protectant gel to prevent lameness and promote hoof tissue repair.",
+        "composition": "Zinc sulfate, Copper sulfate, and disinfectant botanicals."
+    },
+    {
+        "id": "CT-010",
+        "category": "Cattle",
+        "type": "Vaccine",
+        "title": "Bovi-Guard 8-Way Shield",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Comprehensive vaccine protecting against major respiratory and digestive pathogens.",
+        "composition": "Attenuated viral strains and bacterial toxoids."
+    },
+    {
+        "id": "CT-011",
+        "category": "Cattle",
+        "type": "Antioxidant",
+        "title": "Oxi-Block Cattle Fresh",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Natural antioxidant to preserve feed quality and reduce oxidative stress in high-yield animals.",
+        "composition": "Tocopherols, Rosemary extract, and Ascorbic acid."
+    },
+    {
+        "id": "CT-012",
+        "category": "Cattle",
+        "type": "Inoculant",
+        "title": "Silage-Gold Mega Pack",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Biological silage inoculant for faster fermentation and better nutrient preservation.",
+        "composition": "Lactobacillus plantarum and Enterococcus faecium."
+    },
+    {
+        "id": "CT-013",
+        "category": "Cattle",
+        "type": "Insecticide",
+        "title": "Fly-Free Pour-On Guard",
+        "image": "assets/images/products/product-1-4.jpg",
+        "description": "Long-lasting insecticide for the control of flies, lice, and ticks on beef and dairy cattle.",
+        "composition": "Permethrin and Citronella oil base."
+    },
+    {
+        "id": "CT-014",
+        "category": "Cattle",
+        "type": "Feed additive",
+        "title": "Calf-Start Colostrum Plus",
+        "image": "assets/images/products/product-1-5.jpg",
+        "description": "Immunity-boosting additive for newborn calves, mimicking natural colostrum benefits.",
+        "composition": "Immunoglobulins, fatty acids, and essential vitamins."
+    },
+    {
+        "id": "CT-015",
+        "category": "Cattle",
+        "type": "Mineral",
+        "title": "Trace-Max Organic Minerals",
+        "image": "assets/images/products/product-1-6.jpg",
+        "description": "Highly bioavailable organic trace minerals for improved reproductive performance.",
+        "composition": "Organic Zinc, Manganese, Copper, and Selenium."
+    },
+    {
+        "id": "CT-016",
+        "category": "Cattle",
+        "type": "Probiotic",
+        "title": "Rumen-Flora Daily Guard",
+        "image": "assets/images/products/product-1-7.jpg",
+        "description": "Maintenance probiotic for consistent rumen health and digestive stability.",
+        "composition": "Proprietary blend of beneficial bacterial strains."
+    },
+    {
+        "id": "PG-001",
+        "category": "Pigs",
+        "type": "Feed additive",
+        "title": "Swine-Grow High Energy",
+        "image": "assets/images/products/product-1-8.jpg",
+        "description": "High-density feed additive for faster finishing of market pigs.",
+        "composition": "Medium-chain triglycerides, amino acids, and growth factors."
+    },
+    {
+        "id": "PG-002",
+        "category": "Pigs",
+        "type": "Enzyme",
+        "title": "Porcine-Digester Multi-E",
+        "image": "assets/images/products/product-1-9.jpg",
+        "description": "Advanced enzyme blend to improve phosphorus utilization and reduce feed costs.",
+        "composition": "Phytase, Protease, and Glucanase."
+    },
+    {
+        "id": "PG-003",
+        "category": "Pigs",
+        "type": "Acidifier",
+        "title": "Gut-Acid pH Control",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Liquid acidifier for drinking water to prevent pathogenic bacteria in weaned piglets.",
+        "composition": "Formic acid, Propionic acid, and Lactic acid."
+    },
+    {
+        "id": "PG-004",
+        "category": "Pigs",
+        "type": "Vitamin",
+        "title": "Piglet-Vital Multi-Vitamin",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Concentrated vitamin mix for the critical first 21 days of piglet life.",
+        "composition": "Vitamins A, B12, E, and K."
+    },
+    {
+        "id": "PG-005",
+        "category": "Pigs",
+        "type": "Probiotic",
+        "title": "Sow-Care Reproductive Aid",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Probiotic supplement to improve sow health and litter size consistency.",
+        "composition": "Bacillus subtilis and yeast cell wall components."
+    },
+    {
+        "id": "PG-006",
+        "category": "Pigs",
+        "type": "Disinfectant",
+        "title": "Pork-Shield Farrowing Guard",
+        "image": "assets/images/products/product-1-4.jpg",
+        "description": "Non-toxic disinfectant powder for farrowing pens to keep piglets dry and safe.",
+        "composition": "Absorbent minerals, essential oils, and antimicrobial agents."
+    },
+    {
+        "id": "PG-007",
+        "category": "Pigs",
+        "type": "Antioxidant",
+        "title": "Meat-Fresh Color Guard",
+        "image": "assets/images/products/product-1-5.jpg",
+        "description": "Natural antioxidant to improve pork meat quality and shelf life.",
+        "composition": "Natural polyphenols and Selenium yeast."
+    },
+    {
+        "id": "PG-008",
+        "category": "Pigs",
+        "type": "Flavoring",
+        "title": "Fruit-Mix Weaning Flavor",
+        "image": "assets/images/products/product-1-6.jpg",
+        "description": "Fruity flavoring to mask medication taste and encourage early feed take-up.",
+        "composition": "Strawberry-Milk concentrate and sweetener."
+    },
+    {
+        "id": "PG-009",
+        "category": "Pigs",
+        "type": "Hoof care",
+        "title": "Swine-Step Zinc Bath",
+        "image": "assets/images/products/product-1-7.jpg",
+        "description": "Concentrated footbath solution for maintaining healthy claws in breeding stock.",
+        "composition": "Zinc-Chelate and organic acids."
+    },
+    {
+        "id": "PG-010",
+        "category": "Pigs",
+        "type": "Vaccine",
+        "title": "Porci-Guard 3-in-1",
+        "image": "assets/images/products/product-1-8.jpg",
+        "description": "Combined vaccine for protection against Circovirus, Mycoplasma, and Lawsonia.",
+        "composition": "Inactivated antigens in specialized adjuvant."
+    },
+    {
+        "id": "PG-011",
+        "category": "Pigs",
+        "type": "Inoculant",
+        "title": "Manure-Fresh Treatment",
+        "image": "assets/images/products/product-1-9.jpg",
+        "description": "Biological inoculant for manure pits to reduce ammonia odor and liquefy solids.",
+        "composition": "Specific ammonia-degrading bacteria and enzymes."
+    },
+    {
+        "id": "PG-012",
+        "category": "Pigs",
+        "type": "Insecticide",
+        "title": "Fly-Go Swine Spray",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Ready-to-use spray for the control of stable flies and mange in Finishing houses.",
+        "composition": "Natural pyrethrin and neem oil."
+    },
+    {
+        "id": "PG-013",
+        "category": "Pigs",
+        "type": "Feed additive",
+        "title": "Piglet-Start Pre-Starter",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Highly digestible pre-starter additive for early weaning success.",
+        "composition": "Plasma proteins and lactose solids."
+    },
+    {
+        "id": "PG-014",
+        "category": "Pigs",
+        "type": "Liquid vitamin mixture",
+        "title": "Swine-Hydrate Recovery",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Energy-rich electrolyte and vitamin mix for transport stress reduction.",
+        "composition": "Dextrose, Sodium, Potassium, and Vitamin C."
+    },
+    {
+        "id": "PG-015",
+        "category": "Pigs",
+        "type": "Probiotic",
+        "title": "Swine-Flora Gut Support",
+        "image": "assets/images/products/product-1-4.jpg",
+        "description": "General purpose probiotic for all stages of swine production.",
+        "composition": "Saccharomyces boulardii and prebiotics."
+    },
+    {
+        "id": "PG-016",
+        "category": "Pigs",
+        "type": "Acidifier",
+        "title": "Enviro-Acid Water Guard",
+        "image": "assets/images/products/product-1-5.jpg",
+        "description": "Solid acidifier for mash feed to maintain intestinal health and feed hygiene.",
+        "composition": "Pelleted citric and fumaric acid."
+    },
+    {
+        "id": "PL-001",
+        "category": "Poultry",
+        "type": "Feed additive",
+        "title": "Layer-Gold Egg Enhancer",
+        "image": "assets/images/products/product-1-6.jpg",
+        "description": "Specially formulated to improve eggshell strength and yolk color in laying hens.",
+        "composition": "Calcium-Pidolate, Canthaxanthin, and Vitamin D3."
+    },
+    {
+        "id": "PL-002",
+        "category": "Poultry",
+        "type": "Enzyme",
+        "title": "Avi-Zyme Corn-Soy Mix",
+        "image": "assets/images/products/product-1-7.jpg",
+        "description": "Specific enzyme for broiler diets based on corn and soybean meal to improve FCR.",
+        "composition": "Xylanase, Amylase, and Protease."
+    },
+    {
+        "id": "PL-003",
+        "category": "Poultry",
+        "type": "Probiotic",
+        "title": "Chick-Start Flora Shield",
+        "image": "assets/images/products/product-1-8.jpg",
+        "description": "Early colonization probiotic to protect day-old chicks from Salmonella and E. coli.",
+        "composition": "Competitive exclusion bacterial cultures."
+    },
+    {
+        "id": "PL-004",
+        "category": "Poultry",
+        "type": "Vitamin",
+        "title": "Avi-Vital Anti-Stress",
+        "image": "assets/images/products/product-1-9.jpg",
+        "description": "Soluble powder for heat stress relief and improved immune response during vaccination.",
+        "composition": "Vitamin C, Electrolytes, and Betaine."
+    },
+    {
+        "id": "PL-005",
+        "category": "Poultry",
+        "type": "Acidifier",
+        "title": "Crops-Clean Water Acid",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Powerful water acidifier to reduce crop pH and inhibit microbial growth in drinking lines.",
+        "composition": "Buffered blend of organic acids."
+    },
+    {
+        "id": "PL-006",
+        "category": "Poultry",
+        "type": "Pigment",
+        "title": "Yellow-Bright Skin Pigment",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Natural marigold extract for achieving the desired golden skin color in broilers.",
+        "composition": "Lutein and Zeaxanthin saponified."
+    },
+    {
+        "id": "PL-007",
+        "category": "Poultry",
+        "type": "Disinfectant",
+        "title": "Hatch-Clean Fogging Guard",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Safe fogging disinfectant for hatcheries and incubator rooms.",
+        "composition": "Alcohol-free hydrogen peroxide and silver ions."
+    },
+    {
+        "id": "PL-008",
+        "category": "Poultry",
+        "type": "Antioxidant",
+        "title": "Avi-Guard Lipid Shield",
+        "image": "assets/images/products/product-1-4.jpg",
+        "description": "Potent antioxidant to prevent rancidity in high-fat poultry diets.",
+        "composition": "Ethoxyquin, BHA, and Citric acid."
+    },
+    {
+        "id": "PL-009",
+        "category": "Poultry",
+        "type": "Flavoring",
+        "title": "Sweet-Feed Liquid Aroma",
+        "image": "assets/images/products/product-1-5.jpg",
+        "description": "Liquid flavor to improve palatability of pelleted broiler feeds.",
+        "composition": "Caramel and Butterscotch volatiles."
+    },
+    {
+        "id": "PL-010",
+        "category": "Poultry",
+        "type": "Vaccine",
+        "title": "Avi-Safe ND-IB Guard",
+        "image": "assets/images/products/product-1-6.jpg",
+        "description": "Live vaccine for the prevention of Newcastle Disease and Infectious Bronchitis.",
+        "composition": "LaSota strain and H120 mass-type virus."
+    },
+    {
+        "id": "PL-011",
+        "category": "Poultry",
+        "type": "Enzyme",
+        "title": "Avi-Phytase 5000",
+        "image": "assets/images/products/product-1-7.jpg",
+        "description": "Ultra-fast phytase for maximum phosphorus release and environmental protection.",
+        "composition": "6-phytase from Buttiauxella."
+    },
+    {
+        "id": "PL-012",
+        "category": "Poultry",
+        "type": "Insecticide",
+        "title": "Mite-Block Coop Dust",
+        "image": "assets/images/products/product-1-8.jpg",
+        "description": "Mechanical and biological powder to control red mites in layer houses.",
+        "composition": "Diatomaceous earth and essential oils."
+    },
+    {
+        "id": "PL-013",
+        "category": "Poultry",
+        "type": "Liquid vitamin mixture",
+        "title": "Layer-Vital Liquid Calcium",
+        "image": "assets/images/products/product-1-9.jpg",
+        "description": "Ready-to-use liquid calcium for fast correction of shell quality in older flocks.",
+        "composition": "Calcium-Gluconate and Vitamin D3."
+    },
+    {
+        "id": "PL-014",
+        "category": "Poultry",
+        "type": "Inoculant",
+        "title": "Litter-Fresh Bio-Act",
+        "image": "assets/images/products/product-1-1.jpg",
+        "description": "Probiotic litter treatment to reduce ammonia and improve paw health.",
+        "composition": "Ammonia-oxidizing bacteria and Bacillus strains."
+    },
+    {
+        "id": "PL-015",
+        "category": "Poultry",
+        "type": "Feed additive",
+        "title": "Avi-Bind Toxin Binder",
+        "image": "assets/images/products/product-1-2.jpg",
+        "description": "Broad-spectrum mycotoxin binder to protect poultry from diverse fungal threats.",
+        "composition": "HSCAS, Bentonite, and Yeast cell wall."
+    },
+    {
+        "id": "PL-016",
+        "category": "Poultry",
+        "type": "Vitamin",
+        "title": "Broiler-Growth Multi-V",
+        "image": "assets/images/products/product-1-3.jpg",
+        "description": "Optimized vitamin premix for maximal genetic potential achievement in broilers.",
+        "composition": "Full range of fat and water-soluble vitamins."
+    }
+]

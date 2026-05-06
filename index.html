@@ -1,0 +1,1345 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOVI AGRO LTD | Quality Feeds - Healthy Life</title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon_io/favicon-16x16.png" />
+    <link rel="manifest" href="assets/images/favicons/favicon_io/site.webmanifest" />
+    <link rel="canonical" href="https://novi-agro.com/" />
+    <meta name="description"
+        content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
+    <meta property="og:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+    <meta property="og:image" content="https://novi-agro.com/assets/images/generated/about_main.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://novi-agro.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
+    <meta name="twitter:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900;1000&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/vendors/grdeen-icons/style.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/vendors/grdeen-two-icons/style.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/grdeen.css" />
+    <link rel="stylesheet" href="assets/css/novi-responsive.css" />
+
+    <!-- Video Hero Custom Styles -->
+    <style>
+        .video-hero-one {
+            background: linear-gradient(135deg, #1a3c1a 0%, #2d5a1b 50%, #0d2b0d 100%);
+        }
+
+        .video-hero-one__content {
+            text-align: left;
+            position: relative;
+            z-index: 2;
+            padding-left: 40px;
+        }
+
+        /* Decorative Vertical Accent */
+        .video-hero-one__content::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 6px;
+            background: var(--grdeen-base, #1a9120);
+            border-radius: 10px;
+            animation: heroVerticalLine 1s ease both;
+        }
+
+        /* Side Gradient for legibility */
+        .video-hero-one__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        @media (max-width: 767px) {
+            .video-hero-one__content {
+                padding-left: 25px;
+            }
+
+            .video-hero-one__content::before {
+                width: 4px;
+            }
+
+            .video-hero-one__overlay {
+                background: rgba(53, 194, 10, 0.6);
+                /* More uniform overlay on mobile */
+            }
+        }
+
+        .video-hero-one__sub-title {
+            display: inline-block;
+            background: var(--grdeen-base, #1a9120);
+            /* Brand Green Background */
+            color: #ffffff !important;
+            /* White Text */
+            opacity: 1 !important;
+            font-size: 14px;
+            /* Slightly smaller for the badge look */
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            padding: 10px 24px;
+            border: 2px solid #ffffff;
+            /* Contrast border */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: heroFadeLeft 0.8s ease both;
+        }
+
+        .video-hero-one__title {
+            color: #ffffff !important;
+            opacity: 1 !important;
+            font-size: clamp(48px, 8vw, 95px);
+            font-weight: 900;
+            line-height: 1.0;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 45px;
+            animation: heroFadeLeft 1s ease 0.2s both;
+        }
+
+        .video-hero-one__btn {
+            animation: heroFadeLeft 1.2s ease 0.4s both;
+        }
+
+        @keyframes heroVerticalLine {
+            from {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes heroFadeLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Navbar Home Link Distinguished Style */
+        .main-menu__list>li.current>a {
+            color: #ffffff !important;
+        }
+
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Product detail responsive */
+        @media (max-width: 767px) {
+            #slotProductTitle {
+                font-size: 28px !important;
+            }
+            .product-detail-img-wrap {
+                padding: 15px !important;
+            }
+            #product-details .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Species section - card label span color (supplement to novi-responsive.css) */
+        .species-card__label span {
+            color: #fff;
+        }
+    </style>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Novi Agro Ltd",
+        "description": "Leading provider of premium livestock feed additives and agricultural consultancy services in Nigeria.",
+        "url": "https://novi-agro.com",
+        "logo": "https://novi-agro.com/assets/images/images-removebg-preview.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+2347041041756",
+            "contactType": "customer service",
+            "email": "info@novi-agro.com"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "NG"
+        },
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=100077163775495",
+            "https://www.instagram.com/novi_agroltd/"
+        ]
+    }
+    </script>
+</head>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(assets/images/Loader.jpg);"></div>
+    </div>
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+        <div class="topbar-one topbar-one--one_only">
+            <div class="container-fluid">
+                <div class="topbar-one__inner">
+                    <div class="topbar-one__logo">
+                        <a href="index.html">
+                            <img src="assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
+                        </a>
+                    </div><!-- /.main-header__logo -->
+
+                    <ul class="list-unstyled topbar-one__info">
+                        <li class="topbar-one__info__item">
+                            <div class="topbar-one__info__iconwrap">
+                                <i class="icon-pin"></i>
+                            </div>
+                            <div class="topbar-one__info__address d-flex flex-wrap">
+                                <small class="topbar-one__info__address__text">Company address</small>
+                                <a href="contact.html">New Garage, Ibadan.</a>
+                            </div>
+                        </li>
+                        <li class="topbar-one__info__item">
+                            <div class="topbar-one__info__iconwrap">
+                                <i class="icon-email"></i>
+                            </div>
+                            <div class="topbar-one__info__address">
+                                <small class="topbar-one__info__address__text">Send an email</small>
+                                <a href="mailto:info@novi-agro.com">info@novi-agro.com</a>
+                            </div>
+                        </li>
+                        <li class="topbar-one__info__item">
+                            <div class="topbar-one__info__iconwrap">
+                                <i class="icon-phone-receiver-silhouette"></i>
+                            </div>
+                            <div class="topbar-one__info__address">
+                                <small class="topbar-one__info__address__text">Helpline and support</small>
+                                <a href="tel:+2347041041756">+2347041041756 </a>
+                            </div>
+                        </li>
+                    </ul><!-- /.list-unstyled topbar-one__info -->
+
+                    <div class="topbar-one__right">
+                        <!-- <p class="topbar-one__text">Mon to Sat: 9:00am – 6:00pm Sun: Closed</p> -->
+                        <div class="topbar-one__social">
+                            <a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f"></i>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            <a href="https://www.instagram.com/novi_agroltd/" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        </div><!-- /.topbar-one__social -->
+                    </div><!-- /.topbar-one__right -->
+                </div><!-- /.topbar-one__inner -->
+            </div><!-- /.container-fluid -->
+        </div><!-- /.topbar-one -->
+
+        <header class="main-header main-header--only-one main-header--one_only sticky-header sticky-header--normal">
+            <div class="container-fluid">
+                <div class="main-header__inner">
+                    <div class="main-header__logo">
+                        <a href="index.html">
+                            <img src="assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
+                        </a>
+                    </div><!-- /.main-header__logo -->
+                    <div class="main-header__wellcome d-flex align-items-center">
+                        <p class="main-header__wellcome__tagline">Quality Feed - Healthy Life</p>
+                        <a href="contact.html" class="grdeen-btn main-header__wellcome__btn">
+                            <span>Contact</span>
+                        </a>
+                    </div><!-- /.main-header__logo -->
+
+                    <nav class="main-header__nav main-menu">
+                        <ul class="main-menu__list">
+                            <li class="current"><a href="index.html">Home</a></li>
+                            <li class="dropdown">
+                                <a href="products.html">Products</a>
+                                <ul>
+                                    <li><a href="cattle.html">Cattle</a></li>
+                                    <li><a href="pigs.html">Pigs</a></li>
+                                    <li><a href="poultry.html">Poultry</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </nav><!-- /.main-header__nav -->
+                    <div class="main-header__right">
+                        <div class="mobile-nav__btn mobile-nav__toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- /.mobile-nav__toggler -->
+                        <a href="faq.html" class="grdeen-btn main-header__btn">
+                            <span>Insights</span>
+                        </a><!-- /.thm-btn main-header__btn -->
+                    </div><!-- /.main-header__right -->
+                </div><!-- /.main-header__inner -->
+            </div><!-- /.container-fluid -->
+        </header><!-- /.main-header -->
+        <!-- video-hero-start -->
+        <section class="video-hero-one"
+            style="position:relative; width:100%; height:100vh; min-height:500px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+            <!-- Background Video: Nigerian cattle grazing on a fallowed bush -->
+            <!-- Place your video file at: assets/videos/hero-cattle.mp4 -->
+            <video class="video-hero-one__video" autoplay muted loop playsinline
+                style="position:absolute; top:50%; left:50%; width:100%; height:100%; object-fit:cover; transform:translate(-50%,-50%); z-index:0;">
+                <source src="assets/videos/Nigerian_Breed_Cow_Video_Generated.mp4" type="video/mp4">
+                <!-- Fallback image if video is not supported or not found -->
+            </video>
+            <!-- Dark overlay for text readability -->
+            <div class="video-hero-one__overlay"></div>
+            <!-- Hero Content -->
+            <div class="container" style="position:relative; z-index:2;">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-9 col-md-12">
+                        <div class="video-hero-one__content">
+                            <h5 class="video-hero-one__sub-title">
+                                WELCOME TO NOVI-AGRO
+                            </h5>
+                            <h2 class="video-hero-one__title">
+                                Advanced Animal Care Solutions
+                            </h2>
+                            <div class="video-hero-one__btn">
+                                <a href="products.html" class="grdeen-btn grdeen-btn--base"><span>Browse
+                                        Products</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- video-hero-end -->
+
+        <!-- Feature Start -->
+        <section class="feature-one">
+            <div class="container-fluid">
+                <div class="row gutter-y-30 feature-one__row">
+                    <div class="col-xxl-3 col-xl-6 col-md-6 wow fadeInUp" data-wow-delay="00ms">
+                        <div class="feature-one__item">
+                            <div class="feature-one__item__content">
+                                <h4 class="feature-one__item__title">Quality Services</h4>
+                                <p class="feature-one__item__text">Comprehensive livestock care services.</p>
+                            </div>
+
+                            <div class="feature-one__item__iconwrap">
+                                <div class="feature-one__item__icon">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                            </div>
+                        </div><!-- feature-item -->
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="feature-one__item">
+                            <div class="feature-one__item__content">
+                                <h4 class="feature-one__item__title">Professional Team</h4>
+                                <p class="feature-one__item__text">Experienced team of veterinarians and livestock
+                                    specialists.</p>
+                            </div>
+
+                            <div class="feature-one__item__iconwrap">
+                                <div class="feature-one__item__icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                            </div>
+                        </div><!-- feature-item -->
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="feature-one__item">
+                            <div class="feature-one__item__content">
+                                <h4 class="feature-one__item__title">Livestock Feeding Award</h4>
+                                <p class="feature-one__item__text">Award-winning livestock feeds for optimal growth and
+                                    health.</p>
+                            </div>
+
+                            <div class="feature-one__item__iconwrap">
+                                <div class="feature-one__item__icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                            </div>
+                        </div><!-- feature-item -->
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="feature-one__item">
+                            <div class="feature-one__item__content">
+                                <h4 class="feature-one__item__title">Quality Products</h4>
+                                <p class="feature-one__item__text">Comprehensive quality feeds for livestock growth.</p>
+                            </div>
+
+                            <div class="feature-one__item__iconwrap">
+                                <div class="feature-one__item__icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                            </div>
+                        </div><!-- feature-item -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Feature End -->
+
+        <section class="about-one">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-one__image wow fadeInLeft" data-wow-delay="100ms">
+                            <div class="about-one__shapetop"></div>
+                            <img loading="lazy" class="about-one__bigimage" src="assets/images/generated/about_main.png" 
+                                alt="About Novi-Agro">
+                            <div class="about-one__smimage">
+                                <img loading="lazy" src="assets/images/generated/about_thumbnail.png"
+                                    alt="Premium Feed Detail">
+                            </div>
+
+                            <div class="about-one__shapebottom"></div>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+
+                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="100ms">
+                        <div class="about-one__content">
+                            <div class="sec-title">
+
+                                <div class="sec-title__img">
+                                    <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                        width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                        preserveAspectRatio="xMidYMid meet">
+                                        <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                            stroke="none">
+                                            <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			                                   c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                        </g>
+                                    </svg>
+                                </div>
+
+
+                                <span class="sec-title__tagline">Novi Agro
+                                    Nig. Ltd</span><!-- /.sec-title__tagline -->
+
+                                <h2 class="sec-title__title">Brings your farming business to life</h2>
+                                <!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <p class="about-one__content__text">
+                                At Novi Agro Nig. Ltd, we are committed to revolutionizing the agricultural landscape in
+                                Nigeria. With a focus on sustainable practices and innovation, we provide high-quality
+                                livestock feed additives and expert consultancy services to empower farmers and enhance
+                                productivity.
+                            </p>
+                            <div class="about-one__content__qualitwrap">
+                                <h4 class="about-one__content__qualitwrap__title">Quality <br> farming services</h4>
+                                <p class="about-one__content__text qualit-text"></p>
+                                <div class="about-one__content__qualitwrap__pricesbox text-center">
+                                    <strong class="about-one__content__qualitwrap__price">2K</strong>
+                                    <span class="about-one__content__qualitwrap__text">Satisfied customers</span>
+                                </div>
+                            </div>
+                            <p class="about-one__content__text">
+                                We offer a comprehensive range of high-quality livestock feeds additives tailored to
+                                meet the specific nutritional needs of various animals, including poultry, goats, and
+                                cattle.
+                                Our products are formulated with premium ingredients to ensure optimal growth, health, and
+                                productivity for your farm.
+                            </p>
+                            <ul class="list-unstyled about-one__content__list">
+                                <li><i class="icon-check-solid"></i>Feed Additives at its best</li>
+                                <li><i class="icon-check-solid"></i>Professional consultancy service for all your
+                                    farming
+                                    business
+                                </li>
+                                <li><i class="icon-check-solid"></i>There are many variations of products of Novi Agro
+                                    available</li>
+                            </ul>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-one -->
+
+        <!-- Species Section -->
+        <section class="species-section">
+            <div class="container">
+                <!-- Section Heading -->
+                <div class="mb-5">
+                    <h2 class="fw-bold species-section__heading">
+                        SPECIES
+                    </h2>
+                    <p class="mt-3" style="color: #6c757d; font-size: 16px; max-width: 600px;">
+                        We provide premium feed additives and nutritional solutions tailored for each animal
+                        category.
+                    </p>
+                </div>
+
+                <!-- Species Cards -->
+                <div class="row g-3">
+
+                    <!-- Poultry -->
+                    <div class="col-sm-6 col-lg-4">
+                        <a href="poultry.html" class="text-decoration-none">
+                            <div class="species-card">
+                                <img loading="lazy" src="assets/images/backgrounds/hens-factory-chicken-cages.jpg" alt="Poultry">
+                                <div class="species-card__overlay"></div>
+                                <div class="species-card__label species-card__label--dark">
+                                    <span class="species-card__label-title">Poultry</span>
+                                    <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Cattle -->
+                    <div class="col-sm-6 col-lg-4">
+                        <a href="cattle.html" class="text-decoration-none">
+                            <div class="species-card">
+                                <img loading="lazy" src="assets/images/backgrounds/photorealistic-view-cow-grazing-outdoors.jpg"
+                                    alt="Cattle" style="object-position: center top;">
+                                <div class="species-card__overlay"></div>
+                                <div class="species-card__label species-card__label--green">
+                                    <span class="species-card__label-title">Cattle</span>
+                                    <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Pigs -->
+                    <div class="col-sm-6 col-lg-4">
+                        <a href="pigs.html" class="text-decoration-none">
+                            <div class="species-card">
+                                <img loading="lazy" src="assets/images/backgrounds/selective-closeup-shot-pink-pigs-barn.jpg"
+                                    alt="Pigs">
+                                <div class="species-card__overlay"></div>
+                                <div class="species-card__label species-card__label--dark">
+                                    <span class="species-card__label-title">Pigs</span>
+                                    <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Species Section End -->
+
+        <section class="service-one">
+            <div class="service-one__bg" style="background-image:url('assets/images/generated/services_bg.png')">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="sec-title">
+
+                            <div class="sec-title__img">
+                                <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                    width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                        stroke="none">
+                                        <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			                               c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                    </g>
+                                </svg>
+                            </div>
+
+
+                            <span class="sec-title__tagline">Our Services</span><!-- /.sec-title__tagline -->
+
+                            <h2 class="sec-title__title">The services we offer to <br> our clients</h2>
+                            <!-- /.sec-title__title -->
+                        </div><!-- /.sec-title -->
+                    </div>
+                </div>
+
+                <div class="row gutter-y-30">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="00ms">
+                        <div class="service-one__item">
+                            <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
+                                <div class="service-one__item__titlecol">
+                                    <span class="service-one__item__count"></span>
+                                    <h4 class="service-one__item__title"><a href="services.html">Livestock Feeds</a>
+                                    </h4>
+                                </div>
+
+                                <div class="service-one__item__iconwrap">
+                                    <div class="service-one__item__icon">
+                                        <i class="icon-grass"></i>
+                                    </div><!-- /.service-icon -->
+                                </div>
+                            </div>
+                            <p class="service-one__item__text">Nutrient-rich additives for optimal livestock health.</p>
+                            <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
+                                <a class="service-one__item__iconlink" href="services.html">
+                                    <i class="icon-right-up"></i>
+                                </a>
+                                <a class="service-one__item__link" href="services.html">Discover More</a>
+                            </div>
+                        </div><!-- /.service-card-one -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="service-one__item">
+                            <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
+                                <div class="service-one__item__titlecol">
+                                    <span class="service-one__item__count"></span>
+                                    <h4 class="service-one__item__title"><a href="services.html">Consultancy</a></h4>
+                                </div>
+
+                                <div class="service-one__item__iconwrap">
+                                    <div class="service-one__item__icon">
+                                        <i class="icon-group"></i>
+                                    </div><!-- /.service-icon -->
+                                </div>
+                            </div>
+                            <p class="service-one__item__text">Expert guidance on farm and livestock management.</p>
+                            <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
+                                <a class="service-one__item__iconlink" href="services.html">
+                                    <i class="icon-right-up"></i>
+                                </a>
+                                <a class="service-one__item__link" href="services.html">Discover More</a>
+                            </div>
+                        </div><!-- /.service-card-one -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="service-one__item">
+                            <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
+                                <div class="service-one__item__titlecol">
+                                    <span class="service-one__item__count"></span>
+                                    <h4 class="service-one__item__title"><a href="contact.html">Customer Support</a>
+                                    </h4>
+                                </div>
+
+                                <div class="service-one__item__iconwrap">
+                                    <div class="service-one__item__icon">
+                                        <i class="icon-telephone-call"></i>
+                                    </div><!-- /.service-icon -->
+                                </div>
+                            </div>
+                            <p class="service-one__item__text">Reliable support for inquiries and after-sales.</p>
+                            <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
+                                <a class="service-one__item__iconlink" href="contact.html">
+                                    <i class="icon-right-up"></i>
+                                </a>
+                                <a class="service-one__item__link" href="contact.html">Discover More</a>
+                            </div>
+                        </div><!-- /.service-card-one -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Service End -->
+
+        <section class="work-process-one">
+            <div class="container">
+                <div class="row gutter-y-20">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="100ms">
+                        <div class="work-process-one__sctwrap">
+                            <div class="sec-title">
+
+                                <div class="sec-title__img">
+                                    <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                        width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                        preserveAspectRatio="xMidYMid meet">
+                                        <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                            stroke="none">
+                                            <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			                                     c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                        </g>
+                                    </svg>
+                                </div>
+
+
+                                <span class="sec-title__tagline">Our work process</span><!-- /.sec-title__tagline -->
+
+                                <h2 class="sec-title__title">See how we complete the work</h2>
+                                <!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="100ms">
+                        <div class="work-process-one__infowrap">
+                            <p class="work-process-one__infowrap__text">At Novi Agro, we follow a systematic and
+                                efficient approach to ensure your farm gets the best nutrition, supplies, and
+                                professional guidance for maximum productivity.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gutter-y-30">
+                    <div class="col-xl-3 col-lg-6 wow fadeIn" data-wow-delay="00ms">
+                        <div class="work-process-one__col">
+                            <div class="work-process-one__col__circlewrap">
+                                <div class="work-process-one__col__icon">
+                                    <i class="icon-high-quality"></i>
+                                </div>
+                            </div>
+                            <div class="work-process-one__col__info text-center">
+                                <h4 class="work-process-one__col__title">Livestock Nutrition</h4>
+                                <p class="work-process-one__col__text">Premium additives to boost animal health and
+                                    productivity.</p>
+                            </div>
+                            <div class="work-process-one__col__shapebg"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 wow fadeIn" data-wow-delay="100ms">
+                        <div class="work-process-one__col">
+                            <div class="work-process-one__col__circlewrap">
+                                <div class="work-process-one__col__icon">
+                                    <i class="icon-shop-bag"></i>
+                                </div>
+                            </div>
+                            <div class="work-process-one__col__info text-center">
+                                <h4 class="work-process-one__col__title">Product Supply</h4>
+                                <p class="work-process-one__col__text">Providing a consistent supply of essential
+                                    agro-products and supplements for your farm.</p>
+                            </div>
+                            <div class="work-process-one__col__shapebg"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 wow fadeIn" data-wow-delay="200ms">
+                        <div class="work-process-one__col">
+                            <div class="work-process-one__col__circlewrap">
+                                <div class="work-process-one__col__icon">
+                                    <i class="icon-group"></i>
+                                </div>
+                            </div>
+                            <div class="work-process-one__col__info text-center">
+                                <h4 class="work-process-one__col__title">Consultancy</h4>
+                                <p class="work-process-one__col__text">Expert advisory services to help you scale your
+                                    farming business with modern techniques.</p>
+                            </div>
+                            <div class="work-process-one__col__shapebg"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 wow fadeIn" data-wow-delay="300ms">
+                        <div class="work-process-one__col">
+                            <div class="work-process-one__col__circlewrap">
+                                <div class="work-process-one__col__icon">
+                                    <i class="icon-location"></i>
+                                </div>
+                            </div>
+                            <div class="work-process-one__col__info text-center">
+                                <h4 class="work-process-one__col__title">Logistics</h4>
+                                <p class="work-process-one__col__text">Fast and reliable nationwide delivery, ensuring
+                                    your supplies reach you when you need them.</p>
+                            </div>
+                            <div class="work-process-one__col__shapebg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- work-process end -->
+
+        <section class="our-benefits-one">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="our-benefits-one__left wow fadeInRight" data-wow-delay="100ms">
+                        <div class="our-benefits-one__content">
+                            <div class="our-benefits-one__content__sctwap">
+                                <div class="sec-title">
+
+                                    <div class="sec-title__img">
+                                        <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                            width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                                stroke="none">
+                                                <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			                                       c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+
+
+                                    <span class="sec-title__tagline">Your BENEFITS</span><!-- /.sec-title__tagline -->
+
+                                    <h2 class="sec-title__title">Why is mine different from others?</h2>
+                                    <!-- /.sec-title__title -->
+                                </div><!-- /.sec-title -->
+                            </div>
+
+                            <p class="our-benefits-one__content__text">At Novi-Agro, we stand out through our unwavering
+                                commitment to quality, sustainability, and farmer empowerment. We don't just supply
+                                products, we build lasting partnerships that help your farm thrive.</p>
+
+                            <div class="our-benefits-one__content__qualitwrap d-flex flex-wrap">
+                                <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
+                                    <div class="our-benefits-one__content__qualitwrap__icon">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                    </div>
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">Quality <br> services</h4>
+                                </div>
+
+                                <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
+                                    <div
+                                        class="our-benefits-one__content__qualitwrap__icon our-benefits-one__content__qualitwrap__icon--groupicon">
+                                        <i class="fas fa-users-cog"></i>
+                                    </div>
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">Skilled
+                                        <br> Team
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <p class="our-benefits-one__content__text">We provide end-to-end support, from consultation
+                                to providing feeds additive suitable for your livestock, ensuring you get the most out
+                                of
+                                every season.</p>
+
+                            <div class="our-benefits-one__content__listwrap d-flex justify-content-between">
+                                <ul class="list-unstyled our-benefits-one__content__list">
+                                    <li><i class="icon-check-solid"></i>Expert team members</li>
+                                    <li><i class="icon-check-solid"></i>Affordable quality services</li>
+                                    <li><i class="icon-check-solid"></i>Professional Farming Services </li>
+                                </ul>
+                                <a href="about.html" class="grdeen-btn our-benefits-one__btn">
+                                    <span>Find out more</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+
+                    <div class="our-benefits-one__right">
+                        <div class="our-benefits-one__image wow fadeInLeft" data-wow-delay="100ms">
+                            <div class="our-benefits-one__shapetop"></div>
+                            <img loading="lazy" class="our-benefits-one__bigimage" src="assets/images/generated/benefits_hero.png" 
+                                alt="Success in Farming">
+                            <div class="our-benefits-one__smimage">
+                                <img loading="lazy" src="assets/images/generated/benefits_thumb.png" alt="Modern Infrastructure">
+                            </div>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.our-benefits-one -->
+
+
+
+        <section class="funfact-one">
+            <div class="container">
+                <div class="row gutter-y-30">
+                    <div class="col-lg-6">
+                        <div class="funfact-one__content">
+                            <div class="funfact-one__content__sctwrap wow fadeInUp" data-wow-delay="100ms">
+                                <div class="sec-title">
+
+                                    <div class="sec-title__img">
+                                        <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                            width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                                stroke="none">
+                                                <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			                                       c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+
+
+                                    <span class="sec-title__tagline">OUR FUN FACTS</span><!-- /.sec-title__tagline -->
+
+                                    <h2 class="sec-title__title">The grass is always <br> greener on our side</h2>
+                                    <!-- /.sec-title__title -->
+                                </div><!-- /.sec-title -->
+                            </div>
+                            <p class="funfact-one__content__text">We are committed to provide innovative agricultural
+                                solutions that
+                                enhance animal nutrition, boost farmers' productivity, and promote sustainable food
+                                security across Nigeria and beyond.</p>
+                            <div class="funfact-one__content__bookwrap d-flex align-items-center">
+                                <a href="contact.html" class="grdeen-btn funfact-one__content__bookwrap__btn"><span>Hit us up
+                                        </span></a>
+                                <p class="funfact-one__content__bookwrap__text">Let us know how we can help You!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled funfact-one__list">
+                            <li class="funfact-one__item count-box">
+                                <div class="work-process-one__col">
+                                    <div class="work-process-one__col__circlewrap">
+                                        <div class="work-process-one__col__icon">
+                                            <div class="funfact-one__countwrap">
+                                                <strong class="funfact-one__count count-text" data-stop="10"
+                                                    data-speed="1500"></strong>
+                                                <span class="funfact-one__count">K</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="work-process-one__col__info text-center">
+                                        <h3 class="work-process-one__col__title">Projects Completed</h3>
+                                        <p class="work-process-one__col__text">Successful agricultural projects
+                                            delivered </p>
+                                    </div>
+                                    <div class="work-process-one__col__shapebg"></div>
+                                </div>
+                            </li><!-- /.funfact-one__item -->
+
+                            <li class="funfact-one__item count-box">
+                                <div class="work-process-one__col">
+                                    <div class="work-process-one__col__circlewrap">
+                                        <div class="work-process-one__col__icon">
+                                            <div class="funfact-one__countwrap">
+                                                <strong class="funfact-one__count count-text" data-stop="2110"
+                                                    data-speed="1500"></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="work-process-one__col__info text-center">
+                                        <h3 class="work-process-one__col__title">Satisfied Customers</h3>
+                                        <p class="work-process-one__col__text">Trusted by farmers and stakeholders</p>
+                                    </div>
+                                    <div class="work-process-one__col__shapebg"></div>
+                                </div>
+                            </li><!-- /.funfact-one__item -->
+                        </ul><!-- /.list-unstyled funfact-one__list -->
+                    </div>
+                </div>
+            </div><!-- /.container -->
+        </section><!-- /.funfact-one -->
+
+
+
+        <section class="free-booking-one">
+            <div class="free-booking-one__bg" style="background-image: url('assets/images/shapes/booking-bg1-1.jpg');">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="free-booking-one__content">
+                            <div class="free-booking-one__sctwrap wow fadeInUp" data-wow-delay="100ms">
+                                <div class="sec-title">
+
+                                    <div class="sec-title__img">
+                                        <svg aria-hidden="true" role="presentation" version="1.0" xmlns="http://www.w3.org/2000/svg" direction="rtl"
+                                            width="12.000000pt" height="10.000000pt" viewBox="0 0 12.000000 10.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,10.000000) scale(0.100000,-0.100000)"
+                                                stroke="none">
+                                                <path d="M58 84 c12 -8 22 -24 22 -34 0 -10 -10 -26 -22 -34 l-22 -16 27 0
+			c17 0 32 9 43 25 15 23 15 27 0 50 -11 16 -26 25 -43 25 l-27 0 22 -16z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+
+
+                                    <span class="sec-title__tagline">Free Book Now</span><!-- /.sec-title__tagline -->
+
+                                    <h2 class="sec-title__title">Book a FREE <br> Professional Farming <br>
+                                        Consultation!</h2><!-- /.sec-title__title -->
+                                </div><!-- /.sec-title -->
+                            </div>
+                            <form class="free-booking-one__form contact-form-validated form-one wow fadeInUp"
+                                data-wow-duration="1500ms" action="https://formsubmit.co/info@novi-agro.com"
+                                method="POST">
+                                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                                <input type="hidden" name="_subject" value="New Booking Request - Novi Agro">
+                                <div class="form-one__group">
+                                    <div class="form-one__control">
+                                        <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
+                                    </div><!-- /.form-one__control -->
+                                    <div class="form-one__control">
+                                        <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
+                                    </div><!-- /.form-one__control -->
+                                    <div class="form-one__control">
+                                        <input type="tel" name="tel" placeholder="Your Phone" aria-label="Your Phone">
+                                    </div><!-- /.form-one__control -->
+                                    <div class="form-one__control">
+                                        <div class="form-one__control__select">
+                                            <label class="sr-only" for="booking-service-select">Choose Services</label>
+                                            <select class="selectpicker" id="booking-service-select" name="service">
+                                                <option value="">Choose Services</option>
+                                                <option value="Consultation">Consultation</option>
+                                                <option value="Training">Training</option>
+                                            </select>
+                                        </div><!-- /.main-menu__language -->
+                                    </div><!-- /.form-one__control -->
+                                    <div class="form-one__control form-one__control--full d-none">
+                                        <input class="grdeen-datepicker" type="text" name="date"
+                                            placeholder="Select date" aria-label="Select date">
+                                        <i class="fa fa-calendar-alt form-one__control__icon"></i>
+                                    </div><!-- /.form-one__control form-one__control--full -->
+                                    <div class="form-one__control form-one__control--full">
+                                        <textarea name="message" placeholder="Message" aria-label="Your Message"></textarea><!-- /# -->
+                                    </div><!-- /.form-one__control -->
+                                    <div class="form-one__control form-one__control--full">
+                                        <button type="submit" class="grdeen-btn free-booking-one__submit"><span>Submit
+                                                Message</span></button>
+                                    </div><!-- /.form-one__control -->
+                                </div><!-- /.form-one__group -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="grdeen-stretch-element-inside-column">
+                            <div class="free-booking-one__image">
+                                <div class="free-booking-one__image__shape">
+                                    <img loading="lazy" src="assets/images/generated/booking_bg.png" alt="Novi">
+                                </div>
+                                <div class="free-booking-one__image__maskingimg  wow fadeInRight"
+                                    data-wow-delay="300ms">
+                                    <img loading="lazy" src="assets/images/generated/booking_vet1.png" alt="Consultation">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container -->
+            <div class="free-booking-one__shadow">
+                <h1 class="free-booking-one__shadow__title">Farming</h1>
+            </div>
+        </section><!-- /.free-booking-one -->
+
+        <section class="companies-one">
+            <div class="container">
+                <div class="companies-one__sctwrap wow fadeInUp" data-wow-delay="100ms">
+                    <div class="sec-title">
+
+
+                        <h2 class="sec-title__title">Partnering with Global Leaders in <br> Livestock & Agriculture</h2>
+                        <!-- /.sec-title__title -->
+                    </div><!-- /.sec-title -->
+                </div>
+
+                <div class="companies-one__carousel grdeen-owl__carousel grdeen-owl__carousel--with-shadow grdeen-owl__carousel--basic-nav owl-carousel"
+                    data-owl-options='{
+			"items": 1,
+			"margin": 0,
+			"loop": true,
+			"smartSpeed": 700,
+			"nav": false,
+			"navText": [""],
+			"dots": true,
+			"autoplay": false,
+			"responsive": {
+				"0": {
+					"items": 1
+				},
+				"768": {
+					"items": 2
+				},
+				"992": {
+					"items": 3
+				},
+				"1367": {
+					"items": 4
+				}
+			}
+		}'>
+                    <div class="item">
+                        <div class="companies-one__image">
+                            <div class="companies-one__inner-img">
+                                <a href="products.html"><img loading="lazy" src="assets/images/resources/brand-logo1-1.png" alt="Partner Logo"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="companies-one__image">
+                            <div class="companies-one__inner-img">
+                                <a href="products.html"><img loading="lazy" src="assets/images/resources/brand-logo1-2.png" alt="Partner Logo"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="companies-one__image">
+                            <div class="companies-one__inner-img">
+                                <a href="products.html"><img loading="lazy" src="assets/images/resources/brand-logo1-3.png" alt="Partner Logo"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="companies-one__image">
+                            <div class="companies-one__inner-img">
+                                <a href="products.html"><img loading="lazy" src="assets/images/resources/brand-logo1-4.png" alt="Partner Logo"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.companies-one -->
+
+
+        <footer class="main-footer main-footer--two">
+            <div class="main-footer__bg" style="background: linear-gradient(135deg, #07c543 0%, #078f19 100%);">
+            </div>
+            <div class="main-footer__overlay"></div>
+            <!-- /.main-footer__bg -->
+            <div class="main-footer__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-widget__col footer-widget__col__col1">
+                            <div class="footer-widget footer-widget--about">
+                                <a href="index.html" class="footer-widget__logo">
+                                    <span class="footer-widget__logo-text">Novi <span>Agro</span></span>
+                                </a>
+                                <p class="footer-widget__experience-text">Dedicated to providing premium products,
+                                    reliable feed additives, and comprehensive animal care supplies for professionals
+                                    and farm owners worldwide.
+                                </p>
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="footer-widget__col  footer-widget__col__col2">
+                            <div class="footer-widget footer-widget--links">
+                                <h6 class="footer-widget__title">Categories</h6>
+                                <ul class="list-unstyled footer-widget__links">
+                                    <li><a href="cattle.html">Cattle Solutions</a></li>
+                                    <li><a href="pigs.html">Swine Care</a></li>
+                                    <li><a href="poultry.html">Poultry Products</a></li>
+                                    <li><a href="products.html">All Products</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                </ul><!-- /.list-unstyled footer-widget__links -->
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="footer-widget__col  footer-widget__col__col3">
+                            <div class="footer-widget footer-widget--gallery">
+                                <h6 class="footer-widget__title">Gallery</h6><!-- /.footer-widget__title -->
+                                <div class="footer-widget__gallerywrap d-flex flex-wrap">
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_cattle.png" alt="Quality Cattle">
+                                    </div>
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_poultry.png" alt="Modern Poultry">
+                                    </div>
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_pigs.png" alt="Swine Care">
+                                    </div>
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_feed.png" alt="Premium Feed">
+                                    </div>
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_support.png" alt="Expert Support">
+                                    </div>
+                                    <div class="footer-widget__gallerywrap__img">
+                                        <img loading="lazy" src="assets/images/generated/gallery_pasture.png" 
+                                            alt="Sustainable Pasture">
+                                    </div>
+                                </div>
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="footer-widget__col  footer-widget__col__col4">
+                            <div class="footer-widget footer-widget--blog">
+                                <h6 class="footer-widget__title">Products</h6><!-- /.footer-widget__title -->
+
+                                <div class="footer-widget__post-wrap">
+                                    <div class="footer-widget__post-col">
+                                        <div class="footer-widget__post-img">
+                                            <img loading="lazy" src="assets/images/generated/product_thumb_feed.png" alt="Novi Feed">
+                                        </div>
+                                        <div class="footer-widget__post-info">
+                                            <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
+                                                <span> 02 Mar 2026</span>
+                                            </span>
+                                            <h6 class="footer-widget__post-heading"><a href="products.html">Products
+                                                </a></h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="footer-widget__post-col">
+                                        <div class="footer-widget__post-img">
+                                            <img loading="lazy" src="assets/images/generated/product_thumb_feed.png" 
+                                                alt="Premium Care">
+                                        </div>
+                                        <div class="footer-widget__post-info">
+                                            <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
+                                                <span> 05 Mar 2026</span>
+                                            </span>
+                                            <h6 class="footer-widget__post-heading"><a href="products.html">Products
+                                                </a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.main-footer__top -->
+
+            <div class="main-footer__bottom">
+                <div class="container">
+                    <div class="main-footer__bottom__inner">
+                        <p class="main-footer__copyright"> &copy; <span class="dynamic-year"></span> Novi Agro All
+                            Rights Reserved</p>
+                        <div class="main-footer__social-row">
+                            <p class="main-footer__social-row-text">Social</p>
+                            <ul class="main-footer__social-list">
+                                <li><a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                                        rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/novi_agroltd/" target="_blank"
+                                        rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div><!-- /.main-footer__inner -->
+                </div><!-- /.container -->
+            </div><!-- /.main-footer__bottom -->
+        </footer><!-- /.main-footer --><!-- /.main-footer -->
+
+    </div><!-- /.page-wrapper -->
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/images-removebg-preview.png"
+                        alt="Novi-Agro Logo" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:info@novi-agro.com">info@novi-agro.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+2347041041756">+2347041041756</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__social">
+                <a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/novi_agroltd/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+            </div><!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="#">
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="grdeen-btn">
+                    <span><i class="icon-search"></i></span>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <span class="scroll-to-top__text">back top</span>
+        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
+    </a>
+    <script src="assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendors/tiny-slider/tiny-slider.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/countdown/countdown.min.js"></script>
+    <script src="assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+    <!-- template js -->
+    <script src="assets/js/grdeen.js"></script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n 'target=\"_blank\"' *.html)",
+      "Bash(node -c assets/js/products-data.js)",
+      "Bash(node -c assets/js/main.js)",
+      "Bash(node -c expand.js)",
+      "Bash(ls \"D:/Mr Sam/novi-html/assets/images/resources/\"testimonial*)",
+      "Bash(ls \"D:/Mr Sam/novi-html/assets/images/resources/\"test*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
