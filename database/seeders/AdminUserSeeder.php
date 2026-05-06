@@ -10,7 +10,7 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'admin@novi-agro.local'],
             [
                 'name' => 'Novi Agro Admin',
@@ -19,5 +19,7 @@ class AdminUserSeeder extends Seeder
                 'email_verified_at' => now(),
             ],
         );
+
+        $user->syncRoles(['admin']);
     }
 }
