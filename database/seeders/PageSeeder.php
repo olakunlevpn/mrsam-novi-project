@@ -149,10 +149,22 @@ class PageSeeder extends Seeder
                 $page->blocks()->delete();
 
                 foreach ($def['blocks'] as $i => $blockType) {
+                    $data = null;
+
+                    if ($def['slug'] === 'home' && $blockType === 'hero') {
+                        $data = [
+                            'subtitle'  => 'WELCOME TO NOVI-AGRO',
+                            'headline'  => 'Advanced Animal Care Solutions',
+                            'cta_label' => 'Browse Products',
+                            'cta_url'   => '/products.html',
+                            'video_src' => '/assets/videos/Nigerian_Breed_Cow_Video_Generated.mp4',
+                        ];
+                    }
+
                     PageBlock::create([
                         'page_id'      => $page->id,
                         'type'         => $blockType,
-                        'data'         => null,
+                        'data'         => $data,
                         'order_column' => $i,
                         'is_visible'   => true,
                     ]);
