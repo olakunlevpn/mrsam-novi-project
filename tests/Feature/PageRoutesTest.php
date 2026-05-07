@@ -142,7 +142,7 @@ class PageRoutesTest extends TestCase
     {
         $response = $this->get('/products.html');
         $response->assertOk();
-        $response->assertSee('/assets/js/products-data.js', false);
+        $response->assertDontSee('/assets/js/products-data.js', false);
         $response->assertSee('/assets/js/state/app.state.js', false);
         $response->assertSee('/assets/js/main.js', false);
     }
@@ -184,7 +184,9 @@ class PageRoutesTest extends TestCase
     {
         foreach (['/cattle.html', '/pigs.html', '/poultry.html'] as $url) {
             $response = $this->get($url);
-            $response->assertSee('/assets/js/products-data.js', false);
+            // products-data.js was removed - frontend now fetches /api/products
+            $response->assertDontSee('/assets/js/products-data.js', false);
+            // main.js still wires the catalog UI
             $response->assertSee('/assets/js/main.js', false);
         }
     }

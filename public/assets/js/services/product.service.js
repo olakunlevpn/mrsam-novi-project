@@ -1,102 +1,75 @@
 /**
  * services/product.service.js
  * Data layer for fetching, filtering, and sorting products.
- * Relies on the global `productsData` variable from products-data.js.
+ * Fetches from the /api/products endpoint.
  */
 const ProductService = (function () {
     const itemsPerPage = 12;
+    let cacheById = new Map();
 
     function getItemsPerPage() {
         return itemsPerPage;
     }
 
-    function getProductById(id) {
-        return productsData.find(p => p.id === id) || null;
+    async function fetchProducts(filters) {
+        const params = new URLSearchParams();
+        if (filters.animal && filters.animal !== 'all') params.set('animal', filters.animal);
+        if (filters.type && filters.type !== 'all') params.set('type', filters.type);
+        if (filters.search) params.set('search', filters.search);
+        if (filters.sort && filters.sort !== 'default') params.set('sort', filters.sort);
+        params.set('page', filters.page || 1);
+
+        const response = await fetch('/api/products?' + params.toString(), {
+            headers: { 'Accept': 'application/json' },
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch products: ' + response.status);
+        }
+        const data = await response.json();
+
+        // Refresh cache from this listing — first occurrence wins (defensive merge).
+        data.items.forEach(p => {
+            if (!cacheById.has(p.id)) {
+                cacheById.set(p.id, p);
+            }
+        });
+        return data;
     }
 
-    function getRelatedProducts(targetProduct, limit = 3) {
+    async function getProductById(id) {
+        if (cacheById.has(id)) {
+            return cacheById.get(id);
+        }
+        // Cache miss (deep-link). Pull a broad listing to populate.
+        await fetchProducts({ animal: 'all', type: 'all', search: '', sort: 'default', page: 1 });
+        return cacheById.get(id) || null;
+    }
+
+    async function getRelatedProducts(targetProduct, limit = 3) {
         if (!targetProduct) return [];
-        
-        let related = productsData
-            .filter(p => p.category === targetProduct.category && p.id !== targetProduct.id && p.name !== targetProduct.name);
-            
-        // De-duplicate by product name to prevent repetition
-        const uniqueProductsMap = new Map();
-        for (const p of related) {
-            if (!uniqueProductsMap.has(p.name)) {
-                uniqueProductsMap.set(p.name, p);
+
+        const data = await fetchProducts({
+            animal: 'all',
+            type: targetProduct.category,
+            search: '',
+            sort: 'default',
+            page: 1,
+        });
+
+        const seen = new Map();
+        for (const p of data.items) {
+            if (p.id !== targetProduct.id && !seen.has(p.name)) {
+                seen.set(p.name, p);
             }
+            if (seen.size >= limit) break;
         }
-        
-        return Array.from(uniqueProductsMap.values()).slice(0, limit);
-    }
-
-    function fetchProducts(filters) {
-        let temp = [...productsData];
-
-        if (filters.animal && filters.animal !== "all") {
-            temp = temp.filter(p => p.animal === filters.animal);
-        }
-        if (filters.type && filters.type !== "all") {
-            temp = temp.filter(p => p.category === filters.type);
-        }
-        
-        if (filters.search) {
-            const query = filters.search.toLowerCase();
-            temp = temp.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.description.toLowerCase().includes(query)
-            );
-        }
-
-        // De-duplicate by product name to prevent repetition
-        const uniqueProductsMap = new Map();
-        for (const p of temp) {
-            if (!uniqueProductsMap.has(p.name)) {
-                uniqueProductsMap.set(p.name, p);
-            }
-        }
-        temp = Array.from(uniqueProductsMap.values());
-
-        switch (filters.sort) {
-            case "z-a": 
-                temp.sort((a, b) => b.name.localeCompare(a.name)); 
-                break;
-            case "newest": 
-                temp.sort((a, b) => b.id.localeCompare(a.id)); 
-                break;
-            case "popular": 
-                temp.sort((a, b) => b.description.length - a.description.length); 
-                break;
-            default: 
-                temp.sort((a, b) => a.name.localeCompare(b.name));
-        }
-
-        const totalItems = temp.length;
-        const totalPages = Math.ceil(totalItems / itemsPerPage);
-        
-        let currentPage = filters.page || 1;
-        if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
-        if (currentPage < 1) currentPage = 1;
-
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        
-        return {
-            items: temp.slice(start, end),
-            totalItems,
-            totalPages,
-            currentPage,
-            itemsPerPage,
-            startItem: totalItems === 0 ? 0 : start + 1,
-            endItem: Math.min(currentPage * itemsPerPage, totalItems)
-        };
+        return Array.from(seen.values());
     }
 
     return {
         getItemsPerPage,
         getProductById,
         getRelatedProducts,
-        fetchProducts
+        fetchProducts,
     };
 })();

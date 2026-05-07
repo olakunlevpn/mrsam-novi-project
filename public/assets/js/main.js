@@ -28,7 +28,7 @@ $(window).on('load', function () {
     }
 
     // 2. React to State Changes
-    AppState.subscribe((state) => {
+    AppState.subscribe(async (state) => {
         // Sync URL
         UrlUtils.updateURL(state);
 
@@ -36,9 +36,9 @@ $(window).on('load', function () {
         ProductDetailUI.showView(state.view);
 
         if (state.view === 'detail') {
-            const product = ProductService.getProductById(state.selectedProductId);
+            const product = await ProductService.getProductById(state.selectedProductId);
             if (product) {
-                const related = ProductService.getRelatedProducts(product);
+                const related = await ProductService.getRelatedProducts(product);
                 ProductDetailUI.renderDetail(product, related);
             } else {
                 // Not found, go back
@@ -47,9 +47,16 @@ $(window).on('load', function () {
         } else {
             // Render Listing
             ProductList.syncUI(state.filters);
-            const data = ProductService.fetchProducts(state.filters);
-            ProductList.render(data);
-            PaginationUI.render(data);
+            try {
+                const data = await ProductService.fetchProducts(state.filters);
+                ProductList.render(data);
+                PaginationUI.render(data);
+            } catch (err) {
+                console.error('Catalog fetch failed', err);
+                // Render an empty state to avoid blank UI
+                ProductList.render({ items: [], totalItems: 0, totalPages: 0, currentPage: 1, itemsPerPage: 12, startItem: 0, endItem: 0 });
+                PaginationUI.render({ items: [], totalItems: 0, totalPages: 0, currentPage: 1, itemsPerPage: 12, startItem: 0, endItem: 0 });
+            }
         }
     });
 

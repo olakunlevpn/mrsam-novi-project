@@ -25,7 +25,6 @@
 @endsection
 
 @push('scripts')
-    <script src="/assets/js/products-data.js"></script>
     <script src="/assets/js/state/app.state.js"></script>
     <script src="/assets/js/utils/url.utils.js"></script>
     <script src="/assets/js/services/product.service.js"></script>
