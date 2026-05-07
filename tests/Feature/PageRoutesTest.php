@@ -196,4 +196,61 @@ class PageRoutesTest extends TestCase
         $this->get('/poultry.html')->assertSee('id="cat-poultry" value="poultry"', false)->assertSee('checked', false);
         $this->get('/products.html')->assertSee('id="cat-all" value="all"', false)->assertSee('checked', false);
     }
+
+    public function test_services_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/services.html');
+        $response->assertOk();
+        // page-header-services block
+        $response->assertSee('Take a look at the services we offer', false);
+        // breadcrumb-services block
+        $response->assertSee('Our Services', false);
+        // service-cards-grid block
+        $response->assertSee('Livestock Additives', false);
+        $response->assertSee('service-one__item', false);
+        $response->assertSee('Export Services', false);
+    }
+
+    public function test_contact_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/contact.html');
+        $response->assertOk();
+        // page-header-contact block
+        $response->assertSee('Contact Our Team', false);
+        // breadcrumb-contact block
+        $response->assertSee('Contact Us', false);
+        // contact-info-cards block
+        $response->assertSee('Do you have questions?', false);
+        $response->assertSee('KM 10, Old Lagos-Ibadan Expressway', false);
+        // contact-form block
+        $response->assertSee('formsubmit.co', false);
+        $response->assertSee('Send a message', false);
+        // contact-map block
+        $response->assertSee('google-map__contact', false);
+        $response->assertSee('Novi%20Agro%20Ltd', false);
+    }
+
+    public function test_faq_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/faq.html');
+        $response->assertOk();
+        // page-header-faq block
+        $response->assertSee('Your Business Should Thrive', false);
+        // breadcrumb-faq block
+        $response->assertSee('>FAQ<', false);
+        // faq-accordion block
+        $response->assertSee('Need help?', false);
+        $response->assertSee('Everything you need to know about our products and services', false);
+        $response->assertSee("What's wrong with my Livestock farm?", false);
+        $response->assertSee('grdeen-accrodion', false);
+    }
+
+    public function test_info_pages_dont_load_catalog_scripts(): void
+    {
+        foreach (['/services.html', '/contact.html', '/faq.html'] as $url) {
+            $response = $this->get($url);
+            $response->assertDontSee('/assets/js/products-data.js', false);
+            $response->assertDontSee('/assets/js/state/app.state.js', false);
+        }
+    }
 }
