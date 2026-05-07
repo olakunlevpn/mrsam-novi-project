@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What's wrong with my Livestock farm?",
+    "answer": "<p>We offer a comprehensive range of services tailored to meet the diverse needs of our\n                                    clients. From livestock management to\n                                    sustainable agricultural practices, we provide end-to-end solutions that ensure\n                                    optimal results. Our services include livestock health monitoring, feed\n                                    additives, feed supplements, and farm automation.</p>",
+    "order": 0
+  },
+  {
+    "question": "What is your return policy?",
+    "answer": "<p>\n                                    We accept returns within 30 days of purchase for unused and undamaged products. The\n                                    item must be in its original packaging with all tags and accessories intact. Once\n                                    we receive and inspect the returned item, we will process the refund to the original\n                                    method of payment within 5-7 business days. Please note that return shipping costs\n                                    are the responsibility of the customer unless the return is due to our error or a\n                                    defective product.\n                                </p>",
+    "order": 1
+  },
+  {
+    "question": "How do I know when to feed my livestocks?",
+    "answer": "<p>Livestock feeding schedules depend on the type of animal, their age, weight, and\n                                    nutritional needs. Generally, adult cattle are fed twice a day, while poultry\n                                    requires constant access to feed. Younger animals need more frequent feedings to\n                                    support growth. Monitoring body condition and consulting with a veterinarian or\n                                    livestock nutritionist ensures optimal feeding practices.</p>",
+    "order": 2
+  },
+  {
+    "question": "How best can I utilize Novi-Agro's products and services?",
+    "answer": "<p>To get the most out of our products and services, we recommend starting with a\n                                    consultation to assess your specific needs. Our team can help you choose the right\n                                    feed formulations, livestock breeds, or consultancy services for your farm. Regular\n                                    communication and feedback ensure that you receive ongoing support and can optimize\n                                    your agricultural practices for better results.</p>",
+    "order": 3
+  },
+  {
+    "question": "How do I know the right quantity for my livestock?",
+    "answer": "<p>\n                                    Livestock feeding schedules depend on the type of animal, their age, weight, and\n                                    nutritional needs. Generally, adult cattle are fed twice a day, while poultry\n                                    requires constant access to feed. Younger animals need more frequent feedings to\n                                    support growth. Monitoring body condition and consulting with a veterinarian or\n                                    livestock nutritionist ensures optimal feeding practices.\n                                </p>",
+    "order": 4
+  }
+]
