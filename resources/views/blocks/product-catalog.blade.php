@@ -124,27 +124,43 @@
                                     style="cursor: pointer;">Animal
                                     Category <i class="fas fa-minus toggle-icon"></i></h3>
                                 <div class="filter-options collapse show mb-4" id="collapse-animal-category">
+                                    @php
+                                        $activeAnimal = match (true) {
+                                            request()->routeIs('animals.cattle') => 'cattle',
+                                            request()->routeIs('animals.pigs') => 'pigs',
+                                            request()->routeIs('animals.poultry') => 'poultry',
+                                            default => 'all',
+                                        };
+                                    @endphp
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
-                                            id="cat-all" value="all" checked>
+                                            id="cat-all" value="all"
+                                            @checked($activeAnimal === 'all')
+                                            @if($activeAnimal !== 'all') data-href="{{ route('products') }}" @endif>
                                         <label class="form-check-label" for="cat-all"><a href="{{ route('products') }}">All
                                                 Products</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
-                                            id="cat-cattle" value="cattle">
+                                            id="cat-cattle" value="cattle"
+                                            @checked($activeAnimal === 'cattle')
+                                            @if($activeAnimal !== 'cattle') data-href="{{ route('animals.cattle') }}" @endif>
                                         <label class="form-check-label" for="cat-cattle"><a
                                                 href="{{ route('animals.cattle') }}">Cattle</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
-                                            id="cat-pigs" value="pigs">
+                                            id="cat-pigs" value="pigs"
+                                            @checked($activeAnimal === 'pigs')
+                                            @if($activeAnimal !== 'pigs') data-href="{{ route('animals.pigs') }}" @endif>
                                         <label class="form-check-label" for="cat-pigs"><a
                                                 href="{{ route('animals.pigs') }}">Swine/Pigs</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
-                                            id="cat-poultry" value="poultry">
+                                            id="cat-poultry" value="poultry"
+                                            @checked($activeAnimal === 'poultry')
+                                            @if($activeAnimal !== 'poultry') data-href="{{ route('animals.poultry') }}" @endif>
                                         <label class="form-check-label" for="cat-poultry"><a
                                                 href="{{ route('animals.poultry') }}">Poultry</a></label>
                                     </div>

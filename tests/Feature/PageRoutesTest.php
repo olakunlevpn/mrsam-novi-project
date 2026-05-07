@@ -153,4 +153,47 @@ class PageRoutesTest extends TestCase
         $response->assertDontSee('/assets/js/products-data.js', false);
         $response->assertDontSee('/assets/js/state/app.state.js', false);
     }
+
+    public function test_cattle_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/cattle.html');
+        $response->assertOk();
+        $response->assertSee('page-header__title">Cattle', false);
+        $response->assertSee('Livestock Solutions', false);
+        $response->assertSee('product__showing-wrap', false);
+    }
+
+    public function test_pigs_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/pigs.html');
+        $response->assertOk();
+        $response->assertSee('page-header__title">Pigs', false);
+        $response->assertSee('Swine Solutions', false);
+        $response->assertSee('product__showing-wrap', false);
+    }
+
+    public function test_poultry_renders_all_section_blocks(): void
+    {
+        $response = $this->get('/poultry.html');
+        $response->assertOk();
+        $response->assertSee('page-header__title">Poultry', false);
+        $response->assertSee('product__showing-wrap', false);
+    }
+
+    public function test_animal_pages_load_catalog_scripts(): void
+    {
+        foreach (['/cattle.html', '/pigs.html', '/poultry.html'] as $url) {
+            $response = $this->get($url);
+            $response->assertSee('/assets/js/products-data.js', false);
+            $response->assertSee('/assets/js/main.js', false);
+        }
+    }
+
+    public function test_animal_pages_check_correct_radio(): void
+    {
+        $this->get('/cattle.html')->assertSee('id="cat-cattle" value="cattle"', false)->assertSee('checked', false);
+        $this->get('/pigs.html')->assertSee('id="cat-pigs" value="pigs"', false)->assertSee('checked', false);
+        $this->get('/poultry.html')->assertSee('id="cat-poultry" value="poultry"', false)->assertSee('checked', false);
+        $this->get('/products.html')->assertSee('id="cat-all" value="all"', false)->assertSee('checked', false);
+    }
 }
