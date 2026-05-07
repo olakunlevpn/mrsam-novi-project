@@ -4,6 +4,9 @@ return [
     'nav' => [
         'group' => [
             'content' => 'Content',
+            'catalog' => 'Catalog',
+            'system'  => 'System',
+            'inbox'   => 'Inbox',
         ],
     ],
 
@@ -56,6 +59,149 @@ return [
             'data_key'   => 'Field',
             'data_value' => 'Value',
             'add'        => 'Add block',
+        ],
+    ],
+
+    'settings' => [
+        'nav'   => ['label' => 'Settings'],
+        'model' => ['singular' => 'Setting', 'plural' => 'Settings'],
+        'field' => [
+            'group'      => 'Group',
+            'key'        => 'Key',
+            'value'      => 'Value',
+            'updated_at' => 'Last updated',
+        ],
+        'help' => [
+            'key'   => 'Dot-notation identifier (e.g. brand.tagline, contact.email).',
+            'value' => 'Plain text value. Stored as JSON; supports strings, numbers, and booleans.',
+        ],
+    ],
+
+    'menus' => [
+        'nav'   => ['label' => 'Menus'],
+        'model' => ['singular' => 'Menu', 'plural' => 'Menus'],
+        'section' => [
+            'details' => 'Menu Details',
+            'items'   => 'Menu Items',
+        ],
+        'field' => [
+            'name'         => 'Name',
+            'location'     => 'Location',
+            'items_count'  => 'Items',
+            'updated_at'   => 'Last updated',
+        ],
+        'item' => [
+            'label'        => 'Label',
+            'route_name'   => 'Route name',
+            'url'          => 'External URL',
+            'target'       => 'Target',
+            'order_column' => 'Order',
+            'add'          => 'Add menu item',
+        ],
+        'target' => [
+            'self'  => 'Same window',
+            'blank' => 'New window',
+        ],
+    ],
+
+    'faqs' => [
+        'nav'   => ['label' => 'FAQs'],
+        'model' => ['singular' => 'FAQ', 'plural' => 'FAQs'],
+        'field' => [
+            'category'     => 'Category',
+            'question'     => 'Question',
+            'answer'       => 'Answer',
+            'order_column' => 'Order',
+            'is_published' => 'Published',
+            'updated_at'   => 'Last updated',
+        ],
+    ],
+
+    'faq_categories' => [
+        'nav'   => ['label' => 'FAQ Categories'],
+        'model' => ['singular' => 'FAQ Category', 'plural' => 'FAQ Categories'],
+        'field' => [
+            'name'         => 'Name',
+            'slug'         => 'Slug',
+            'order_column' => 'Order',
+            'faqs_count'   => 'Questions',
+        ],
+    ],
+
+    'contact_submissions' => [
+        'nav'   => ['label' => 'Contact Submissions'],
+        'model' => ['singular' => 'Submission', 'plural' => 'Contact Submissions'],
+        'field' => [
+            'name'       => 'Name',
+            'email'      => 'Email',
+            'phone'      => 'Phone',
+            'subject'    => 'Subject',
+            'message'    => 'Message',
+            'ip'         => 'IP address',
+            'user_agent' => 'User agent',
+            'status'     => 'Status',
+            'created_at' => 'Received at',
+        ],
+        'status' => [
+            'new'      => 'New',
+            'read'     => 'Read',
+            'archived' => 'Archived',
+        ],
+    ],
+
+    'animals' => [
+        'nav'   => ['label' => 'Animals'],
+        'model' => ['singular' => 'Animal', 'plural' => 'Animals'],
+        'field' => [
+            'name'         => 'Name',
+            'slug'         => 'Slug',
+            'description'  => 'Description',
+            'hero_image'   => 'Hero image',
+            'order_column' => 'Order',
+            'categories_count' => 'Categories',
+            'products_count'   => 'Products',
+        ],
+    ],
+
+    'product_categories' => [
+        'nav'   => ['label' => 'Product Categories'],
+        'model' => ['singular' => 'Category', 'plural' => 'Product Categories'],
+        'field' => [
+            'animal'         => 'Animal',
+            'name'           => 'Name',
+            'slug'           => 'Slug',
+            'description'    => 'Description',
+            'order_column'   => 'Order',
+            'products_count' => 'Products',
+        ],
+    ],
+
+    'products' => [
+        'nav'   => ['label' => 'Products'],
+        'model' => ['singular' => 'Product', 'plural' => 'Products'],
+        'section' => [
+            'identity' => 'Identity',
+            'taxonomy' => 'Taxonomy',
+            'content'  => 'Content',
+            'media'    => 'Media',
+        ],
+        'field' => [
+            'animal'             => 'Animal',
+            'product_category'   => 'Category',
+            'name'               => 'Name',
+            'slug'               => 'Slug',
+            'sku'                => 'SKU',
+            'hero_image'         => 'Hero image',
+            'description'        => 'Description',
+            'composition'        => 'Composition',
+            'benefits'           => 'Benefits',
+            'usage_instructions' => 'Usage instructions',
+            'status'             => 'Status',
+            'order_column'       => 'Order',
+        ],
+        'status' => [
+            'draft'     => 'Draft',
+            'published' => 'Published',
         ],
     ],
 ];
