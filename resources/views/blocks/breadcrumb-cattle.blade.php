@@ -9,7 +9,7 @@
                                     class="d-flex align-items-center" style="color: inherit;"><i
                                         class="fas fa-home me-2" style="font-size: 16px;"></i> Home</a></li>
                             <li style="color: var(--grdeen-black, #172000); font-weight: 600; font-size: 17px;">
-                                <span>Livestock Solutions</span></li>
+                                <span>{{ $page->block('breadcrumb-cattle', 'label', 'Livestock Solutions') }}</span></li>
                         </ul>
                     </div>
                 </nav>
