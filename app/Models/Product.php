@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,7 @@ class Product extends Model implements HasMedia
 {
     use HasFactory;
     use HasSlug;
+    use HasSeo;
     use InteractsWithMedia;
 
     protected $fillable = [
