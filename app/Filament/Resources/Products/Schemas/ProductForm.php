@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Filament\Schemas\SeoMetaSection;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -109,6 +110,8 @@ class ProductForm
                             ->autosize()
                             ->columnSpanFull(),
                     ]),
+
+                SeoMetaSection::make(),
             ]);
     }
 }
