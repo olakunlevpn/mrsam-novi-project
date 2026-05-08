@@ -2,6 +2,7 @@
 
 namespace App\View\Composers;
 
+use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\View\View;
 
@@ -9,22 +10,26 @@ use Illuminate\View\View;
  * Inject site-wide values into every layout view.
  *
  * - $settings: flat ['key' => value] map of every Setting row
- * - settings() helper-style access via the existing Setting::get('key', default)
+ * - $menus:    ['location' => Menu] map of every Menu, eager-loaded with items + children
  *
  * Wired in AppServiceProvider via View::composer('layouts.app', SiteComposer::class).
  */
 class SiteComposer
 {
     /**
-     * Cached settings map keyed by `key`. Memoized for the request lifetime.
-     *
      * @var array<string, mixed>|null
      */
-    private static ?array $cache = null;
+    private static ?array $settingsCache = null;
+
+    /**
+     * @var array<string, \App\Models\Menu>|null
+     */
+    private static ?array $menusCache = null;
 
     public function compose(View $view): void
     {
         $view->with('settings', $this->settings());
+        $view->with('menus',    $this->menus());
     }
 
     /**
@@ -32,8 +37,8 @@ class SiteComposer
      */
     private function settings(): array
     {
-        if (static::$cache !== null) {
-            return static::$cache;
+        if (static::$settingsCache !== null) {
+            return static::$settingsCache;
         }
 
         $rows = Setting::query()
@@ -42,15 +47,34 @@ class SiteComposer
             ->mapWithKeys(fn (Setting $s) => [$s->key => $s->value])
             ->all();
 
-        return static::$cache = $rows;
+        return static::$settingsCache = $rows;
     }
 
     /**
-     * Reset the in-memory cache. Used by tests with RefreshDatabase so each
-     * test sees its own seeded settings.
+     * @return array<string, \App\Models\Menu>
+     */
+    private function menus(): array
+    {
+        if (static::$menusCache !== null) {
+            return static::$menusCache;
+        }
+
+        $rows = Menu::query()
+            ->with(['items.children'])
+            ->get()
+            ->mapWithKeys(fn (Menu $m) => [$m->location => $m])
+            ->all();
+
+        return static::$menusCache = $rows;
+    }
+
+    /**
+     * Reset the in-memory caches. Used by tests with RefreshDatabase so each
+     * test sees its own seeded settings and menus.
      */
     public static function clearCache(): void
     {
-        static::$cache = null;
+        static::$settingsCache = null;
+        static::$menusCache    = null;
     }
 }

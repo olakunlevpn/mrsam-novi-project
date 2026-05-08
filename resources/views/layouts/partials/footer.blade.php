@@ -28,11 +28,18 @@
                             <div class="footer-widget footer-widget--links">
                                 <h6 class="footer-widget__title">Categories</h6>
                                 <ul class="list-unstyled footer-widget__links">
-                                    <li><a href="{{ route('animals.cattle') }}">Cattle Solutions</a></li>
-                                    <li><a href="{{ route('animals.pigs') }}">Swine Care</a></li>
-                                    <li><a href="{{ route('animals.poultry') }}">Poultry Products</a></li>
-                                    <li><a href="{{ route('products') }}">All Products</a></li>
-                                    <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                    @php $footerMenu = $menus['footer'] ?? null; @endphp
+                                    @if ($footerMenu && $footerMenu->items->isNotEmpty())
+                                        @foreach ($footerMenu->items as $item)
+                                            <li><a href="{{ $item->resolved_url }}"@if ($item->target && $item->target !== '_self') target="{{ $item->target }}"@endif>{{ $item->label }}</a></li>
+                                        @endforeach
+                                    @else
+                                        <li><a href="{{ route('animals.cattle') }}">Cattle Solutions</a></li>
+                                        <li><a href="{{ route('animals.pigs') }}">Swine Care</a></li>
+                                        <li><a href="{{ route('animals.poultry') }}">Poultry Products</a></li>
+                                        <li><a href="{{ route('products') }}">All Products</a></li>
+                                        <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                    @endif
                                 </ul><!-- /.list-unstyled footer-widget__links -->
                             </div><!-- /.footer-widget -->
                         </div><!-- /.col-md-6 -->

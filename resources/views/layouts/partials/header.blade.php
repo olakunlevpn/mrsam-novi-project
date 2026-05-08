@@ -82,17 +82,34 @@
 
                     <nav class="main-header__nav main-menu">
                         <ul class="main-menu__list">
-                            <li class="{{ request()->routeIs('home') ? 'current' : '' }}"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="dropdown {{ request()->routeIs('products', 'animals.*') ? 'current' : '' }}">
-                                <a href="{{ route('products') }}">Products</a>
-                                <ul>
-                                    <li><a href="{{ route('animals.cattle') }}">Cattle</a></li>
-                                    <li><a href="{{ route('animals.pigs') }}">Pigs</a></li>
-                                    <li><a href="{{ route('animals.poultry') }}">Poultry</a></li>
-                                </ul>
-                            </li>
-                            <li class="{{ request()->routeIs('services') ? 'current' : '' }}"><a href="{{ route('services') }}">Services</a></li>
-                            <li class="{{ request()->routeIs('about') ? 'current' : '' }}"><a href="{{ route('about') }}">About</a></li>
+                            @php $primaryMenu = $menus['primary'] ?? null; @endphp
+                            @if ($primaryMenu && $primaryMenu->items->isNotEmpty())
+                                @foreach ($primaryMenu->items as $item)
+                                    @php $hasChildren = $item->children->isNotEmpty(); @endphp
+                                    <li class="{{ $hasChildren ? 'dropdown ' : '' }}{{ $item->isCurrent() ? 'current' : '' }}">
+                                        <a href="{{ $item->resolved_url }}"@if ($item->target && $item->target !== '_self') target="{{ $item->target }}"@endif>{{ $item->label }}</a>
+                                        @if ($hasChildren)
+                                            <ul>
+                                                @foreach ($item->children as $child)
+                                                    <li><a href="{{ $child->resolved_url }}"@if ($child->target && $child->target !== '_self') target="{{ $child->target }}"@endif>{{ $child->label }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            @else
+                                <li class="{{ request()->routeIs('home') ? 'current' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="dropdown {{ request()->routeIs('products', 'animals.*') ? 'current' : '' }}">
+                                    <a href="{{ route('products') }}">Products</a>
+                                    <ul>
+                                        <li><a href="{{ route('animals.cattle') }}">Cattle</a></li>
+                                        <li><a href="{{ route('animals.pigs') }}">Pigs</a></li>
+                                        <li><a href="{{ route('animals.poultry') }}">Poultry</a></li>
+                                    </ul>
+                                </li>
+                                <li class="{{ request()->routeIs('services') ? 'current' : '' }}"><a href="{{ route('services') }}">Services</a></li>
+                                <li class="{{ request()->routeIs('about') ? 'current' : '' }}"><a href="{{ route('about') }}">About</a></li>
+                            @endif
                         </ul>
                     </nav><!-- /.main-header__nav -->
                     <div class="main-header__right">

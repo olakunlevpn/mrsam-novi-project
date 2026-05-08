@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Route;
 
 class MenuItem extends Model
 {
@@ -46,5 +47,43 @@ class MenuItem extends Model
     public function linkable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Resolve a renderable URL for this item.
+     *
+     * Priority: explicit url > named route (if registered) > '#' fallback.
+     */
+    public function getResolvedUrlAttribute(): string
+    {
+        if (! empty($this->url)) {
+            return $this->url;
+        }
+
+        if (! empty($this->route_name) && Route::has($this->route_name)) {
+            return route($this->route_name);
+        }
+
+        return '#';
+    }
+
+    /**
+     * Whether this item or any of its (loaded) children matches the current route.
+     */
+    public function isCurrent(): bool
+    {
+        if ($this->route_name && request()->routeIs($this->route_name)) {
+            return true;
+        }
+
+        if ($this->relationLoaded('children')) {
+            foreach ($this->children as $child) {
+                if ($child->isCurrent()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
