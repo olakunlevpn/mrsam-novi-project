@@ -96,7 +96,9 @@ return [
             'url'          => 'External URL',
             'target'       => 'Target',
             'order_column' => 'Order',
+            'children'     => 'Sub-items',
             'add'          => 'Add menu item',
+            'add_child'    => 'Add sub-item',
         ],
         'target' => [
             'self'  => 'Same window',
