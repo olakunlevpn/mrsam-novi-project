@@ -4,11 +4,10 @@
                 <!-- Section Heading -->
                 <div class="mb-5">
                     <h2 class="fw-bold species-section__heading">
-                        SPECIES
+                        {{ $page->block('species-cards', 'heading', 'SPECIES') }}
                     </h2>
                     <p class="mt-3" style="color: #6c757d; font-size: 16px; max-width: 600px;">
-                        We provide premium feed additives and nutritional solutions tailored for each animal
-                        category.
+                        {{ $page->block('species-cards', 'intro', 'We provide premium feed additives and nutritional solutions tailored for each animal category.') }}
                     </p>
                 </div>
 
@@ -19,10 +18,10 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.poultry') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="/assets/images/backgrounds/hens-factory-chicken-cages.jpg" alt="Poultry">
+                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_1_image', '/assets/images/backgrounds/hens-factory-chicken-cages.jpg') }}" alt="Poultry">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--dark">
-                                    <span class="species-card__label-title">Poultry</span>
+                                    <span class="species-card__label-title">{{ $page->block('species-cards', 'card_1_label', 'Poultry') }}</span>
                                     <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
                                             viewBox="0 0 16 16">
@@ -38,11 +37,11 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.cattle') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="/assets/images/backgrounds/photorealistic-view-cow-grazing-outdoors.jpg"
+                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_2_image', '/assets/images/backgrounds/photorealistic-view-cow-grazing-outdoors.jpg') }}"
                                     alt="Cattle" style="object-position: center top;">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--green">
-                                    <span class="species-card__label-title">Cattle</span>
+                                    <span class="species-card__label-title">{{ $page->block('species-cards', 'card_2_label', 'Cattle') }}</span>
                                     <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
                                             viewBox="0 0 16 16">
@@ -58,11 +57,11 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.pigs') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="/assets/images/backgrounds/selective-closeup-shot-pink-pigs-barn.jpg"
+                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_3_image', '/assets/images/backgrounds/selective-closeup-shot-pink-pigs-barn.jpg') }}"
                                     alt="Pigs">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--dark">
-                                    <span class="species-card__label-title">Pigs</span>
+                                    <span class="species-card__label-title">{{ $page->block('species-cards', 'card_3_label', 'Pigs') }}</span>
                                     <span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
                                             viewBox="0 0 16 16">

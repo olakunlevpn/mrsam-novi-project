@@ -1,5 +1,5 @@
         <section class="service-one">
-            <div class="service-one__bg" style="background-image:url('/assets/images/generated/services_bg.png')">
+            <div class="service-one__bg" style="background-image:url('{{ $page->block('services-summary', 'background_image', '/assets/images/generated/services_bg.png') }}')">
             </div>
             <div class="container">
                 <div class="row">
@@ -19,9 +19,9 @@
                             </div>
 
 
-                            <span class="sec-title__tagline">Our Services</span><!-- /.sec-title__tagline -->
+                            <span class="sec-title__tagline">{{ $page->block('services-summary', 'tagline', 'Our Services') }}</span><!-- /.sec-title__tagline -->
 
-                            <h2 class="sec-title__title">The services we offer to <br> our clients</h2>
+                            <h2 class="sec-title__title">{!! $page->block('services-summary', 'title', 'The services we offer to <br> our clients') !!}</h2>
                             <!-- /.sec-title__title -->
                         </div><!-- /.sec-title -->
                     </div>
@@ -33,17 +33,17 @@
                             <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
                                 <div class="service-one__item__titlecol">
                                     <span class="service-one__item__count"></span>
-                                    <h4 class="service-one__item__title"><a href="{{ route('services') }}">Livestock Feeds</a>
+                                    <h4 class="service-one__item__title"><a href="{{ route('services') }}">{{ $page->block('services-summary', 'card_1_title', 'Livestock Feeds') }}</a>
                                     </h4>
                                 </div>
 
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
-                                        <i class="icon-grass"></i>
+                                        <i class="{{ $page->block('services-summary', 'card_1_icon', 'icon-grass') }}"></i>
                                     </div><!-- /.service-icon -->
                                 </div>
                             </div>
-                            <p class="service-one__item__text">Nutrient-rich additives for optimal livestock health.</p>
+                            <p class="service-one__item__text">{{ $page->block('services-summary', 'card_1_text', 'Nutrient-rich additives for optimal livestock health.') }}</p>
                             <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
                                 <a class="service-one__item__iconlink" href="{{ route('services') }}">
                                     <i class="icon-right-up"></i>
@@ -58,16 +58,16 @@
                             <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
                                 <div class="service-one__item__titlecol">
                                     <span class="service-one__item__count"></span>
-                                    <h4 class="service-one__item__title"><a href="{{ route('services') }}">Consultancy</a></h4>
+                                    <h4 class="service-one__item__title"><a href="{{ route('services') }}">{{ $page->block('services-summary', 'card_2_title', 'Consultancy') }}</a></h4>
                                 </div>
 
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
-                                        <i class="icon-group"></i>
+                                        <i class="{{ $page->block('services-summary', 'card_2_icon', 'icon-group') }}"></i>
                                     </div><!-- /.service-icon -->
                                 </div>
                             </div>
-                            <p class="service-one__item__text">Expert guidance on farm and livestock management.</p>
+                            <p class="service-one__item__text">{{ $page->block('services-summary', 'card_2_text', 'Expert guidance on farm and livestock management.') }}</p>
                             <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
                                 <a class="service-one__item__iconlink" href="{{ route('services') }}">
                                     <i class="icon-right-up"></i>
@@ -82,17 +82,17 @@
                             <div class="service-one__item__titlewrap d-flex flex-wrap align-items-center">
                                 <div class="service-one__item__titlecol">
                                     <span class="service-one__item__count"></span>
-                                    <h4 class="service-one__item__title"><a href="{{ route('contact') }}">Customer Support</a>
+                                    <h4 class="service-one__item__title"><a href="{{ route('contact') }}">{{ $page->block('services-summary', 'card_3_title', 'Customer Support') }}</a>
                                     </h4>
                                 </div>
 
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
-                                        <i class="icon-telephone-call"></i>
+                                        <i class="{{ $page->block('services-summary', 'card_3_icon', 'icon-telephone-call') }}"></i>
                                     </div><!-- /.service-icon -->
                                 </div>
                             </div>
-                            <p class="service-one__item__text">Reliable support for inquiries and after-sales.</p>
+                            <p class="service-one__item__text">{{ $page->block('services-summary', 'card_3_text', 'Reliable support for inquiries and after-sales.') }}</p>
                             <div class="service-one__item__btmwrap d-flex align-items-center justify-content-between">
                                 <a class="service-one__item__iconlink" href="{{ route('contact') }}">
                                     <i class="icon-right-up"></i>

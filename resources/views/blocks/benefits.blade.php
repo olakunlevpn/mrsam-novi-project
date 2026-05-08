@@ -19,23 +19,21 @@
                                     </div>
 
 
-                                    <span class="sec-title__tagline">Your BENEFITS</span><!-- /.sec-title__tagline -->
+                                    <span class="sec-title__tagline">{{ $page->block('benefits', 'tagline', 'Your BENEFITS') }}</span><!-- /.sec-title__tagline -->
 
-                                    <h2 class="sec-title__title">Why is mine different from others?</h2>
+                                    <h2 class="sec-title__title">{{ $page->block('benefits', 'title', 'Why is mine different from others?') }}</h2>
                                     <!-- /.sec-title__title -->
                                 </div><!-- /.sec-title -->
                             </div>
 
-                            <p class="our-benefits-one__content__text">At Novi-Agro, we stand out through our unwavering
-                                commitment to quality, sustainability, and farmer empowerment. We don't just supply
-                                products, we build lasting partnerships that help your farm thrive.</p>
+                            <p class="our-benefits-one__content__text">{{ $page->block('benefits', 'paragraph_1', "At Novi-Agro, we stand out through our unwavering commitment to quality, sustainability, and farmer empowerment. We don't just supply products, we build lasting partnerships that help your farm thrive.") }}</p>
 
                             <div class="our-benefits-one__content__qualitwrap d-flex flex-wrap">
                                 <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
                                     <div class="our-benefits-one__content__qualitwrap__icon">
                                         <i class="fas fa-hand-holding-heart"></i>
                                     </div>
-                                    <h4 class="our-benefits-one__content__qualitwrap__title">Quality <br> services</h4>
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">{!! $page->block('benefits', 'card_1_title', 'Quality <br> services') !!}</h4>
                                 </div>
 
                                 <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
@@ -43,25 +41,21 @@
                                         class="our-benefits-one__content__qualitwrap__icon our-benefits-one__content__qualitwrap__icon--groupicon">
                                         <i class="fas fa-users-cog"></i>
                                     </div>
-                                    <h4 class="our-benefits-one__content__qualitwrap__title">Skilled
-                                        <br> Team
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">{!! $page->block('benefits', 'card_2_title', 'Skilled <br> Team') !!}
                                     </h4>
                                 </div>
                             </div>
 
-                            <p class="our-benefits-one__content__text">We provide end-to-end support, from consultation
-                                to providing feeds additive suitable for your livestock, ensuring you get the most out
-                                of
-                                every season.</p>
+                            <p class="our-benefits-one__content__text">{{ $page->block('benefits', 'paragraph_2', 'We provide end-to-end support, from consultation to providing feeds additive suitable for your livestock, ensuring you get the most out of every season.') }}</p>
 
                             <div class="our-benefits-one__content__listwrap d-flex justify-content-between">
                                 <ul class="list-unstyled our-benefits-one__content__list">
-                                    <li><i class="icon-check-solid"></i>Expert team members</li>
-                                    <li><i class="icon-check-solid"></i>Affordable quality services</li>
-                                    <li><i class="icon-check-solid"></i>Professional Farming Services </li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits', 'bullet_1', 'Expert team members') }}</li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits', 'bullet_2', 'Affordable quality services') }}</li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits', 'bullet_3', 'Professional Farming Services') }} </li>
                                 </ul>
                                 <a href="{{ route('about') }}" class="grdeen-btn our-benefits-one__btn">
-                                    <span>Find out more</span>
+                                    <span>{{ $page->block('benefits', 'cta_label', 'Find out more') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -70,10 +64,10 @@
                     <div class="our-benefits-one__right">
                         <div class="our-benefits-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="our-benefits-one__shapetop"></div>
-                            <img loading="lazy" class="our-benefits-one__bigimage" src="/assets/images/generated/benefits_hero.png"
+                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->block('benefits', 'image_main', '/assets/images/generated/benefits_hero.png') }}"
                                 alt="Success in Farming">
                             <div class="our-benefits-one__smimage">
-                                <img loading="lazy" src="/assets/images/generated/benefits_thumb.png" alt="Modern Infrastructure">
+                                <img loading="lazy" src="{{ $page->block('benefits', 'image_thumb', '/assets/images/generated/benefits_thumb.png') }}" alt="Modern Infrastructure">
                             </div>
                         </div>
                     </div><!-- /.col-lg-6 -->

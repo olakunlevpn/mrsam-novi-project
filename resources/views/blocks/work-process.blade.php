@@ -18,18 +18,16 @@
                                 </div>
 
 
-                                <span class="sec-title__tagline">Our work process</span><!-- /.sec-title__tagline -->
+                                <span class="sec-title__tagline">{{ $page->block('work-process', 'tagline', 'Our work process') }}</span><!-- /.sec-title__tagline -->
 
-                                <h2 class="sec-title__title">See how we complete the work</h2>
+                                <h2 class="sec-title__title">{{ $page->block('work-process', 'title', 'See how we complete the work') }}</h2>
                                 <!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
                         </div>
                     </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="100ms">
                         <div class="work-process-one__infowrap">
-                            <p class="work-process-one__infowrap__text">At Novi Agro, we follow a systematic and
-                                efficient approach to ensure your farm gets the best nutrition, supplies, and
-                                professional guidance for maximum productivity.</p>
+                            <p class="work-process-one__infowrap__text">{{ $page->block('work-process', 'paragraph', 'At Novi Agro, we follow a systematic and efficient approach to ensure your farm gets the best nutrition, supplies, and professional guidance for maximum productivity.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -38,13 +36,12 @@
                         <div class="work-process-one__col">
                             <div class="work-process-one__col__circlewrap">
                                 <div class="work-process-one__col__icon">
-                                    <i class="icon-high-quality"></i>
+                                    <i class="{{ $page->block('work-process', 'step_1_icon', 'icon-high-quality') }}"></i>
                                 </div>
                             </div>
                             <div class="work-process-one__col__info text-center">
-                                <h4 class="work-process-one__col__title">Livestock Nutrition</h4>
-                                <p class="work-process-one__col__text">Premium additives to boost animal health and
-                                    productivity.</p>
+                                <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_1_title', 'Livestock Nutrition') }}</h4>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_1_text', 'Premium additives to boost animal health and productivity.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
@@ -54,13 +51,12 @@
                         <div class="work-process-one__col">
                             <div class="work-process-one__col__circlewrap">
                                 <div class="work-process-one__col__icon">
-                                    <i class="icon-shop-bag"></i>
+                                    <i class="{{ $page->block('work-process', 'step_2_icon', 'icon-shop-bag') }}"></i>
                                 </div>
                             </div>
                             <div class="work-process-one__col__info text-center">
-                                <h4 class="work-process-one__col__title">Product Supply</h4>
-                                <p class="work-process-one__col__text">Providing a consistent supply of essential
-                                    agro-products and supplements for your farm.</p>
+                                <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_2_title', 'Product Supply') }}</h4>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_2_text', 'Providing a consistent supply of essential agro-products and supplements for your farm.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
@@ -70,13 +66,12 @@
                         <div class="work-process-one__col">
                             <div class="work-process-one__col__circlewrap">
                                 <div class="work-process-one__col__icon">
-                                    <i class="icon-group"></i>
+                                    <i class="{{ $page->block('work-process', 'step_3_icon', 'icon-group') }}"></i>
                                 </div>
                             </div>
                             <div class="work-process-one__col__info text-center">
-                                <h4 class="work-process-one__col__title">Consultancy</h4>
-                                <p class="work-process-one__col__text">Expert advisory services to help you scale your
-                                    farming business with modern techniques.</p>
+                                <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_3_title', 'Consultancy') }}</h4>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_3_text', 'Expert advisory services to help you scale your farming business with modern techniques.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
@@ -86,13 +81,12 @@
                         <div class="work-process-one__col">
                             <div class="work-process-one__col__circlewrap">
                                 <div class="work-process-one__col__icon">
-                                    <i class="icon-location"></i>
+                                    <i class="{{ $page->block('work-process', 'step_4_icon', 'icon-location') }}"></i>
                                 </div>
                             </div>
                             <div class="work-process-one__col__info text-center">
-                                <h4 class="work-process-one__col__title">Logistics</h4>
-                                <p class="work-process-one__col__text">Fast and reliable nationwide delivery, ensuring
-                                    your supplies reach you when you need them.</p>
+                                <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_4_title', 'Logistics') }}</h4>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_4_text', 'Fast and reliable nationwide delivery, ensuring your supplies reach you when you need them.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
