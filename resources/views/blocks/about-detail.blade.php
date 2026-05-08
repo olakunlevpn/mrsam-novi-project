@@ -4,9 +4,9 @@
                     <div class="col-lg-6">
                         <div class="about-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="about-one__shapetop"></div>
-                            <img loading="lazy" class="about-one__bigimage" src="/assets/images/about12_1.jpg" alt="Novi">
+                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->block('about-detail', 'image_main', '/assets/images/about12_1.jpg') }}" alt="Novi">
                             <div class="about-one__smimage">
-                                <img loading="lazy" src="/assets/images/About_2.jpg" alt="Novi">
+                                <img loading="lazy" src="{{ $page->block('about-detail', 'image_thumb', '/assets/images/About_2.jpg') }}" alt="Novi">
                             </div>
 
                             <div class="about-one__shapebottom"></div>
@@ -31,31 +31,29 @@
                                     </div>
 
 
-                                    <span class="sec-title__tagline">Novi-Agro Limited
+                                    <span class="sec-title__tagline">{{ $page->block('about-detail', 'tagline', 'Novi-Agro Limited') }}
                                     </span><!-- /.sec-title__tagline -->
 
-                                    <h2 class="sec-title__title">We offer expert livestock solutions</h2>
+                                    <h2 class="sec-title__title">{{ $page->block('about-detail', 'title', 'We offer expert livestock solutions') }}</h2>
                                     <!-- /.sec-title__title -->
                                 </div><!-- /.sec-title -->
                             </div>
                             <p class="about-one__content__text">
-                                At Novi Agro, we are dedicated to improving livestock health and farm productivity. We
-                                provide high-quality feed additives and professional veterinary consultancy to ensure
-                                your animals thrive and your farm operations run smoothly.
+                                {{ $page->block('about-detail', 'paragraph', 'At Novi Agro, we are dedicated to improving livestock health and farm productivity. We provide high-quality feed additives and professional veterinary consultancy to ensure your animals thrive and your farm operations run smoothly.') }}
                             </p>
                             <div class="about-one__content__qualitwrap">
                                 <div class="about-one__content__qualitwrap__col">
                                     <div class="about-one__content__qualitwrap__icon">
                                         <i class="icon-high-quality"></i>
                                     </div>
-                                    <h4 class="about-one__content__qualitwrap__title">Quality <br> livestock services
+                                    <h4 class="about-one__content__qualitwrap__title">{!! $page->block('about-detail', 'quality_card_1', 'Quality <br> livestock services') !!}
                                     </h4>
                                 </div>
                                 <div class="about-one__content__qualitwrap__col mb-0">
                                     <div class="about-one__content__qualitwrap__icon">
                                         <i class="icon-plant"></i>
                                     </div>
-                                    <h4 class="about-one__content__qualitwrap__title">We're experienced <br> specialists
+                                    <h4 class="about-one__content__qualitwrap__title">{!! $page->block('about-detail', 'quality_card_2', "We're experienced <br> specialists") !!}
                                     </h4>
                                 </div>
                                 <div class="about-one__content__qualitwrap__pricesbox text-center">
@@ -65,18 +63,18 @@
                                     <div class="about-one__content__qualitwrap__btmleft">
                                         <i class="icon-pot"></i>
                                     </div>
-                                    <strong class="about-one__content__qualitwrap__price">5+</strong>
-                                    <span class="about-one__content__qualitwrap__text">Years Of Experience</span>
+                                    <strong class="about-one__content__qualitwrap__price">{{ $page->block('about-detail', 'stat_value', '5+') }}</strong>
+                                    <span class="about-one__content__qualitwrap__text">{{ $page->block('about-detail', 'stat_label', 'Years Of Experience') }}</span>
                                 </div>
                             </div>
                             <ul class="list-unstyled about-one__content__list">
-                                <li><i class="icon-check-solid"></i>Premium feed additives and nutritional supplements
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-detail', 'bullet_1', 'Premium feed additives and nutritional supplements') }}
                                 </li>
-                                <li><i class="icon-check-solid"></i>Expert veterinary and farming consultancy</li>
-                                <li><i class="icon-check-solid"></i>Commitment to maximizing farm productivity</li>
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-detail', 'bullet_2', 'Expert veterinary and farming consultancy') }}</li>
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-detail', 'bullet_3', 'Commitment to maximizing farm productivity') }}</li>
                             </ul>
                             <a href="{{ route('contact') }}" class="grdeen-btn">
-                                <span>Learn More</span>
+                                <span>{{ $page->block('about-detail', 'cta_label', 'Learn More') }}</span>
                             </a>
                         </div>
                     </div><!-- /.col-lg-6 -->

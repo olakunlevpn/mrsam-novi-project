@@ -4,7 +4,7 @@
                     <div class="sec-title">
 
 
-                        <h2 class="sec-title__title">Partnering with Global Leaders in <br> Livestock &amp; Agriculture</h2>
+                        <h2 class="sec-title__title">{!! $page->block('partners-carousel', 'title', 'Partnering with Global Leaders in <br> Livestock &amp; Agriculture') !!}</h2>
                         <!-- /.sec-title__title -->
                     </div><!-- /.sec-title -->
                 </div>

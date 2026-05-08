@@ -1,5 +1,5 @@
         <section class="free-booking-one">
-            <div class="free-booking-one__bg" style="background-image: url('/assets/images/shapes/booking-bg1-1.jpg');">
+            <div class="free-booking-one__bg" style="background-image: url('{{ $page->block('cta-booking', 'background_image', '/assets/images/shapes/booking-bg1-1.jpg') }}');">
             </div>
             <div class="container">
                 <div class="row">
@@ -21,17 +21,16 @@
                                     </div>
 
 
-                                    <span class="sec-title__tagline">Free Book Now</span><!-- /.sec-title__tagline -->
+                                    <span class="sec-title__tagline">{{ $page->block('cta-booking', 'tagline', 'Free Book Now') }}</span><!-- /.sec-title__tagline -->
 
-                                    <h2 class="sec-title__title">Book a FREE <br> Professional Farming <br>
-                                        Consultation!</h2><!-- /.sec-title__title -->
+                                    <h2 class="sec-title__title">{!! $page->block('cta-booking', 'title', 'Book a FREE <br> Professional Farming <br> Consultation!') !!}</h2><!-- /.sec-title__title -->
                                 </div><!-- /.sec-title -->
                             </div>
                             <form class="free-booking-one__form contact-form-validated form-one wow fadeInUp"
-                                data-wow-duration="1500ms" action="https://formsubmit.co/info@novi-agro.com"
+                                data-wow-duration="1500ms" action="{{ $page->block('cta-booking', 'form_action', 'https://formsubmit.co/info@novi-agro.com') }}"
                                 method="POST">
                                 <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-                                <input type="hidden" name="_subject" value="New Booking Request - Novi Agro">
+                                <input type="hidden" name="_subject" value="{{ $page->block('cta-booking', 'form_subject', 'New Booking Request - Novi Agro') }}">
                                 <div class="form-one__group">
                                     <div class="form-one__control">
                                         <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
@@ -61,8 +60,7 @@
                                         <textarea name="message" placeholder="Message" aria-label="Your Message"></textarea><!-- /# -->
                                     </div><!-- /.form-one__control -->
                                     <div class="form-one__control form-one__control--full">
-                                        <button type="submit" class="grdeen-btn free-booking-one__submit"><span>Submit
-                                                Message</span></button>
+                                        <button type="submit" class="grdeen-btn free-booking-one__submit"><span>{{ $page->block('cta-booking', 'submit_label', 'Submit Message') }}</span></button>
                                     </div><!-- /.form-one__control -->
                                 </div><!-- /.form-one__group -->
                             </form>
@@ -72,11 +70,11 @@
                         <div class="grdeen-stretch-element-inside-column">
                             <div class="free-booking-one__image">
                                 <div class="free-booking-one__image__shape">
-                                    <img loading="lazy" src="/assets/images/generated/booking_bg.png" alt="Novi">
+                                    <img loading="lazy" src="{{ $page->block('cta-booking', 'image_bg', '/assets/images/generated/booking_bg.png') }}" alt="Novi">
                                 </div>
                                 <div class="free-booking-one__image__maskingimg  wow fadeInRight"
                                     data-wow-delay="300ms">
-                                    <img loading="lazy" src="/assets/images/generated/booking_vet1.png" alt="Consultation">
+                                    <img loading="lazy" src="{{ $page->block('cta-booking', 'image_vet', '/assets/images/generated/booking_vet1.png') }}" alt="Consultation">
                                 </div>
                             </div>
                         </div>
@@ -84,6 +82,6 @@
                 </div>
             </div><!-- /.container -->
             <div class="free-booking-one__shadow">
-                <h1 class="free-booking-one__shadow__title">Farming</h1>
+                <h1 class="free-booking-one__shadow__title">{{ $page->block('cta-booking', 'shadow_title', 'Farming') }}</h1>
             </div>
         </section><!-- /.free-booking-one -->

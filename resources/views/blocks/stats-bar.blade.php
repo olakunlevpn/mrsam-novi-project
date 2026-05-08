@@ -19,20 +19,17 @@
                                     </div>
 
 
-                                    <span class="sec-title__tagline">OUR FUN FACTS</span><!-- /.sec-title__tagline -->
+                                    <span class="sec-title__tagline">{{ $page->block('stats-bar', 'tagline', 'OUR FUN FACTS') }}</span><!-- /.sec-title__tagline -->
 
-                                    <h2 class="sec-title__title">The grass is always <br> greener on our side</h2>
+                                    <h2 class="sec-title__title">{!! $page->block('stats-bar', 'title', 'The grass is always <br> greener on our side') !!}</h2>
                                     <!-- /.sec-title__title -->
                                 </div><!-- /.sec-title -->
                             </div>
-                            <p class="funfact-one__content__text">We are committed to provide innovative agricultural
-                                solutions that
-                                enhance animal nutrition, boost farmers' productivity, and promote sustainable food
-                                security across Nigeria and beyond.</p>
+                            <p class="funfact-one__content__text">{{ $page->block('stats-bar', 'paragraph', "We are committed to provide innovative agricultural solutions that enhance animal nutrition, boost farmers' productivity, and promote sustainable food security across Nigeria and beyond.") }}</p>
                             <div class="funfact-one__content__bookwrap d-flex align-items-center">
-                                <a href="{{ route('contact') }}" class="grdeen-btn funfact-one__content__bookwrap__btn"><span>Hit us up
+                                <a href="{{ route('contact') }}" class="grdeen-btn funfact-one__content__bookwrap__btn"><span>{{ $page->block('stats-bar', 'cta_label', 'Hit us up') }}
                                         </span></a>
-                                <p class="funfact-one__content__bookwrap__text">Let us know how we can help You!</p>
+                                <p class="funfact-one__content__bookwrap__text">{{ $page->block('stats-bar', 'cta_text', 'Let us know how we can help You!') }}</p>
                             </div>
                         </div>
                     </div>
@@ -44,16 +41,15 @@
                                     <div class="work-process-one__col__circlewrap">
                                         <div class="work-process-one__col__icon">
                                             <div class="funfact-one__countwrap">
-                                                <strong class="funfact-one__count count-text" data-stop="10"
+                                                <strong class="funfact-one__count count-text" data-stop="{{ $page->block('stats-bar', 'stat_1_value', '10') }}"
                                                     data-speed="1500"></strong>
-                                                <span class="funfact-one__count">K</span>
+                                                <span class="funfact-one__count">{{ $page->block('stats-bar', 'stat_1_suffix', 'K') }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="work-process-one__col__info text-center">
-                                        <h3 class="work-process-one__col__title">Projects Completed</h3>
-                                        <p class="work-process-one__col__text">Successful agricultural projects
-                                            delivered </p>
+                                        <h3 class="work-process-one__col__title">{{ $page->block('stats-bar', 'stat_1_title', 'Projects Completed') }}</h3>
+                                        <p class="work-process-one__col__text">{{ $page->block('stats-bar', 'stat_1_text', 'Successful agricultural projects delivered') }} </p>
                                     </div>
                                     <div class="work-process-one__col__shapebg"></div>
                                 </div>
@@ -64,14 +60,14 @@
                                     <div class="work-process-one__col__circlewrap">
                                         <div class="work-process-one__col__icon">
                                             <div class="funfact-one__countwrap">
-                                                <strong class="funfact-one__count count-text" data-stop="2110"
+                                                <strong class="funfact-one__count count-text" data-stop="{{ $page->block('stats-bar', 'stat_2_value', '2110') }}"
                                                     data-speed="1500"></strong>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="work-process-one__col__info text-center">
-                                        <h3 class="work-process-one__col__title">Satisfied Customers</h3>
-                                        <p class="work-process-one__col__text">Trusted by farmers and stakeholders</p>
+                                        <h3 class="work-process-one__col__title">{{ $page->block('stats-bar', 'stat_2_title', 'Satisfied Customers') }}</h3>
+                                        <p class="work-process-one__col__text">{{ $page->block('stats-bar', 'stat_2_text', 'Trusted by farmers and stakeholders') }}</p>
                                     </div>
                                     <div class="work-process-one__col__shapebg"></div>
                                 </div>

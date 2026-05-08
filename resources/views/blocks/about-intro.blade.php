@@ -4,10 +4,10 @@
                     <div class="col-lg-6">
                         <div class="about-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="about-one__shapetop"></div>
-                            <img loading="lazy" class="about-one__bigimage" src="/assets/images/generated/about_main.png"
+                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->block('about-intro', 'image_main', '/assets/images/generated/about_main.png') }}"
                                 alt="About Novi-Agro">
                             <div class="about-one__smimage">
-                                <img loading="lazy" src="/assets/images/generated/about_thumbnail.png"
+                                <img loading="lazy" src="{{ $page->block('about-intro', 'image_thumb', '/assets/images/generated/about_thumbnail.png') }}"
                                     alt="Premium Feed Detail">
                             </div>
 
@@ -32,41 +32,30 @@
                                 </div>
 
 
-                                <span class="sec-title__tagline">Novi Agro
-                                    Nig. Ltd</span><!-- /.sec-title__tagline -->
+                                <span class="sec-title__tagline">{{ $page->block('about-intro', 'tagline', 'Novi Agro Nig. Ltd') }}</span><!-- /.sec-title__tagline -->
 
-                                <h2 class="sec-title__title">Brings your farming business to life</h2>
+                                <h2 class="sec-title__title">{{ $page->block('about-intro', 'title', 'Brings your farming business to life') }}</h2>
                                 <!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
                             <p class="about-one__content__text">
-                                At Novi Agro Nig. Ltd, we are committed to revolutionizing the agricultural landscape in
-                                Nigeria. With a focus on sustainable practices and innovation, we provide high-quality
-                                livestock feed additives and expert consultancy services to empower farmers and enhance
-                                productivity.
+                                {{ $page->block('about-intro', 'paragraph_1', 'At Novi Agro Nig. Ltd, we are committed to revolutionizing the agricultural landscape in Nigeria. With a focus on sustainable practices and innovation, we provide high-quality livestock feed additives and expert consultancy services to empower farmers and enhance productivity.') }}
                             </p>
                             <div class="about-one__content__qualitwrap">
-                                <h4 class="about-one__content__qualitwrap__title">Quality <br> farming services</h4>
+                                <h4 class="about-one__content__qualitwrap__title">{!! $page->block('about-intro', 'quality_title', 'Quality <br> farming services') !!}</h4>
                                 <p class="about-one__content__text qualit-text"></p>
                                 <div class="about-one__content__qualitwrap__pricesbox text-center">
-                                    <strong class="about-one__content__qualitwrap__price">2K</strong>
-                                    <span class="about-one__content__qualitwrap__text">Satisfied customers</span>
+                                    <strong class="about-one__content__qualitwrap__price">{{ $page->block('about-intro', 'stat_value', '2K') }}</strong>
+                                    <span class="about-one__content__qualitwrap__text">{{ $page->block('about-intro', 'stat_label', 'Satisfied customers') }}</span>
                                 </div>
                             </div>
                             <p class="about-one__content__text">
-                                We offer a comprehensive range of high-quality livestock feeds additives tailored to
-                                meet the specific nutritional needs of various animals, including poultry, goats, and
-                                cattle.
-                                Our products are formulated with premium ingredients to ensure optimal growth, health, and
-                                productivity for your farm.
+                                {{ $page->block('about-intro', 'paragraph_2', 'We offer a comprehensive range of high-quality livestock feeds additives tailored to meet the specific nutritional needs of various animals, including poultry, goats, and cattle. Our products are formulated with premium ingredients to ensure optimal growth, health, and productivity for your farm.') }}
                             </p>
                             <ul class="list-unstyled about-one__content__list">
-                                <li><i class="icon-check-solid"></i>Feed Additives at its best</li>
-                                <li><i class="icon-check-solid"></i>Professional consultancy service for all your
-                                    farming
-                                    business
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-intro', 'bullet_1', 'Feed Additives at its best') }}</li>
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-intro', 'bullet_2', 'Professional consultancy service for all your farming business') }}
                                 </li>
-                                <li><i class="icon-check-solid"></i>There are many variations of products of Novi Agro
-                                    available</li>
+                                <li><i class="icon-check-solid"></i>{{ $page->block('about-intro', 'bullet_3', 'There are many variations of products of Novi Agro available') }}</li>
                             </ul>
                         </div>
                     </div><!-- /.col-lg-6 -->
