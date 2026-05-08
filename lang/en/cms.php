@@ -20,8 +20,22 @@ return [
         ],
         'section' => [
             'details'            => 'Page Details',
+            'seo'                => 'SEO & Social',
+            'seo_description'    => 'Search engine and social-share metadata for this page.',
             'blocks'             => 'Content Blocks',
             'blocks_description' => 'Drag to reorder. Toggle visibility per block. Each block renders the matching Blade partial; the data fields here override the partial defaults.',
+        ],
+        'seo' => [
+            'title'            => 'Meta title',
+            'title_help'       => 'Overrides the default <title> tag. 50-60 characters works best.',
+            'meta_description' => 'Meta description',
+            'og_title'         => 'Open Graph title',
+            'og_description'   => 'Open Graph description',
+            'og_image'         => 'Open Graph image URL',
+            'canonical_url'    => 'Canonical URL',
+            'noindex'          => 'Hide from search engines',
+            'noindex_help'     => 'When on, robots are told not to index this page.',
+            'robots'           => 'Robots directives',
         ],
         'field' => [
             'title'        => 'Title',
