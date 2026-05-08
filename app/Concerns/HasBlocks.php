@@ -12,14 +12,20 @@ use Illuminate\Support\Collection;
 trait HasBlocks
 {
     /**
+     * Per-instance cache of visible blocks grouped by type. Each Page render
+     * does many $page->block(type, key) lookups; without this each lookup
+     * re-filters the entire blocks collection.
+     *
+     * @var array<string, Collection>|null
+     */
+    private ?array $blocksByTypeCache = null;
+
+    /**
      * All blocks of a given type, in order. Returns an empty collection if none.
      */
     public function blocksOfType(string $type): Collection
     {
-        return $this->blocks
-            ->where('type', $type)
-            ->where('is_visible', true)
-            ->values();
+        return $this->blocksGroupedByType()[$type] ?? collect();
     }
 
     /**
@@ -45,5 +51,32 @@ trait HasBlocks
     {
         $data = $this->blockData($type) ?? [];
         return data_get($data, $key, $default);
+    }
+
+    /**
+     * Reset the in-memory block cache. Call after mutating blocks within a
+     * single request (e.g. updating data in a test then re-rendering).
+     */
+    public function clearBlocksCache(): void
+    {
+        $this->blocksByTypeCache = null;
+    }
+
+    /**
+     * Group the loaded blocks collection by type, filtering hidden ones once.
+     *
+     * @return array<string, Collection>
+     */
+    private function blocksGroupedByType(): array
+    {
+        if ($this->blocksByTypeCache !== null) {
+            return $this->blocksByTypeCache;
+        }
+
+        return $this->blocksByTypeCache = $this->blocks
+            ->where('is_visible', true)
+            ->groupBy('type')
+            ->map(fn (Collection $group) => $group->values())
+            ->all();
     }
 }

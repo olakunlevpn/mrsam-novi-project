@@ -82,4 +82,33 @@ class HasBlocksTest extends TestCase
         $this->assertSame('Welcome', $page->block('hero', 'headline', 'Default'));
         $this->assertSame('X', $page->block('hero', 'nonexistent', 'X'));
     }
+
+    public function test_blocks_of_type_is_memoized_within_an_instance(): void
+    {
+        $page = $this->buildPageWithBlocks();
+
+        // First call computes the cache; subsequent calls return the same collection instance.
+        $first  = $page->blocksOfType('hero');
+        $second = $page->blocksOfType('hero');
+
+        $this->assertSame($first, $second);
+    }
+
+    public function test_clear_blocks_cache_forces_recomputation(): void
+    {
+        $page = $this->buildPageWithBlocks();
+
+        $page->blocksOfType('hero'); // prime the cache
+
+        // Mutate the loaded collection in-memory and reset cache.
+        $page->blocks->push(new PageBlock([
+            'type'       => 'hero',
+            'data'       => ['headline' => 'Third Hero'],
+            'is_visible' => true,
+            'order_column' => 4,
+        ]));
+        $page->clearBlocksCache();
+
+        $this->assertSame(3, $page->blocksOfType('hero')->count());
+    }
 }
