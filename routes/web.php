@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,3 +13,7 @@ Route::get('/poultry.html', [PageController::class, 'poultry'])->name('animals.p
 Route::get('/services.html', [PageController::class, 'services'])->name('services');
 Route::get('/contact.html', [PageController::class, 'contact'])->name('contact');
 Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
+
+Route::post('/contact', [ContactSubmissionController::class, 'store'])
+    ->name('contact.submit')
+    ->middleware('throttle:6,1');
