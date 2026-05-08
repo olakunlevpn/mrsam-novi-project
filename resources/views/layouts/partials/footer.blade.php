@@ -1,3 +1,10 @@
+        @php
+            $brandLogo  = $settings['brand.logo']       ?? '/assets/images/images-removebg-preview.png';
+            $contactEml = $settings['contact.email']    ?? 'info@novi-agro.com';
+            $contactPhn = $settings['contact.phone']    ?? '+2347041041756';
+            $socialFb   = $settings['social.facebook']  ?? 'https://www.facebook.com/profile.php?id=100077163775495';
+            $socialIg   = $settings['social.instagram'] ?? 'https://www.instagram.com/novi_agroltd/';
+        @endphp
         <footer class="main-footer main-footer--two">
             <div class="main-footer__bg" style="background: linear-gradient(135deg, #07c543 0%, #078f19 100%);">
             </div>
@@ -102,9 +109,9 @@
                         <div class="main-footer__social-row">
                             <p class="main-footer__social-row-text">Social</p>
                             <ul class="main-footer__social-list">
-                                <li><a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                                <li><a href="{{ $socialFb }}" target="_blank"
                                         rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="https://www.instagram.com/novi_agroltd/" target="_blank"
+                                <li><a href="{{ $socialIg }}" target="_blank"
                                         rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
@@ -122,7 +129,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="{{ route('home') }}" aria-label="logo image"><img src="/assets/images/images-removebg-preview.png"
+                <a href="{{ route('home') }}" aria-label="logo image"><img src="{{ $brandLogo }}"
                         alt="Novi-Agro Logo" /></a>
             </div>
             <!-- /.logo-box -->
@@ -132,20 +139,20 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto:info@novi-agro.com">info@novi-agro.com</a>
+                    <a href="mailto:{{ $contactEml }}">{{ $contactEml }}</a>
                 </li>
                 <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:+2347041041756">+2347041041756</a>
+                    <a href="tel:{{ $contactPhn }}">{{ $contactPhn }}</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__social">
-                <a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                <a href="{{ $socialFb }}" target="_blank"
                     rel="noopener noreferrer">
                     <i class="fab fa-facebook-f"></i>
                     <span class="sr-only">Facebook</span>
                 </a>
-                <a href="https://www.instagram.com/novi_agroltd/" target="_blank" rel="noopener noreferrer">
+                <a href="{{ $socialIg }}" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
                     <span class="sr-only">Instagram</span>
                 </a>

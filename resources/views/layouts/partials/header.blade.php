@@ -1,10 +1,19 @@
+    @php
+        $brandLogo  = $settings['brand.logo']      ?? '/assets/images/images-removebg-preview.png';
+        $brandTag   = $settings['brand.tagline']   ?? 'Quality Feed - Healthy Life';
+        $contactAdr = $settings['contact.address'] ?? 'New Garage, Ibadan.';
+        $contactEml = $settings['contact.email']   ?? 'info@novi-agro.com';
+        $contactPhn = $settings['contact.phone']   ?? '+2347041041756';
+        $socialFb   = $settings['social.facebook'] ?? 'https://www.facebook.com/profile.php?id=100077163775495';
+        $socialIg   = $settings['social.instagram'] ?? 'https://www.instagram.com/novi_agroltd/';
+    @endphp
     <div class="page-wrapper">
         <div class="topbar-one topbar-one--one_only">
             <div class="container-fluid">
                 <div class="topbar-one__inner">
                     <div class="topbar-one__logo">
                         <a href="{{ route('home') }}">
-                            <img src="/assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
+                            <img src="{{ $brandLogo }}" alt="Novi Agro Logo">
                         </a>
                     </div><!-- /.main-header__logo -->
 
@@ -15,7 +24,7 @@
                             </div>
                             <div class="topbar-one__info__address d-flex flex-wrap">
                                 <small class="topbar-one__info__address__text">Company address</small>
-                                <a href="{{ route('contact') }}">New Garage, Ibadan.</a>
+                                <a href="{{ route('contact') }}">{{ $contactAdr }}</a>
                             </div>
                         </li>
                         <li class="topbar-one__info__item">
@@ -24,7 +33,7 @@
                             </div>
                             <div class="topbar-one__info__address">
                                 <small class="topbar-one__info__address__text">Send an email</small>
-                                <a href="mailto:info@novi-agro.com">info@novi-agro.com</a>
+                                <a href="mailto:{{ $contactEml }}">{{ $contactEml }}</a>
                             </div>
                         </li>
                         <li class="topbar-one__info__item">
@@ -33,7 +42,7 @@
                             </div>
                             <div class="topbar-one__info__address">
                                 <small class="topbar-one__info__address__text">Helpline and support</small>
-                                <a href="tel:+2347041041756">+2347041041756 </a>
+                                <a href="tel:{{ $contactPhn }}">{{ $contactPhn }} </a>
                             </div>
                         </li>
                     </ul><!-- /.list-unstyled topbar-one__info -->
@@ -41,12 +50,12 @@
                     <div class="topbar-one__right">
                         <!-- <p class="topbar-one__text">Mon to Sat: 9:00am – 6:00pm Sun: Closed</p> -->
                         <div class="topbar-one__social">
-                            <a href="https://www.facebook.com/profile.php?id=100077163775495" target="_blank"
+                            <a href="{{ $socialFb }}" target="_blank"
                                 rel="noopener noreferrer">
                                 <i class="fab fa-facebook-f"></i>
                                 <span class="sr-only">Facebook</span>
                             </a>
-                            <a href="https://www.instagram.com/novi_agroltd/" target="_blank" rel="noopener noreferrer">
+                            <a href="{{ $socialIg }}" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-instagram"></i>
                                 <span class="sr-only">Instagram</span>
                             </a>
@@ -61,11 +70,11 @@
                 <div class="main-header__inner">
                     <div class="main-header__logo">
                         <a href="{{ route('home') }}">
-                            <img src="/assets/images/images-removebg-preview.png" alt="Novi Agro Logo">
+                            <img src="{{ $brandLogo }}" alt="Novi Agro Logo">
                         </a>
                     </div><!-- /.main-header__logo -->
                     <div class="main-header__wellcome d-flex align-items-center">
-                        <p class="main-header__wellcome__tagline">@yield('header_tagline', 'Quality Feed - Healthy Life')</p>
+                        <p class="main-header__wellcome__tagline">@yield('header_tagline', $brandTag)</p>
                         <a href="{{ route('contact') }}" class="grdeen-btn main-header__wellcome__btn">
                             <span>Contact</span>
                         </a>
