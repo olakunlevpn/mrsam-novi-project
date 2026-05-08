@@ -1,10 +1,10 @@
         <section class="faq-page">
             <div class="container">
-                <h3 class="faq-page__sec-title">Need help?</h3>
+                <h3 class="faq-page__sec-title">{{ $page->block('faq-accordion', 'eyebrow', 'Need help?') }}</h3>
                 <p class="faq-page__sec-text">
-                    We are here to guide you through our products and services
+                    {{ $page->block('faq-accordion', 'subtitle', 'We are here to guide you through our products and services') }}
                 </p>
-                <h3 class="faq-page__title">Everything you need to know about our products and services</h3>
+                <h3 class="faq-page__title">{{ $page->block('faq-accordion', 'title', 'Everything you need to know about our products and services') }}</h3>
                 <div class="faq-page__accordion grdeen-accrodion" data-grp-name="grdeen-accrodion">
                     <div class="accrodion active">
                         <div class="accrodion-title">

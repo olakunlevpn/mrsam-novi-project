@@ -17,9 +17,9 @@
                             </div>
 
 
-                            <span class="sec-title__tagline">OUR TESTIMONIALS</span><!-- /.sec-title__tagline -->
+                            <span class="sec-title__tagline">{{ $page->block('testimonials', 'tagline', 'OUR TESTIMONIALS') }}</span><!-- /.sec-title__tagline -->
 
-                            <h2 class="sec-title__title">Hear from our happy <br> customers review</h2>
+                            <h2 class="sec-title__title">{!! $page->block('testimonials', 'title', 'Hear from our happy <br> customers review') !!}</h2>
                             <!-- /.sec-title__title -->
                         </div><!-- /.sec-title -->
                     </div>

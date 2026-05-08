@@ -25,26 +25,22 @@
                                     </div>
 
 
-                                    <span class="sec-title__tagline">We're Skilled
-                                        Full</span><!-- /.sec-title__tagline -->
+                                    <span class="sec-title__tagline">{{ $page->block('benefits-about', 'tagline', "We're Skilled Full") }}</span><!-- /.sec-title__tagline -->
 
-                                    <h2 class="sec-title__title">Our expertise in <br> livestock solutions</h2>
+                                    <h2 class="sec-title__title">{!! $page->block('benefits-about', 'title', 'Our expertise in <br> livestock solutions') !!}</h2>
                                     <!-- /.sec-title__title -->
                                 </div><!-- /.sec-title -->
                             </div>
                             <p class="our-benefits-one__content__text">
-                                Drawing on decades of agricultural experience, we formulate science-backed nutritional
-                                solutions for Pigs, Poultry, and Cattle. Our commitment ensures that herds and flocks
-                                maintain peak health and unrivaled productivity.
+                                {{ $page->block('benefits-about', 'paragraph', 'Drawing on decades of agricultural experience, we formulate science-backed nutritional solutions for Pigs, Poultry, and Cattle. Our commitment ensures that herds and flocks maintain peak health and unrivaled productivity.') }}
                             </p>
                             <div class="our-benefits-one__content__qualitwrap d-flex flex-wrap">
                                 <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
                                     <div class="our-benefits-one__content__qualitwrap__icon">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
-                                    <h4 class="our-benefits-one__content__qualitwrap__title">Quality services</h4>
-                                    <p class="our-benefits-one__content__text skill-text">Delivering measurable
-                                        improvements in animal health and farm efficiency.</p>
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">{{ $page->block('benefits-about', 'card_1_title', 'Quality services') }}</h4>
+                                    <p class="our-benefits-one__content__text skill-text">{{ $page->block('benefits-about', 'card_1_text', 'Delivering measurable improvements in animal health and farm efficiency.') }}</p>
                                 </div>
 
                                 <div class="our-benefits-one__content__qualitwrap__col d-flex flex-wrap">
@@ -52,25 +48,24 @@
                                         class="our-benefits-one__content__qualitwrap__icon our-benefits-one__content__qualitwrap__icon">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
-                                    <h4 class="our-benefits-one__content__qualitwrap__title">Skilled Team</h4>
-                                    <p class="our-benefits-one__content__text skill-text">Delivering measurable
-                                        improvements in animal health and farm efficiency.</p>
+                                    <h4 class="our-benefits-one__content__qualitwrap__title">{{ $page->block('benefits-about', 'card_2_title', 'Skilled Team') }}</h4>
+                                    <p class="our-benefits-one__content__text skill-text">{{ $page->block('benefits-about', 'card_2_text', 'Delivering measurable improvements in animal health and farm efficiency.') }}</p>
                                 </div>
                             </div>
                             <div class="our-benefits-one__content__listwrap d-flex justify-content-between">
                                 <ul class="list-unstyled our-benefits-one__content__list">
-                                    <li><i class="icon-check-solid"></i>Expert team members</li>
-                                    <li><i class="icon-check-solid"></i>Affordable quality services</li>
-                                    <li><i class="icon-check-solid"></i>Professional Livestock Services </li>
-                                    <li><i class="icon-check-solid"></i>Trusted agricultural partners</li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits-about', 'bullet_1', 'Expert team members') }}</li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits-about', 'bullet_2', 'Affordable quality services') }}</li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits-about', 'bullet_3', 'Professional Livestock Services') }} </li>
+                                    <li><i class="icon-check-solid"></i>{{ $page->block('benefits-about', 'bullet_4', 'Trusted agricultural partners') }}</li>
                                 </ul>
                                 <div class="about-one__content__qualitwrap__pricesbox text-center">
                                     <div class="about-one__content__qualitwrap__tpright">
                                         <img loading="lazy" src="/assets/images/shapes/skill-icon2-1.png" alt="" role="presentation">
                                     </div>
                                     <div class="about-one__content__qualitwrap__inner">
-                                        <strong class="about-one__content__qualitwrap__price">1025+</strong>
-                                        <span class="about-one__content__qualitwrap__text">Clients Reviews</span>
+                                        <strong class="about-one__content__qualitwrap__price">{{ $page->block('benefits-about', 'stat_value', '1025+') }}</strong>
+                                        <span class="about-one__content__qualitwrap__text">{{ $page->block('benefits-about', 'stat_label', 'Clients Reviews') }}</span>
                                         <div class="testimonials-card__rating">
                                             <span class="testimonials-card__rating__start"><i
                                                     class="fa fa-star"></i></span>
@@ -90,7 +85,7 @@
                     </div><!-- /.col-lg-6 -->
                     <div class="our-benefits-one__right">
                         <div class="our-benefits-one__image wow fadeInLeft" data-wow-delay="100ms">
-                            <img loading="lazy" class="our-benefits-one__bigimage" src="/assets/images/About_3.jpg" alt="Novi">
+                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->block('benefits-about', 'image', '/assets/images/About_3.jpg') }}" alt="Novi">
                         </div>
                         <div class="our-benefits-one__shapetwo">
                             <div class="our-benefits-one__shapetwo__shapenormal">
