@@ -77,7 +77,7 @@ return [
     ],
 
     'settings' => [
-        'nav'   => ['label' => 'Settings'],
+        'nav'   => ['label' => 'Settings (raw)'],
         'model' => ['singular' => 'Setting', 'plural' => 'Settings'],
         'field' => [
             'group'      => 'Group',
@@ -88,6 +88,30 @@ return [
         'help' => [
             'key'   => 'Dot-notation identifier (e.g. brand.tagline, contact.email).',
             'value' => 'Plain text value. Stored as JSON; supports strings, numbers, and booleans.',
+        ],
+    ],
+
+    'site_settings' => [
+        'nav'   => ['label' => 'Site Settings'],
+        'title' => 'Site Settings',
+        'save'  => 'Save changes',
+        'saved' => 'Settings saved.',
+        'group' => [
+            'brand'   => 'Brand',
+            'contact' => 'Contact',
+            'social'  => 'Social',
+            'site'    => 'Site',
+        ],
+        'field' => [
+            'brand_name'         => 'Brand name',
+            'brand_tagline'      => 'Tagline',
+            'brand_logo'         => 'Logo URL',
+            'contact_email'      => 'Email address',
+            'contact_phone'      => 'Phone number',
+            'contact_address'    => 'Address',
+            'social_facebook'    => 'Facebook URL',
+            'social_instagram'   => 'Instagram URL',
+            'site_title_suffix'  => 'Title suffix',
         ],
     ],
 
