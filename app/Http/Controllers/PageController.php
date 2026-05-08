@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use App\Models\Page;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
@@ -16,6 +17,36 @@ class PageController extends Controller
     public function services() { return $this->renderPage('services'); }
     public function contact() { return $this->renderPage('contact'); }
     public function faq() { return $this->renderPage('faq'); }
+
+    /**
+     * Generic catch-all for admin-created Pages whose slug does not have a
+     * dedicated route + Blade. Renders via the shared `pages.cms` shell.
+     *
+     * The named routes above take precedence because Laravel matches them
+     * before this fallback. So /about.html still hits about(), not show().
+     */
+    public function show(string $slug)
+    {
+        $page = Page::published()
+            ->with(['blocks', 'seoMeta'])
+            ->where('slug', $slug)
+            ->first();
+
+        if (! $page) {
+            throw new NotFoundHttpException("Page '{$slug}' not found");
+        }
+
+        $animal = Animal::where('slug', $slug)->first();
+
+        // Prefer a dedicated `pages.{slug}` Blade if one exists (legacy pages),
+        // else render via the generic CMS shell.
+        $view = view()->exists("pages.{$slug}") ? "pages.{$slug}" : 'pages.cms';
+
+        return view($view, [
+            'page'   => $page,
+            'animal' => $animal,
+        ]);
+    }
 
     private function renderPage(string $slug)
     {

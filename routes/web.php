@@ -17,3 +17,9 @@ Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
 Route::post('/contact', [ContactSubmissionController::class, 'store'])
     ->name('contact.submit')
     ->middleware('throttle:6,1');
+
+// Generic catch-all for admin-created pages with custom slugs. Must be last
+// so it does not steal traffic from the named routes above.
+Route::get('/{slug}.html', [PageController::class, 'show'])
+    ->where('slug', '[A-Za-z0-9\-]+')
+    ->name('page.show');
