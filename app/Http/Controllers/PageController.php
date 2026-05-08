@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use App\Models\Page;
 
 class PageController extends Controller
@@ -28,6 +29,14 @@ class PageController extends Controller
             $page->setRelation('seoMeta', null);
         }
 
-        return view("pages.{$slug}", ['page' => $page]);
+        // If this slug matches an Animal record, expose it to the view so
+        // animal page-header / breadcrumb blocks can use $animal->hero_image
+        // and $animal->name as their defaults.
+        $animal = Animal::where('slug', $slug)->first();
+
+        return view("pages.{$slug}", [
+            'page'   => $page,
+            'animal' => $animal,
+        ]);
     }
 }
