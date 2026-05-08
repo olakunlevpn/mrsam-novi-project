@@ -5,19 +5,19 @@
                     <div class="catalog-controls-sticky">
                         <div class="product__showing-wrap">
                             <input type="text" class="product__search-input flex-grow-1" id="main-product-search"
-                                placeholder="Search for available products">
+                                placeholder="{{ $page->block('product-catalog', 'search_placeholder', 'Search for available products') }}">
                             <div class="product__showing-sort">
                                 <div class="sort-dropdown">
                                     <button type="button" class="sort-toggle" aria-haspopup="listbox"
                                         aria-expanded="false">
-                                        <span class="sort-selected">Sort by Default</span>
+                                        <span class="sort-selected">{{ $page->block('product-catalog', 'sort_default_label', 'Sort by Default') }}</span>
                                         <i class="fas fa-chevron-down sort-chevron"></i>
                                     </button>
                                     <ul class="sort-menu" role="listbox">
-                                        <li class="sort-option active" data-value="default" role="option">Sort by Default</li>
-                                        <li class="sort-option" data-value="newest" role="option">Sort by Newest</li>
-                                        <li class="sort-option" data-value="z-a" role="option">Sort by Alphabetical (Z-A)</li>
-                                        <li class="sort-option" data-value="popular" role="option">Sort by Popularity</li>
+                                        <li class="sort-option active" data-value="default" role="option">{{ $page->block('product-catalog', 'sort_default_label', 'Sort by Default') }}</li>
+                                        <li class="sort-option" data-value="newest" role="option">{{ $page->block('product-catalog', 'sort_newest_label', 'Sort by Newest') }}</li>
+                                        <li class="sort-option" data-value="z-a" role="option">{{ $page->block('product-catalog', 'sort_alpha_label', 'Sort by Alphabetical (Z-A)') }}</li>
+                                        <li class="sort-option" data-value="popular" role="option">{{ $page->block('product-catalog', 'sort_popular_label', 'Sort by Popularity') }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                 <h3 class="filter-title d-flex justify-content-between align-items-center"
                                     data-toggle="collapse" data-bs-toggle="collapse" data-target="#product-type-filters"
                                     data-bs-target="#product-type-filters" role="button" aria-expanded="true"
-                                    aria-controls="product-type-filters" style="cursor: pointer;">Product Type <i
+                                    aria-controls="product-type-filters" style="cursor: pointer;">{{ $page->block('product-catalog', 'filter_type_title', 'Product Type') }} <i
                                         class="fas fa-minus toggle-icon"></i></h3>
                                 <div class="product__sidebar">
                                     <div class="filter-options collapse show" id="product-type-filters">
@@ -121,8 +121,7 @@
                                     data-toggle="collapse" data-bs-toggle="collapse"
                                     data-target="#collapse-animal-category" data-bs-target="#collapse-animal-category"
                                     role="button" aria-expanded="true" aria-controls="collapse-animal-category"
-                                    style="cursor: pointer;">Animal
-                                    Category <i class="fas fa-minus toggle-icon"></i></h3>
+                                    style="cursor: pointer;">{{ $page->block('product-catalog', 'filter_animal_title', 'Animal Category') }} <i class="fas fa-minus toggle-icon"></i></h3>
                                 <div class="filter-options collapse show mb-4" id="collapse-animal-category">
                                     @php
                                         $activeAnimal = match (true) {
@@ -137,8 +136,7 @@
                                             id="cat-all" value="all"
                                             @checked($activeAnimal === 'all')
                                             @if($activeAnimal !== 'all') data-href="{{ route('products') }}" @endif>
-                                        <label class="form-check-label" for="cat-all"><a href="{{ route('products') }}">All
-                                                Products</a></label>
+                                        <label class="form-check-label" for="cat-all"><a href="{{ route('products') }}">{{ $page->block('product-catalog', 'cat_all_label', 'All Products') }}</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
@@ -146,7 +144,7 @@
                                             @checked($activeAnimal === 'cattle')
                                             @if($activeAnimal !== 'cattle') data-href="{{ route('animals.cattle') }}" @endif>
                                         <label class="form-check-label" for="cat-cattle"><a
-                                                href="{{ route('animals.cattle') }}">Cattle</a></label>
+                                                href="{{ route('animals.cattle') }}">{{ $page->block('product-catalog', 'cat_cattle_label', 'Cattle') }}</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
@@ -154,7 +152,7 @@
                                             @checked($activeAnimal === 'pigs')
                                             @if($activeAnimal !== 'pigs') data-href="{{ route('animals.pigs') }}" @endif>
                                         <label class="form-check-label" for="cat-pigs"><a
-                                                href="{{ route('animals.pigs') }}">Swine/Pigs</a></label>
+                                                href="{{ route('animals.pigs') }}">{{ $page->block('product-catalog', 'cat_pigs_label', 'Swine/Pigs') }}</a></label>
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input animal-radio" type="radio" name="animalFilter"
@@ -162,7 +160,7 @@
                                             @checked($activeAnimal === 'poultry')
                                             @if($activeAnimal !== 'poultry') data-href="{{ route('animals.poultry') }}" @endif>
                                         <label class="form-check-label" for="cat-poultry"><a
-                                                href="{{ route('animals.poultry') }}">Poultry</a></label>
+                                                href="{{ route('animals.poultry') }}">{{ $page->block('product-catalog', 'cat_poultry_label', 'Poultry') }}</a></label>
                                     </div>
                                 </div>
                             </div><!-- /.product__sidebar -->
@@ -185,7 +183,7 @@
                 <div id="product-details" style="display: none;">
                     <div class="mb-5 d-flex justify-content-between align-items-center">
                         <a href="#" id="back-to-listing" class="grdeen-btn"><span><i
-                                    class="fas fa-arrow-left me-2"></i>Back to Catalog</span></a>
+                                    class="fas fa-arrow-left me-2"></i>{{ $page->block('product-catalog', 'back_label', 'Back to Catalog') }}</span></a>
                         <div class="d-flex align-items-center gap-2">
                             <span class="badge bg-success-soft text-success px-3 py-2" id="slotAnimalBadge"></span>
                             <span class="badge bg-light text-muted px-3 py-2" id="slotCategoryBadge"></span>
@@ -206,39 +204,39 @@
 
                                 <div id="slotDescriptionContainer" class="mb-4">
                                     <h5 class="text-success fw-bold text-uppercase small mb-2"
-                                        style="letter-spacing: 1px;">Description</h5>
+                                        style="letter-spacing: 1px;">{{ $page->block('product-catalog', 'detail_description_label', 'Description') }}</h5>
                                     <p id="slotProductDescription" class="text-muted"
                                         style="line-height: 1.8; font-size: 16px;"></p>
                                 </div>
 
                                 <div id="slotCompositionContainer" class="mb-4">
                                     <h5 class="text-success fw-bold text-uppercase small mb-2"
-                                        style="letter-spacing: 1px;">Composition</h5>
+                                        style="letter-spacing: 1px;">{{ $page->block('product-catalog', 'detail_composition_label', 'Composition') }}</h5>
                                     <p id="slotProductComposition" class="bg-light p-4 rounded text-muted mb-0"
                                         style="font-size: 15px; font-style: italic;"></p>
                                 </div>
 
                                 <div id="slotBenefitsContainer" class="mb-4">
                                     <h5 class="text-success fw-bold text-uppercase small mb-2"
-                                        style="letter-spacing: 1px;">Typical Benefits</h5>
+                                        style="letter-spacing: 1px;">{{ $page->block('product-catalog', 'detail_benefits_label', 'Typical Benefits') }}</h5>
                                     <p id="slotProductBenefits" class="text-muted mb-0" style="font-size: 16px;"></p>
                                 </div>
 
                                 <div id="slotUsageContainer" class="mb-5">
                                     <h5 class="text-success fw-bold text-uppercase small mb-2"
-                                        style="letter-spacing: 1px;">Usage &amp; Directions</h5>
+                                        style="letter-spacing: 1px;">{!! $page->block('product-catalog', 'detail_usage_label', 'Usage &amp; Directions') !!}</h5>
                                     <p id="slotProductUsage" class="text-muted mb-0" style="font-size: 16px;"></p>
                                 </div>
 
                                 <div class="d-flex align-items-center gap-3 mt-4">
-                                    <a href="{{ route('contact') }}" class="grdeen-btn"><span>Enquire Now</span></a>
+                                    <a href="{{ route('contact') }}" class="grdeen-btn"><span>{{ $page->block('product-catalog', 'enquire_label', 'Enquire Now') }}</span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div id="relatedProductsSection" class="mt-5 pt-5 border-top">
-                        <h4 class="fw-bold mb-4">Related Products</h4>
+                        <h4 class="fw-bold mb-4">{{ $page->block('product-catalog', 'related_label', 'Related Products') }}</h4>
                         <div class="row g-4" id="slotRelatedProducts">
                             <!-- Related products injected here -->
                         </div>
