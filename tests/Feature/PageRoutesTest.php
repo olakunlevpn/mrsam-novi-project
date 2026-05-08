@@ -224,8 +224,8 @@ class PageRoutesTest extends TestCase
         // contact-info-cards block
         $response->assertSee('Do you have questions?', false);
         $response->assertSee('KM 10, Old Lagos-Ibadan Expressway', false);
-        // contact-form block
-        $response->assertSee('formsubmit.co', false);
+        // contact-form block — submits to local route by default
+        $response->assertSee('action="' . route('contact.submit') . '"', false);
         $response->assertSee('Send a message', false);
         // contact-map block
         $response->assertSee('google-map__contact', false);
