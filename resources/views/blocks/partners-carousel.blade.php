@@ -1,3 +1,14 @@
+@php
+    $partners = $page->block('partners-carousel', 'partners');
+    if (! is_array($partners) || empty($partners)) {
+        $partners = [
+            ['logo' => '/assets/images/resources/brand-logo1-1.png', 'url' => null],
+            ['logo' => '/assets/images/resources/brand-logo1-2.png', 'url' => null],
+            ['logo' => '/assets/images/resources/brand-logo1-3.png', 'url' => null],
+            ['logo' => '/assets/images/resources/brand-logo1-4.png', 'url' => null],
+        ];
+    }
+@endphp
         <section class="companies-one">
             <div class="container">
                 <div class="companies-one__sctwrap wow fadeInUp" data-wow-delay="100ms">
@@ -34,35 +45,23 @@
 				}
 			}
 		}'>
-                    <div class="item">
-                        <div class="companies-one__image">
-                            <div class="companies-one__inner-img">
-                                <a href="{{ route('products') }}"><img loading="lazy" src="/assets/images/resources/brand-logo1-1.png" alt="Partner Logo"></a>
+                    @foreach ($partners as $partner)
+                        @php
+                            $logo  = is_array($partner) ? ($partner['logo'] ?? null) : $partner;
+                            $url   = is_array($partner) ? ($partner['url']  ?? null) : null;
+                            $alt   = is_array($partner) ? ($partner['alt']  ?? 'Partner Logo') : 'Partner Logo';
+                            $href  = $url ?: route('products');
+                        @endphp
+                        @if ($logo)
+                            <div class="item">
+                                <div class="companies-one__image">
+                                    <div class="companies-one__inner-img">
+                                        <a href="{{ $href }}"><img loading="lazy" src="{{ $logo }}" alt="{{ $alt }}"></a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="companies-one__image">
-                            <div class="companies-one__inner-img">
-                                <a href="{{ route('products') }}"><img loading="lazy" src="/assets/images/resources/brand-logo1-2.png" alt="Partner Logo"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="companies-one__image">
-                            <div class="companies-one__inner-img">
-                                <a href="{{ route('products') }}"><img loading="lazy" src="/assets/images/resources/brand-logo1-3.png" alt="Partner Logo"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="companies-one__image">
-                            <div class="companies-one__inner-img">
-                                <a href="{{ route('products') }}"><img loading="lazy" src="/assets/images/resources/brand-logo1-4.png" alt="Partner Logo"></a>
-                            </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </section><!-- /.companies-one -->
