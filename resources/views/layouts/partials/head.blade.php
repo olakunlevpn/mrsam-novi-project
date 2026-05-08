@@ -1,25 +1,74 @@
+@php
+    /** @var \App\Models\Page|null $page */
+    $page = $page ?? null;
+    $seo  = $page?->seoMeta;
+    $defaultTitle = 'NOVI AGRO LTD';
+    $titleSuffix  = ' | Quality Feeds - Healthy Life';
+
+    // Resolve <title>: SEO override > page title > yielded section > default
+    $resolvedTitle = $seo?->title
+        ?? trim((string) ($__env->yieldContent('title') ?: ''))
+        ?: $defaultTitle;
+@endphp
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'NOVI AGRO LTD') | Quality Feeds - Healthy Life</title>
+    <title>{{ $resolvedTitle }}{{ str_ends_with($resolvedTitle, $titleSuffix) ? '' : $titleSuffix }}</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon_io/favicon-16x16.png" />
     <link rel="manifest" href="/assets/images/favicons/favicon_io/site.webmanifest" />
-    <link rel="canonical" href="https://novi-agro.com/" />
-    <meta name="description"
-        content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
-    <meta property="og:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
-    <meta property="og:image" content="https://novi-agro.com/assets/images/generated/about_main.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://novi-agro.com/" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
-    <meta name="twitter:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+    @if ($seo)
+        @if ($seo->canonical_url)
+            <link rel="canonical" href="{{ $seo->canonical_url }}" />
+        @endif
+        @if ($seo->meta_description)
+            <meta name="description" content="{{ $seo->meta_description }}" />
+        @endif
+        @if ($seo->noindex)
+            <meta name="robots" content="noindex, nofollow" />
+        @elseif ($seo->robots)
+            <meta name="robots" content="{{ $seo->robots }}" />
+        @endif
+
+        <!-- Open Graph Tags -->
+        @if ($seo->og_title)
+            <meta property="og:title" content="{{ $seo->og_title }}" />
+        @endif
+        @if ($seo->og_description)
+            <meta property="og:description" content="{{ $seo->og_description }}" />
+        @endif
+        @if ($seo->og_image)
+            <meta property="og:image" content="{{ $seo->og_image }}" />
+        @endif
+        <meta property="og:type" content="website" />
+        @if ($seo->canonical_url)
+            <meta property="og:url" content="{{ $seo->canonical_url }}" />
+        @endif
+        <meta name="twitter:card" content="summary_large_image" />
+        @if ($seo->og_title)
+            <meta name="twitter:title" content="{{ $seo->og_title }}" />
+        @endif
+        @if ($seo->og_description)
+            <meta name="twitter:description" content="{{ $seo->og_description }}" />
+        @endif
+    @else
+        <link rel="canonical" href="https://novi-agro.com/" />
+        <meta name="description"
+            content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+
+        <!-- Open Graph Tags -->
+        <meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
+        <meta property="og:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+        <meta property="og:image" content="https://novi-agro.com/assets/images/generated/about_main.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://novi-agro.com/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
+        <meta name="twitter:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+    @endif
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>

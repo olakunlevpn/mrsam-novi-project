@@ -18,11 +18,14 @@ class PageController extends Controller
 
     private function renderPage(string $slug)
     {
-        $page = Page::where('slug', $slug)->with('blocks')->first();
+        $page = Page::where('slug', $slug)
+            ->with(['blocks', 'seoMeta'])
+            ->first();
 
         if (! $page) {
             $page = new Page(['slug' => $slug, 'title' => ucfirst($slug)]);
             $page->setRelation('blocks', collect());
+            $page->setRelation('seoMeta', null);
         }
 
         return view("pages.{$slug}", ['page' => $page]);
