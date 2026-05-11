@@ -18,6 +18,8 @@ Route::post('/contact', [ContactSubmissionController::class, 'store'])
     ->name('contact.submit')
     ->middleware('throttle:6,1');
 
+require __DIR__.'/auth.php';
+
 // Generic catch-all for admin-created pages with custom slugs. Must be last
 // so it does not steal traffic from the named routes above.
 Route::get('/{slug}.html', [PageController::class, 'show'])
