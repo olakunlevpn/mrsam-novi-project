@@ -188,4 +188,37 @@ class SeoTest extends TestCase
 
         $this->assertSame($custom, $body);
     }
+
+    public function test_saving_a_post_invalidates_sitemap_cache(): void
+    {
+        // Prime cache.
+        $first = $this->get('/sitemap.xml')->getContent();
+
+        // Create a published post AFTER first render.
+        $post = Post::factory()->published()->create(['slug' => 'fresh-news']);
+
+        // Sitemap must include the new URL on next request (cache busted).
+        $second = $this->get('/sitemap.xml')->getContent();
+
+        $this->assertStringNotContainsString('fresh-news', $first);
+        $this->assertStringContainsString('fresh-news', $second);
+    }
+
+    public function test_saving_a_page_invalidates_sitemap_cache(): void
+    {
+        $first = $this->get('/sitemap.xml')->getContent();
+
+        $page = Page::create([
+            'slug' => 'fresh-page',
+            'title' => 'Fresh',
+            'layout' => 'custom',
+            'status' => 'published',
+            'published_at' => now()->subMinute(),
+        ]);
+
+        $second = $this->get('/sitemap.xml')->getContent();
+
+        $this->assertStringNotContainsString('fresh-page', $first);
+        $this->assertStringContainsString('fresh-page', $second);
+    }
 }
