@@ -33,10 +33,21 @@
             {{ __('blog.submit_comment') }}
         </h3>
 
-        @if ($errors->any())
+        @php
+            // Visible fields render their own inline errors (e.g. body). Show
+            // only the hidden-field errors here so messages don't duplicate.
+            $hiddenErrorFields = ['parent_id', '_form_loaded_at', '_hp_email'];
+            $hiddenErrors      = [];
+            foreach ($hiddenErrorFields as $field) {
+                foreach ($errors->get($field) as $message) {
+                    $hiddenErrors[] = $message;
+                }
+            }
+        @endphp
+        @if (! empty($hiddenErrors))
             <div class="alert alert-danger" role="alert">
                 <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
+                    @foreach ($hiddenErrors as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
