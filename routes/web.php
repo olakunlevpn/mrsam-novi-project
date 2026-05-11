@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -15,6 +16,9 @@ Route::get('/poultry.html', [PageController::class, 'poultry'])->name('animals.p
 Route::get('/services.html', [PageController::class, 'services'])->name('services');
 Route::get('/contact.html', [PageController::class, 'contact'])->name('contact');
 Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
+
+// Dynamic sitemap endpoint. SitemapController caches its render for 1 hour.
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::post('/contact', [ContactSubmissionController::class, 'store'])
     ->name('contact.submit')
