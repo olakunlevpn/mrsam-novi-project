@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Cms\BlockRegistry;
+use App\Cms\BlockSchemas;
 use App\Filament\Schemas\SeoMetaSection;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
@@ -10,8 +11,11 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Arr;
 
 class PageForm
 {
@@ -70,6 +74,9 @@ class PageForm
                         Repeater::make('blocks')
                             ->label('')
                             ->relationship('blocks')
+                            ->mutateRelationshipDataBeforeFillUsing(self::unpackDataForFill(...))
+                            ->mutateRelationshipDataBeforeCreateUsing(self::packDataForSave(...))
+                            ->mutateRelationshipDataBeforeSaveUsing(self::packDataForSave(...))
                             ->orderColumn('order_column')
                             ->reorderable()
                             ->collapsible()
@@ -84,17 +91,35 @@ class PageForm
                                     ->options(fn () => app(BlockRegistry::class)->selectOptions())
                                     ->searchable()
                                     ->required()
-                                    ->native(false),
+                                    ->native(false)
+                                    ->live(),
                                 Toggle::make('is_visible')
                                     ->label(__('cms.pages.block.is_visible'))
                                     ->default(true)
                                     ->inline(false),
+
+                                // Typed schemas: one Group per registered type,
+                                // visible only when that type is selected. Each
+                                // Group's components are resolved at schema-
+                                // build time so Filament caches the right
+                                // children. Fields use flat state paths; the
+                                // Repeater pack/unpack hooks above stuff them
+                                // into and out of the page_blocks.data column.
+                                ...self::typedFieldGroups(),
+
+                                // Generic editor: shown for block types without
+                                // a registered schema. Its `data` key is the
+                                // raw flat KeyValue blob and is also flattened
+                                // and re-packed by the Repeater hooks.
                                 KeyValue::make('data')
                                     ->label(__('cms.pages.block.data'))
                                     ->keyLabel(__('cms.pages.block.data_key'))
                                     ->valueLabel(__('cms.pages.block.data_value'))
                                     ->reorderable()
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->visible(fn (Get $get): bool =>
+                                        ! ($type = $get('type')) || ! app(BlockRegistry::class)->hasFieldsFor($type)
+                                    ),
                             ])
                             ->defaultItems(0)
                             ->addActionLabel(__('cms.pages.block.add')),
@@ -134,5 +159,93 @@ class PageForm
         $hidden = ! ($state['is_visible'] ?? true);
 
         return $hidden ? "{$label}  (hidden)" : $label;
+    }
+
+    /**
+     * Build one Group of typed fields per block type that registers a schema.
+     * Each Group's children are resolved at form-build time and stored
+     * statically so Filament's cached child schemas hold the correct fields.
+     * Visibility narrows each Group to a single block type.
+     *
+     * @return array<int, Group>
+     */
+    private static function typedFieldGroups(): array
+    {
+        $registry = app(BlockRegistry::class);
+        $groups = [];
+
+        foreach ($registry->all() as $type => $meta) {
+            if (empty($meta['fields'])) {
+                continue;
+            }
+
+            $groups[] = Group::make()
+                ->key("typed-fields-{$type}")
+                ->columnSpanFull()
+                ->columns(2)
+                ->visible(fn (Get $get): bool => $get('type') === $type)
+                ->components($registry->fieldsFor($type));
+        }
+
+        return $groups;
+    }
+
+    /**
+     * Flatten a page_blocks row into form state when filling the Repeater.
+     * Pulls keys out of the JSON `data` column into top-level state so the
+     * flat-named typed fields and the generic KeyValue editor can bind to
+     * them directly.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    private static function unpackDataForFill(array $data): array
+    {
+        $payload = $data['data'] ?? [];
+        if (! is_array($payload)) {
+            $payload = [];
+        }
+
+        $type = $data['type'] ?? null;
+
+        if ($type && app(BlockRegistry::class)->hasFieldsFor($type)) {
+            // Spread typed payload into top-level state for the typed Group.
+            unset($data['data']);
+            return array_merge($payload, $data);
+        }
+
+        // Generic blocks keep `data` as-is so the KeyValue editor reads it.
+        $data['data'] = $payload;
+        return $data;
+    }
+
+    /**
+     * Pack form state back into a page_blocks row before save/create.
+     * For typed blocks the flat top-level fields are collected into `data`.
+     * Generic blocks keep their existing `data` array.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    private static function packDataForSave(array $data): array
+    {
+        $type = $data['type'] ?? null;
+
+        if ($type && app(BlockRegistry::class)->hasFieldsFor($type)) {
+            $rowKeys = BlockSchemas::ROW_KEYS;
+            $payload = Arr::except($data, $rowKeys);
+            $row = Arr::only($data, $rowKeys);
+            $row['data'] = $payload;
+            return $row;
+        }
+
+        $payload = $data['data'] ?? [];
+        if (! is_array($payload)) {
+            $payload = [];
+        }
+
+        $row = Arr::only($data, BlockSchemas::ROW_KEYS);
+        $row['data'] = $payload;
+        return $row;
     }
 }

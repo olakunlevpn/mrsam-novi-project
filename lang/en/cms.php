@@ -10,6 +10,68 @@ return [
         ],
     ],
 
+    'block_fields' => [
+        'hero' => [
+            'subtitle'    => 'Subtitle / eyebrow',
+            'headline'    => 'Headline',
+            'video_src'   => 'Background video URL',
+            'cta_label'   => 'Button label',
+            'cta_url'     => 'Button URL',
+        ],
+        'page_header' => [
+            'title'            => 'Heading',
+            'background_image' => 'Background image URL',
+        ],
+        'breadcrumb' => [
+            'label' => 'Current page label',
+        ],
+        'cta_booking' => [
+            'tagline'          => 'Tagline',
+            'title'            => 'Heading (HTML allowed for line breaks)',
+            'title_help'       => 'Use <br> for line breaks.',
+            'submit_label'     => 'Submit button label',
+            'form_action'      => 'Form action URL',
+            'background_image' => 'Background image URL',
+            'image_vet'        => 'Side image URL',
+        ],
+        'partners_carousel' => [
+            'title'      => 'Section title (HTML allowed)',
+            'title_help' => 'Use <br> for line breaks.',
+            'partners'   => 'Partner logos',
+            'logo'       => 'Logo image URL',
+            'url'        => 'Click-through URL',
+            'alt'        => 'Alt text',
+            'add'        => 'Add partner',
+        ],
+        'testimonials' => [
+            'tagline'     => 'Tagline',
+            'title'       => 'Heading',
+            'items'       => 'Testimonials',
+            'name'        => 'Name',
+            'designation' => 'Designation',
+            'image'       => 'Photo URL',
+            'rating'      => 'Star rating',
+            'content'     => 'Quote',
+            'add'         => 'Add testimonial',
+        ],
+        'contact_form' => [
+            'action_url'      => 'Submit URL',
+            'action_url_help' => 'Default: local controller. Override to point at any external endpoint (e.g. formsubmit.co).',
+            'subject'         => 'Default subject',
+            'submit_label'    => 'Submit button label',
+            'success_message' => 'Success message',
+        ],
+        'contact_map' => [
+            'embed_url'      => 'Google Maps embed URL',
+            'embed_url_help' => 'Paste from Google Maps > Share > Embed a map > Copy HTML > extract the src attribute.',
+        ],
+        'faq_accordion' => [
+            'eyebrow'  => 'Eyebrow text',
+            'title'    => 'Heading',
+            'subtitle' => 'Subtitle',
+        ],
+    ],
+
     'pages' => [
         'nav' => [
             'label' => 'Pages',

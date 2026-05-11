@@ -66,12 +66,11 @@ class PageResourceTest extends TestCase
                     [
                         'type'       => 'hero',
                         'is_visible' => true,
-                        'data'       => ['headline' => 'Spring Sale'],
+                        'headline'   => 'Spring Sale',
                     ],
                     [
                         'type'       => 'cta-booking',
                         'is_visible' => false,
-                        'data'       => null,
                     ],
                 ],
             ])
