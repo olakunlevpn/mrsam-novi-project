@@ -89,6 +89,30 @@ class PostResourceTest extends TestCase
         );
     }
 
+    public function test_admin_can_bulk_publish_draft_posts(): void
+    {
+        $drafts = Post::factory()
+            ->count(3)
+            ->create([
+                'author_id'    => $this->admin->id,
+                'status'       => 'draft',
+                'published_at' => null,
+            ]);
+
+        Livewire::actingAs($this->admin)
+            ->test(ListPosts::class)
+            ->callTableBulkAction('publish', $drafts->pluck('id')->all());
+
+        $drafts->each(function ($post) {
+            $fresh = $post->fresh();
+            $this->assertSame('published', $fresh->status);
+            $this->assertNotNull(
+                $fresh->published_at,
+                'Bulk publish must trigger the saving hook so published_at is stamped.'
+            );
+        });
+    }
+
     public function test_post_slug_must_be_unique(): void
     {
         Post::factory()->create([
