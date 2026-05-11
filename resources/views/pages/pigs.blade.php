@@ -16,6 +16,12 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Pigs | Novi-Agro | Premium Livestock Products" />
     <meta name="twitter:description" content="Discover Novi-Agro's specialized pig feed additives formulated for optimal swine growth, health, and productivity on Nigerian farms." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'),     'url' => route('home')],
+        ['name' => __('seo.breadcrumb.products'), 'url' => route('products')],
+        ['name' => __('seo.breadcrumb.pigs'),     'url' => route('animals.pigs')],
+    ]])
 @endpush
 
 @section('content')

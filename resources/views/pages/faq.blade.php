@@ -14,6 +14,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Your Questions Answered | Novi-Agro" />
     <meta name="twitter:description" content="Find answers to common questions about Novi-Agro's livestock feeds, consultancy services, animal care products, and farm management solutions." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'), 'url' => route('home')],
+        ['name' => __('seo.breadcrumb.faq'),  'url' => route('faq')],
+    ]])
 @endpush
 
 @push('styles')

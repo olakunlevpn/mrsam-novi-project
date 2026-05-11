@@ -14,6 +14,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Contact | Novi-Agro | Quality Livestock Solutions" />
     <meta name="twitter:description" content="Contact Novi-Agro for premium livestock feeds, consultancy, and animal care solutions. We are here to support your farming business." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'),    'url' => route('home')],
+        ['name' => __('seo.breadcrumb.contact'), 'url' => route('contact')],
+    ]])
 @endpush
 
 @push('styles')

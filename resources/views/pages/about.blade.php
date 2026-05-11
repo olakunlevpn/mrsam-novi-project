@@ -14,6 +14,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="About | Novi-Agro | Quality Livestock Solutions" />
     <meta name="twitter:description" content="Learn about Novi-Agro's mission to empower Nigerian farmers with premium livestock feed additives, expert consultancy, and innovative agricultural solutions." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'),  'url' => route('home')],
+        ['name' => __('seo.breadcrumb.about'), 'url' => route('about')],
+    ]])
 @endpush
 
 @push('styles')

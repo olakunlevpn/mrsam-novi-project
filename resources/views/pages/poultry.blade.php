@@ -16,6 +16,12 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Poultry | Novi-Agro | Premium Livestock Products" />
     <meta name="twitter:description" content="Shop Novi-Agro's poultry feed additives engineered for healthier birds, better egg production, and improved broiler performance across Nigeria." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'),     'url' => route('home')],
+        ['name' => __('seo.breadcrumb.products'), 'url' => route('products')],
+        ['name' => __('seo.breadcrumb.poultry'),  'url' => route('animals.poultry')],
+    ]])
 @endpush
 
 @section('content')

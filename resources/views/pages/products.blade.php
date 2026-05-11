@@ -16,6 +16,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Products | Novi-Agro | Premium Livestock Products" />
     <meta name="twitter:description" content="Browse Novi-Agro's full range of premium livestock feed additives for cattle, pigs, and poultry — trusted by farmers across Nigeria." />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'),     'url' => route('home')],
+        ['name' => __('seo.breadcrumb.products'), 'url' => route('products')],
+    ]])
 @endpush
 
 @section('content')

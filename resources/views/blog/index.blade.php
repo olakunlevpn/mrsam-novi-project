@@ -4,6 +4,11 @@
 
 @push('meta')
     <meta name="description" content="{{ __('blog.index_tagline') }}" />
+
+    @include('partials.breadcrumb-jsonld', ['crumbs' => [
+        ['name' => __('seo.breadcrumb.home'), 'url' => route('home')],
+        ['name' => __('seo.breadcrumb.blog'), 'url' => route('blog.index')],
+    ]])
 @endpush
 
 @push('styles')
