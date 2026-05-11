@@ -73,6 +73,27 @@ class CommentPostingTest extends TestCase
         ]);
     }
 
+    public function test_top_level_post_with_empty_parent_id_string_succeeds(): void
+    {
+        $user = User::factory()->create();
+        $post = Post::factory()->published()->create(['allow_comments' => true]);
+
+        $response = $this->actingAs($user)->post(route('comments.store', $post), [
+            '_form_loaded_at' => time() - 61,
+            '_hp_email'       => '',
+            'parent_id'       => '', // mimics the actual rendered hidden input
+            'body'            => 'Top-level submission with empty parent_id.',
+        ]);
+
+        $response->assertSessionHasNoErrors()->assertRedirect();
+        $this->assertDatabaseHas('comments', [
+            'post_id'   => $post->id,
+            'user_id'   => $user->id,
+            'parent_id' => null,
+            'status'    => 'pending',
+        ]);
+    }
+
     public function test_verified_user_can_post_reply_to_top_level_comment(): void
     {
         $user   = User::factory()->create();
