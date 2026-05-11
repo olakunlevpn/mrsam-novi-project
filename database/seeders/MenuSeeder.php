@@ -89,6 +89,15 @@ class MenuSeeder extends Seeder
             'target'       => '_self',
             'order_column' => 3,
         ]);
+
+        MenuItem::create([
+            'menu_id'      => $menu->id,
+            'label'        => 'Blog',
+            'route_name'   => 'blog.index',
+            'url'          => null,
+            'target'       => '_self',
+            'order_column' => 4,
+        ]);
     }
 
     private function seedFooter(): void

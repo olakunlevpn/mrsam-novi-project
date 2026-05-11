@@ -33,7 +33,8 @@ class SiteSeederTest extends TestCase
         $primary = Menu::where('location', 'primary')->first();
         $this->assertNotNull($primary);
         $topLevel = $primary->items()->get();
-        $this->assertSame(4, $topLevel->count());     // Home, Products, Services, About
+        $this->assertSame(5, $topLevel->count());     // Home, Products, Services, About, Blog
+        $this->assertContains('Blog', $topLevel->pluck('label')->all());
 
         $products = MenuItem::where('label', 'Products')->where('menu_id', $primary->id)->first();
         $this->assertNotNull($products);
