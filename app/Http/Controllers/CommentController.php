@@ -30,6 +30,7 @@ class CommentController extends Controller
 
         return redirect()
             ->to(route('blog.show', $post).'#comments')
-            ->with('comment_status', 'pending');
+            ->with('comment_status', 'pending')
+            ->with('comment_status_post_id', $post->id);
     }
 }
