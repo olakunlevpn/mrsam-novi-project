@@ -25,9 +25,8 @@ class BlogController extends Controller
             ->paginate(10);
 
         return view('blog.index', [
-            'posts'      => $posts,
-            'categories' => PostCategory::query()->orderBy('name')->get(),
-            'tags'       => Tag::query()->orderBy('name')->get(),
+            'posts' => $posts,
+            ...$this->sidebarData(),
         ]);
     }
 
@@ -65,6 +64,9 @@ class BlogController extends Controller
         return view('blog.show', [
             'post'          => $post,
             'relatedPosts'  => $related,
+            'activeCategory' => $post->category,
+            'activeTag'     => null,
+            ...$this->sidebarData(),
         ]);
     }
 
@@ -77,10 +79,9 @@ class BlogController extends Controller
             ->paginate(10);
 
         return view('blog.category', [
-            'category'   => $category,
-            'posts'      => $posts,
-            'categories' => PostCategory::query()->orderBy('name')->get(),
-            'tags'       => Tag::query()->orderBy('name')->get(),
+            'category' => $category,
+            'posts'    => $posts,
+            ...$this->sidebarData(),
         ]);
     }
 
@@ -93,10 +94,23 @@ class BlogController extends Controller
             ->paginate(10);
 
         return view('blog.tag', [
-            'tag'        => $tag,
-            'posts'      => $posts,
+            'tag'   => $tag,
+            'posts' => $posts,
+            ...$this->sidebarData(),
+        ]);
+    }
+
+    /**
+     * Shared sidebar payload. Single source of ordering so categories/tags
+     * don't drift between actions or @include consumers.
+     *
+     * @return array{categories: \Illuminate\Database\Eloquent\Collection<int, PostCategory>, tags: \Illuminate\Database\Eloquent\Collection<int, Tag>}
+     */
+    private function sidebarData(): array
+    {
+        return [
             'categories' => PostCategory::query()->orderBy('name')->get(),
             'tags'       => Tag::query()->orderBy('name')->get(),
-        ]);
+        ];
     }
 }

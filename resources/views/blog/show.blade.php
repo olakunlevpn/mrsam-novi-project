@@ -172,12 +172,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    @include('blog._sidebar', [
-                        'categories'     => \App\Models\PostCategory::orderBy('name')->get(),
-                        'tags'           => \App\Models\Tag::orderBy('name')->get(),
-                        'activeCategory' => $post->category,
-                        'activeTag'      => null,
-                    ])
+                    @include('blog._sidebar')
                 </div>
             </div>
 
