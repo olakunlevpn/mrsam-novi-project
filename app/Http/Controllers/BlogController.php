@@ -38,10 +38,15 @@ class BlogController extends Controller
             throw new NotFoundHttpException('Post not found.');
         }
 
-        // Comments are intentionally NOT eager-loaded here — pending/rejected/
-        // spam rows would leak into the public path. Task 5.4 will add a
-        // scoped load once the comment thread renders.
+        // Scoped comment load: only approved top-level rows with their
+        // approved replies + each author. Pending/rejected/spam never leak.
         $post->load(self::POST_LIST_RELATIONS);
+        $post->load([
+            'comments' => fn ($q) => $q->approved()->whereNull('parent_id')->latest(),
+            'comments.replies' => fn ($q) => $q->approved()->latest(),
+            'comments.author',
+            'comments.replies.author',
+        ]);
 
         // 3 other published posts in the same category, fallback to latest 3
         // elsewhere if the category has no siblings.
