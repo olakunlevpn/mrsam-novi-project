@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -143,12 +144,17 @@ class PublicAuthTest extends TestCase
         $response->assertSee('Verify your email', false);
     }
 
-    public function test_unverified_user_cannot_access_verified_route(): void
+    public function test_unverified_user_cannot_post_a_comment(): void
     {
-        // Comment posting (Task 5.4) is the first feature behind 'verified'
-        // middleware. Until then, there is no public verified-gated route to
-        // exercise here, so this is a placeholder reminder.
-        $this->markTestSkipped('Add a verified-route check once Task 5.4 wires comment posting through the verified middleware.');
+        $user = User::factory()->unverified()->create();
+        $post = Post::factory()->published()->create();
+
+        $this->actingAs($user)
+            ->post(route('comments.store', $post), [
+                'body'            => 'A reasonable comment.',
+                '_form_loaded_at' => time() - 120,
+            ])
+            ->assertRedirect(route('verification.notice'));
     }
 
     public function test_already_verified_user_resending_notification_is_redirected_home(): void
