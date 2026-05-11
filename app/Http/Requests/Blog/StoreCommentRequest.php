@@ -53,18 +53,18 @@ class StoreCommentRequest extends FormRequest
                 function (string $attribute, mixed $value, Closure $fail) use ($post): void {
                     $parent = Comment::find($value);
                     if (! $parent) {
-                        $fail(__('blog.no_comments'));
+                        $fail(__('blog.reply_invalid_parent'));
 
                         return;
                     }
                     if ($parent->post_id !== $post->id) {
-                        $fail(__('blog.no_comments'));
+                        $fail(__('blog.reply_wrong_post'));
 
                         return;
                     }
                     if ($parent->parent_id !== null) {
                         // Two-level cap: replies can only target top-level comments.
-                        $fail(__('blog.no_comments'));
+                        $fail(__('blog.reply_depth_exceeded'));
                     }
                 },
             ],
@@ -88,8 +88,12 @@ class StoreCommentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '_hp_email.max'        => __('blog.comment_honeypot'),
-            '_form_loaded_at.lte'  => __('blog.comment_too_fast'),
+            'body.required'            => __('blog.comment_body_required'),
+            'body.min'                 => __('blog.comment_body_min'),
+            'body.max'                 => __('blog.comment_body_max'),
+            'parent_id.exists'         => __('blog.reply_invalid_parent'),
+            '_hp_email.max'            => __('blog.comment_honeypot'),
+            '_form_loaded_at.lte'      => __('blog.comment_too_fast'),
             '_form_loaded_at.required' => __('blog.comment_too_fast'),
             '_form_loaded_at.integer'  => __('blog.comment_too_fast'),
         ];
