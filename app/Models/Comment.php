@@ -22,13 +22,6 @@ class Comment extends Model
         'user_agent',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'status' => 'string',
-        ];
-    }
-
     public function scopeApproved(Builder $query): Builder
     {
         return $query->where('status', 'approved');

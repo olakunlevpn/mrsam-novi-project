@@ -128,6 +128,8 @@ class BlogModelsTest extends TestCase
 
         $this->assertSame(2, Comment::approved()->count());
         $this->assertSame(3, Comment::pending()->count());
+        $this->assertSame(['approved'], Comment::approved()->pluck('status')->unique()->values()->all());
+        $this->assertSame(['pending'], Comment::pending()->pluck('status')->unique()->values()->all());
     }
 
     public function test_post_factory_published_state_sets_status_and_published_at(): void
