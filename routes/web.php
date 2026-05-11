@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,15 @@ Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
 Route::post('/contact', [ContactSubmissionController::class, 'store'])
     ->name('contact.submit')
     ->middleware('throttle:6,1');
+
+// Blog. Archive routes are declared before the single-post route so the
+// {post:slug} binding does not steal `/blog/category/...` or `/blog/tag/...`.
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/category/{category:slug}', [BlogController::class, 'category'])->name('blog.category');
+Route::get('/blog/tag/{tag:slug}', [BlogController::class, 'tag'])->name('blog.tag');
+Route::get('/blog/{post:slug}', [BlogController::class, 'show'])
+    ->where('post', '(?!category|tag)[A-Za-z0-9\-]+')
+    ->name('blog.show');
 
 require __DIR__.'/auth.php';
 
