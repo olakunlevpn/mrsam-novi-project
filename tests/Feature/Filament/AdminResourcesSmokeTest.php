@@ -3,14 +3,18 @@
 namespace Tests\Feature\Filament;
 
 use App\Filament\Resources\Animals\AnimalResource;
+use App\Filament\Resources\Comments\CommentResource;
 use App\Filament\Resources\ContactSubmissions\ContactSubmissionResource;
 use App\Filament\Resources\FaqCategories\FaqCategoryResource;
 use App\Filament\Resources\Faqs\FaqResource;
 use App\Filament\Resources\Menus\MenuResource;
 use App\Filament\Resources\Pages\PageResource;
+use App\Filament\Resources\PostCategories\PostCategoryResource;
+use App\Filament\Resources\Posts\PostResource;
 use App\Filament\Resources\ProductCategories\ProductCategoryResource;
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\Settings\SettingResource;
+use App\Filament\Resources\Tags\TagResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -37,6 +41,10 @@ class AdminResourcesSmokeTest extends TestCase
             'products'           => [ProductResource::class],
             'settings'           => [SettingResource::class],
             'contact-submissions' => [ContactSubmissionResource::class],
+            'posts'              => [PostResource::class],
+            'post-categories'    => [PostCategoryResource::class],
+            'tags'               => [TagResource::class],
+            'comments'           => [CommentResource::class],
         ];
     }
 
@@ -72,5 +80,9 @@ class AdminResourcesSmokeTest extends TestCase
         $this->assertSame('Catalog', ProductResource::getNavigationGroup());
         $this->assertSame('System',  SettingResource::getNavigationGroup());
         $this->assertSame('Inbox',   ContactSubmissionResource::getNavigationGroup());
+        $this->assertSame('Blog',    PostResource::getNavigationGroup());
+        $this->assertSame('Blog',    PostCategoryResource::getNavigationGroup());
+        $this->assertSame('Blog',    TagResource::getNavigationGroup());
+        $this->assertSame('Blog',    CommentResource::getNavigationGroup());
     }
 }
