@@ -7,6 +7,7 @@ return [
             'catalog' => 'Catalog',
             'system'  => 'System',
             'inbox'   => 'Inbox',
+            'blog'    => 'Blog',
         ],
     ],
 
@@ -275,6 +276,104 @@ return [
             'description'    => 'Description',
             'order_column'   => 'Order',
             'products_count' => 'Products',
+        ],
+    ],
+
+    'posts' => [
+        'nav'   => ['label' => 'Posts'],
+        'model' => ['singular' => 'Post', 'plural' => 'Posts'],
+        'section' => [
+            'details' => 'Post Details',
+            'meta'    => 'Authoring & Publishing',
+            'content' => 'Content',
+        ],
+        'field' => [
+            'title'           => 'Title',
+            'slug'            => 'Slug',
+            'excerpt'         => 'Excerpt',
+            'body'            => 'Body',
+            'status'          => 'Status',
+            'published_at'    => 'Published at',
+            'author'          => 'Author',
+            'category'        => 'Category',
+            'tags'            => 'Tags',
+            'cover_image'     => 'Cover image',
+            'allow_comments'  => 'Allow comments',
+            'comments_count'  => 'Comments',
+            'updated_at'      => 'Last updated',
+        ],
+        'help' => [
+            'slug'         => 'URL identifier. Lowercase letters, numbers, and dashes only.',
+            'published_at' => 'Leave blank to auto-set to the current time when status is Published.',
+            'cover_image'  => 'Absolute or asset-relative path, e.g. /assets/images/blog/post-1.jpg.',
+        ],
+        'status' => [
+            'draft'     => 'Draft',
+            'published' => 'Published',
+        ],
+        'tag' => [
+            'create_heading' => 'Create tag',
+        ],
+    ],
+
+    'post_categories' => [
+        'nav'   => ['label' => 'Post Categories'],
+        'model' => ['singular' => 'Post Category', 'plural' => 'Post Categories'],
+        'field' => [
+            'name'         => 'Name',
+            'slug'         => 'Slug',
+            'description'  => 'Description',
+            'order_column' => 'Order',
+            'posts_count'  => 'Posts',
+        ],
+    ],
+
+    'tags' => [
+        'nav'   => ['label' => 'Tags'],
+        'model' => ['singular' => 'Tag', 'plural' => 'Tags'],
+        'field' => [
+            'name'        => 'Name',
+            'slug'        => 'Slug',
+            'posts_count' => 'Posts',
+        ],
+    ],
+
+    'comments' => [
+        'nav'   => ['label' => 'Comments'],
+        'model' => ['singular' => 'Comment', 'plural' => 'Comments'],
+        'section' => [
+            'details' => 'Comment',
+            'meta'    => 'Metadata',
+        ],
+        'field' => [
+            'post'       => 'Post',
+            'author'     => 'Author',
+            'parent'     => 'In reply to',
+            'body'       => 'Body',
+            'status'     => 'Status',
+            'ip'         => 'IP address',
+            'user_agent' => 'User agent',
+            'created_at' => 'Submitted at',
+        ],
+        'status' => [
+            'pending'  => 'Pending',
+            'approved' => 'Approved',
+            'rejected' => 'Rejected',
+            'spam'     => 'Spam',
+        ],
+        'action' => [
+            'approve' => 'Approve',
+            'reject'  => 'Reject',
+            'spam'    => 'Mark as spam',
+        ],
+        'bulk' => [
+            'approve' => 'Approve selected',
+            'reject'  => 'Reject selected',
+            'spam'    => 'Mark selected as spam',
+        ],
+        'confirm' => [
+            'reject_heading' => 'Reject this comment?',
+            'spam_heading'   => 'Mark this comment as spam?',
         ],
     ],
 
