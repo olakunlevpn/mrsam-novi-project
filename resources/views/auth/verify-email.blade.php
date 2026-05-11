@@ -19,9 +19,7 @@
                     <div class="contact-one__wrapper p-4 p-md-5 bg-white shadow-sm rounded">
                         <p class="text-muted mb-4">{{ __('auth.verify_help') }}</p>
 
-                        @if (session('status') === 'verification-link-sent')
-                            <div class="alert alert-success" role="status">{{ __('auth.verify_sent') }}</div>
-                        @endif
+                        <x-auth-session-status :status="session('status') === 'verification-link-sent' ? __('auth.verify_sent') : null" />
 
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <form method="POST" action="{{ route('verification.send') }}" class="mb-0">
