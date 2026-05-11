@@ -38,7 +38,10 @@ class BlogController extends Controller
             throw new NotFoundHttpException('Post not found.');
         }
 
-        $post->load([...self::POST_LIST_RELATIONS, 'comments']);
+        // Comments are intentionally NOT eager-loaded here — pending/rejected/
+        // spam rows would leak into the public path. Task 5.4 will add a
+        // scoped load once the comment thread renders.
+        $post->load(self::POST_LIST_RELATIONS);
 
         // 3 other published posts in the same category, fallback to latest 3
         // elsewhere if the category has no siblings.
