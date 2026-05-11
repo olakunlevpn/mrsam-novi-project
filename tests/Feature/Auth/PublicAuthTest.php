@@ -119,4 +119,14 @@ class PublicAuthTest extends TestCase
         // exercise here, so this is a placeholder reminder.
         $this->markTestSkipped('Add a verified-route check once Task 5.4 wires comment posting through the verified middleware.');
     }
+
+    public function test_already_verified_user_resending_notification_is_redirected_home(): void
+    {
+        $user = User::factory()->create();
+        $user->markEmailAsVerified();
+
+        $response = $this->actingAs($user)->post('/email/verification-notification');
+
+        $response->assertRedirect('/');
+    }
 }
