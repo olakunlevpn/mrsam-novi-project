@@ -30,9 +30,7 @@
                                     required
                                     autofocus
                                     autocomplete="name">
-                                @error('name')
-                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
-                                @enderror
+                                <x-input-error :messages="$errors->get('name')" class="mt-1" />
                             </div>
 
                             <div class="mb-3">
@@ -44,9 +42,7 @@
                                     class="form-control @error('email') is-invalid @enderror"
                                     required
                                     autocomplete="username">
-                                @error('email')
-                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
-                                @enderror
+                                <x-input-error :messages="$errors->get('email')" class="mt-1" />
                             </div>
 
                             <div class="mb-3">
@@ -57,9 +53,7 @@
                                     class="form-control @error('password') is-invalid @enderror"
                                     required
                                     autocomplete="new-password">
-                                @error('password')
-                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
-                                @enderror
+                                <x-input-error :messages="$errors->get('password')" class="mt-1" />
                             </div>
 
                             <div class="mb-3">

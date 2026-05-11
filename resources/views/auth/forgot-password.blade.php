@@ -33,9 +33,7 @@
                                     class="form-control @error('email') is-invalid @enderror"
                                     required
                                     autofocus>
-                                @error('email')
-                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
-                                @enderror
+                                <x-input-error :messages="$errors->get('email')" class="mt-1" />
                             </div>
 
                             <div class="d-flex justify-content-end">
