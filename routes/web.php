@@ -34,7 +34,7 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'show'])
 // min-fill-time, parent-depth, post-publish guard). Must precede the
 // generic catch-all below.
 Route::post('/blog/{post:slug}/comments', [CommentController::class, 'store'])
-    ->middleware(['auth', 'verified', 'throttle:10,60'])
+    ->middleware(['auth', 'verified', 'throttle:comments'])
     ->where('post', '[A-Za-z0-9\-]+')
     ->name('comments.store');
 

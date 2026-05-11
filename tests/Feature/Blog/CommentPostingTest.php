@@ -197,11 +197,14 @@ class CommentPostingTest extends TestCase
                 ->assertRedirect();
         }
 
-        $this->actingAs($user)
+        $response = $this->actingAs($user)
+            ->from(route('blog.show', $post))
             ->post(route('comments.store', $post), $this->validPayload([
                 'body' => 'Comment number 11',
-            ]))
-            ->assertStatus(429);
+            ]));
+
+        $response->assertRedirect(route('blog.show', $post));
+        $response->assertSessionHasErrors(['body' => __('blog.comment_rate_limit')]);
 
         $this->assertDatabaseCount('comments', 10);
     }
