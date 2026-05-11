@@ -41,9 +41,10 @@ class CommentResource extends Resource
         return __('cms.comments.model.plural');
     }
 
+    // TODO: cache this count if admin nav latency becomes an issue at scale.
     public static function getNavigationBadge(): ?string
     {
-        $count = static::getModel()::where('status', 'pending')->count();
+        $count = static::getModel()::pending()->count();
         return $count > 0 ? (string) $count : null;
     }
 
