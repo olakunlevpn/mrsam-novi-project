@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Comments\Tables;
 
 use App\Filament\Resources\Comments\CommentModerationActions;
+use App\Filament\Resources\Posts\PostResource;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -25,7 +26,7 @@ class CommentsTable
                 TextColumn::make('post.title')
                     ->label(__('cms.comments.field.post'))
                     ->url(fn ($record) => $record->post
-                        ? \App\Filament\Resources\Posts\PostResource::getUrl('edit', ['record' => $record->post])
+                        ? PostResource::getUrl('edit', ['record' => $record->post])
                         : null)
                     ->searchable()
                     ->sortable(),
