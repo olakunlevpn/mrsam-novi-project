@@ -46,6 +46,22 @@ class Post extends Model
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Stamp published_at whenever a post is being saved with status=published
+     * but no published_at. Keeps the public Post::published() scope --
+     * which filters by `published_at <= now()` -- from silently hiding posts
+     * an admin marked as published. Catches every save path (admin, API,
+     * tinker), not just the Filament form.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (self $post): void {
+            if ($post->status === 'published' && empty($post->published_at)) {
+                $post->published_at = now();
+            }
+        });
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

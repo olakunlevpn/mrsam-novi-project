@@ -108,13 +108,52 @@ class BlogModelsTest extends TestCase
             'published_at' => now()->addDay(),
         ]);
 
-        // Published with null published_at — excluded (no date <= now)
-        Post::factory()->create([
+        // Published with null published_at — the saving hook stamps it to now(),
+        // so this row IS included in the scope. Asserted explicitly in
+        // test_saving_published_post_with_null_published_at_auto_stamps_it.
+
+        $this->assertSame(1, Post::published()->count());
+    }
+
+    public function test_saving_published_post_with_null_published_at_auto_stamps_it(): void
+    {
+        // Direct save path (not Filament) -- proves the model hook,
+        // not a UI mutator, owns the auto-stamp behavior.
+        $post = Post::factory()->create([
             'status'       => 'published',
             'published_at' => null,
         ]);
 
-        $this->assertSame(1, Post::published()->count());
+        $this->assertNotNull(
+            $post->published_at,
+            'A published post saved with null published_at should be auto-stamped.'
+        );
+        $this->assertTrue($post->published_at->lessThanOrEqualTo(now()));
+    }
+
+    public function test_draft_post_does_not_get_published_at_stamped(): void
+    {
+        $post = Post::factory()->create([
+            'status'       => 'draft',
+            'published_at' => null,
+        ]);
+
+        $this->assertNull($post->published_at);
+    }
+
+    public function test_existing_published_at_is_preserved_on_save(): void
+    {
+        $scheduled = now()->addWeek()->startOfMinute();
+
+        $post = Post::factory()->create([
+            'status'       => 'published',
+            'published_at' => $scheduled,
+        ]);
+
+        $this->assertSame(
+            $scheduled->format('Y-m-d H:i:s'),
+            $post->published_at->format('Y-m-d H:i:s')
+        );
     }
 
     public function test_comment_approved_and_pending_scopes_filter_by_status(): void
