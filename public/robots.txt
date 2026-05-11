@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://novi-agro.com/sitemap.xml

@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,10 @@ Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
 
 // Dynamic sitemap endpoint. SitemapController caches its render for 1 hour.
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Admin-editable robots.txt (Setting::get('seo.robots_txt')). The legacy
+// static `public/robots.txt` was deleted so this route wins.
+Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots');
 
 Route::post('/contact', [ContactSubmissionController::class, 'store'])
     ->name('contact.submit')

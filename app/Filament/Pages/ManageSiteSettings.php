@@ -166,6 +166,13 @@ class ManageSiteSettings extends Page implements HasForms
             'site' => [
                 'title_suffix' => ['label' => 'cms.site_settings.field.site_title_suffix'],
             ],
+            'seo' => [
+                'robots_txt' => [
+                    'label'       => 'cms.site_settings.field.seo_robots_txt',
+                    'placeholder' => "User-agent: *\nDisallow: /admin",
+                    'textarea'    => true,
+                ],
+            ],
         ];
     }
 }
