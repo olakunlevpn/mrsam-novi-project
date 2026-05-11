@@ -63,6 +63,31 @@ class BlogRoutesTest extends TestCase
         $response->assertSee('Body of the published post about animal nutrition.', false);
     }
 
+    public function test_blog_show_resolves_slug_starting_with_category_or_tag(): void
+    {
+        // Regression guard: a post whose slug starts with "category" or "tag"
+        // (e.g. auto-slugged "Category Leaders in Animal Nutrition") must
+        // still resolve, not be swallowed by the archive routes or the old
+        // negative-lookahead constraint.
+        $catPost = Post::factory()->published()->create([
+            'title' => 'Category Leaders in Animal Nutrition',
+        ]);
+        $this->assertStringStartsWith('category-', $catPost->slug);
+
+        $this->get('/blog/' . $catPost->slug)
+            ->assertOk()
+            ->assertSee('Category Leaders in Animal Nutrition', false);
+
+        $tagPost = Post::factory()->published()->create([
+            'title' => 'Tag Heuer of Premixes',
+        ]);
+        $this->assertStringStartsWith('tag-', $tagPost->slug);
+
+        $this->get('/blog/' . $tagPost->slug)
+            ->assertOk()
+            ->assertSee('Tag Heuer of Premixes', false);
+    }
+
     public function test_blog_show_returns_404_for_unpublished_post(): void
     {
         $post = Post::factory()->create([

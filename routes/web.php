@@ -25,7 +25,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/category/{category:slug}', [BlogController::class, 'category'])->name('blog.category');
 Route::get('/blog/tag/{tag:slug}', [BlogController::class, 'tag'])->name('blog.tag');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])
-    ->where('post', '(?!category|tag)[A-Za-z0-9\-]+')
+    ->where('post', '[A-Za-z0-9\-]+')
     ->name('blog.show');
 
 require __DIR__.'/auth.php';
