@@ -32,6 +32,67 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ $seo?->og_title ?? $post->title }}" />
     <meta name="twitter:description" content="{{ $seo?->og_description ?? $metaDescription }}" />
+
+    {{--
+        Article JSON-LD. Skipped when the post has no published_at (defensive:
+        the controller's published() scope already filters those out, but
+        ld+json must not be emitted for an unpublished article).
+
+        Product structured data is intentionally NOT emitted here. Per
+        docs/superpowers/plans/2026-05-06-cms-conversion.md Phase 6, product
+        detail pages have no dedicated server routes -- the catalog is a
+        client-side SPA over ?id= params. Product JSON-LD is deferred until
+        per-product server routes exist (Phase 7+).
+    --}}
+    @if ($post->published_at)
+        @php
+            $articleImage = $seo?->og_image
+                ?? $post->cover_image
+                ?? url('/assets/images/backgrounds/about.png');
+            $articleAuthor = $post->author?->name ?? __('blog.unknown_author');
+            $articleDescription = $seo?->meta_description ?? $metaDescription;
+            $articleJsonLd = [
+                '@context' => 'https://schema.org',
+                '@type' => 'Article',
+                'headline' => $post->title,
+                'description' => $articleDescription,
+                'image' => $articleImage,
+                'datePublished' => $post->published_at->toIso8601String(),
+                'dateModified' => ($post->updated_at ?? $post->published_at)->toIso8601String(),
+                'author' => [
+                    '@type' => 'Person',
+                    'name' => $articleAuthor,
+                ],
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => config('app.name'),
+                ],
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => route('blog.show', $post),
+                ],
+            ];
+        @endphp
+        <script type="application/ld+json">
+            {!! json_encode($articleJsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+    @endif
+
+    {{-- BreadcrumbList JSON-LD: Home > Blog > {Post title}. --}}
+    @php
+        $breadcrumbJsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => __('seo.breadcrumb.home'), 'item' => route('home')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => __('seo.breadcrumb.blog'), 'item' => route('blog.index')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $post->title, 'item' => route('blog.show', $post)],
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">
+        {!! json_encode($breadcrumbJsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 @endpush
 
 @push('styles')
