@@ -46,7 +46,6 @@ class CommentForm
                                 'spam'     => __('cms.comments.status.spam'),
                             ])
                             ->required()
-                            ->live()
                             ->native(false),
                     ]),
 
