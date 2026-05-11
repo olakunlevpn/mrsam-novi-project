@@ -109,6 +109,7 @@
                                 </li>
                                 <li class="{{ request()->routeIs('services') ? 'current' : '' }}"><a href="{{ route('services') }}">Services</a></li>
                                 <li class="{{ request()->routeIs('about') ? 'current' : '' }}"><a href="{{ route('about') }}">About</a></li>
+                                <li class="{{ request()->routeIs('blog.*') ? 'current' : '' }}"><a href="{{ route('blog.index') }}">{{ __('blog.nav_label') }}</a></li>
                             @endif
                         </ul>
                     </nav><!-- /.main-header__nav -->
