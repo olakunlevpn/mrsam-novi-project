@@ -163,12 +163,8 @@
                         @endif
                     </article>
 
-                    {{-- Comments placeholder. Task 5.4 will render the full comment thread + post form here. --}}
-                    <div id="comments" class="mt-4 p-4"
-                        style="background:#fff;border:1px solid #e9ecef;border-radius:8px;">
-                        <h3 class="h5 mb-2" style="font-weight:700;color:#172000;">{{ __('blog.comments_heading') }}</h3>
-                        <p class="mb-0" style="color:#6c757d;">{{ __('blog.comments_placeholder') }}</p>
-                    </div>
+                    @include('blog._comments', ['post' => $post, 'comments' => $post->comments])
+                    @include('blog._comment-form', ['post' => $post])
                 </div>
 
                 <div class="col-lg-4">
