@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Cms\BlockRegistry;
+use App\Models\Comment;
+use App\Observers\CommentObserver;
 use App\View\Composers\SiteComposer;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -43,5 +45,9 @@ class AppServiceProvider extends ServiceProvider
                     return back()->withErrors(['body' => __('blog.comment_rate_limit')]);
                 });
         });
+
+        // Queues email notifications to admins (and the parent comment
+        // author for replies) whenever a new comment is persisted.
+        Comment::observe(CommentObserver::class);
     }
 }
