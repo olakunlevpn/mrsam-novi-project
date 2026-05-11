@@ -41,4 +41,16 @@ return [
     'reply_invalid_parent'  => 'That reply target is not valid.',
     'reply_depth_exceeded'  => 'Replies can only go one level deep.',
     'reply_wrong_post'      => 'That reply does not belong to this post.',
+
+    'email' => [
+        'admin_subject'        => 'New comment awaiting moderation',
+        'admin_greeting'       => 'A new comment was just posted on :post_title.',
+        'admin_action'         => 'Moderate now',
+        'admin_excerpt_intro'  => 'Author: :author_name',
+        'reply_subject'        => 'Someone replied to your comment',
+        'reply_greeting'       => ':replier replied to your comment.',
+        'reply_action'         => 'View the conversation',
+        'reply_excerpt_intro'  => 'Posted on :post_title',
+        'pending_warning'      => 'The reply is currently pending admin approval and will not appear publicly until approved.',
+    ],
 ];
