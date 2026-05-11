@@ -3,7 +3,9 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class PublicAuthTest extends TestCase
@@ -34,6 +36,35 @@ class PublicAuthTest extends TestCase
             'email' => 'sam.tester@example.com',
             'name' => 'Sam Tester',
         ]);
+    }
+
+    public function test_registration_creates_unverified_user_and_fires_event(): void
+    {
+        Event::fake([Registered::class]);
+
+        $email = 'unverified.tester@example.com';
+
+        $this->post('/register', [
+            'name' => 'Unverified Tester',
+            'email' => $email,
+            'password' => 'Sup3rsecret!',
+            'password_confirmation' => 'Sup3rsecret!',
+        ]);
+
+        Event::assertDispatched(Registered::class);
+
+        $user = User::where('email', $email)->first();
+
+        $this->assertNotNull($user);
+        $this->assertNull($user->email_verified_at);
+    }
+
+    public function test_authenticated_user_is_redirected_from_login_and_register(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->get('/login')->assertRedirect('/');
+        $this->actingAs($user)->get('/register')->assertRedirect('/');
     }
 
     public function test_registration_requires_password_confirmation(): void
