@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,15 @@ Route::get('/blog/tag/{tag:slug}', [BlogController::class, 'tag'])->name('blog.t
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])
     ->where('post', '[A-Za-z0-9\-]+')
     ->name('blog.show');
+
+// Comment posting: login + verified email + 10/hour per user. See
+// CommentController + StoreCommentRequest for the full gate (honeypot,
+// min-fill-time, parent-depth, post-publish guard). Must precede the
+// generic catch-all below.
+Route::post('/blog/{post:slug}/comments', [CommentController::class, 'store'])
+    ->middleware(['auth', 'verified', 'throttle:10,60'])
+    ->where('post', '[A-Za-z0-9\-]+')
+    ->name('comments.store');
 
 require __DIR__.'/auth.php';
 
