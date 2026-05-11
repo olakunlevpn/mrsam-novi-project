@@ -82,7 +82,7 @@ class PostsTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('publish')
-                        ->label(__('cms.posts.status.published'))
+                        ->label(__('cms.posts.bulk.publish'))
                         ->icon(Heroicon::OutlinedCheckCircle)
                         ->color('success')
                         ->requiresConfirmation()

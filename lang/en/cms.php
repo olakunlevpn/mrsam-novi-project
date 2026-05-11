@@ -311,6 +311,12 @@ return [
             'draft'     => 'Draft',
             'published' => 'Published',
         ],
+        'action' => [
+            'publish' => 'Publish',
+        ],
+        'bulk' => [
+            'publish' => 'Publish selected',
+        ],
         'tag' => [
             'create_heading' => 'Create tag',
         ],
