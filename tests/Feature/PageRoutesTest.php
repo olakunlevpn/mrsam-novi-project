@@ -110,6 +110,28 @@ class PageRoutesTest extends TestCase
         $response->assertSee('"@context"', false);
     }
 
+    public function test_inner_pages_emit_breadcrumb_jsonld(): void
+    {
+        // BreadcrumbList JSON-LD lives in every major inner page's @push('meta').
+        foreach (['/about.html', '/products.html', '/contact.html', '/faq.html', '/services.html'] as $url) {
+            $response = $this->get($url);
+            $response->assertOk();
+            $response->assertSee('"@type":"BreadcrumbList"', false);
+        }
+    }
+
+    public function test_blog_show_emits_article_jsonld(): void
+    {
+        $post = \App\Models\Post::factory()->published()->create([
+            'title' => 'JSON-LD Article Test Post',
+        ]);
+
+        $response = $this->get(route('blog.show', $post));
+        $response->assertOk();
+        $response->assertSee('"@type":"Article"', false);
+        $response->assertSee('JSON-LD Article Test Post', false);
+    }
+
     public function test_home_pushes_inline_styles(): void
     {
         $response = $this->get('/');
