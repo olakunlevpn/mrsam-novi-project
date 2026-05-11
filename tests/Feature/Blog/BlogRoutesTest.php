@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\Tag;
 use App\View\Composers\SiteComposer;
+use Database\Seeders\MenuSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -37,16 +38,68 @@ class BlogRoutesTest extends TestCase
 
     public function test_blog_index_paginates_at_ten(): void
     {
-        Post::factory()->count(15)->published()->create();
+        // 15 posts with distinct, ordered published_at timestamps so we can
+        // identify exactly which 10 belong on page 1 vs the 5 on page 2.
+        $posts = collect(range(0, 14))->map(fn (int $i) => Post::factory()->published()->create([
+            'title'        => "Pagination Post #{$i}",
+            'published_at' => now()->subMinutes($i),
+        ]));
 
         $response = $this->get('/blog');
-
         $response->assertOk();
-        // Pagination link to page 2 must be present on page 1.
         $response->assertSee('page=2', false);
 
-        $total = Post::published()->count();
-        $this->assertSame(15, $total);
+        $body = $response->getContent();
+
+        // First 10 titles (newest first) on page 1; last 5 not yet visible.
+        $page1 = $posts->take(10);
+        $page2 = $posts->slice(10);
+
+        foreach ($page1 as $post) {
+            $this->assertStringContainsString($post->title, $body,
+                "Expected '{$post->title}' on page 1.");
+        }
+        foreach ($page2 as $post) {
+            $this->assertStringNotContainsString($post->title, $body,
+                "Did not expect '{$post->title}' on page 1.");
+        }
+
+        $page2Response = $this->get('/blog?page=2');
+        $page2Response->assertOk();
+        $page2Body = $page2Response->getContent();
+
+        foreach ($page2 as $post) {
+            $this->assertStringContainsString($post->title, $page2Body,
+                "Expected '{$post->title}' on page 2.");
+        }
+    }
+
+    public function test_blog_index_orders_posts_newest_first(): void
+    {
+        $oldest = Post::factory()->published()->create([
+            'title'        => 'Oldest Insights Post',
+            'published_at' => now()->subDays(3),
+        ]);
+        $middle = Post::factory()->published()->create([
+            'title'        => 'Middle Insights Post',
+            'published_at' => now()->subDays(1),
+        ]);
+        $newest = Post::factory()->published()->create([
+            'title'        => 'Newest Insights Post',
+            'published_at' => now()->subHours(1),
+        ]);
+
+        $body = $this->get('/blog')->assertOk()->getContent();
+
+        $newestPos = strpos($body, $newest->title);
+        $middlePos = strpos($body, $middle->title);
+        $oldestPos = strpos($body, $oldest->title);
+
+        $this->assertNotFalse($newestPos, 'Newest post should be rendered.');
+        $this->assertNotFalse($middlePos, 'Middle post should be rendered.');
+        $this->assertNotFalse($oldestPos, 'Oldest post should be rendered.');
+        $this->assertLessThan($middlePos, $newestPos, 'Newest must appear before middle.');
+        $this->assertLessThan($oldestPos, $middlePos, 'Middle must appear before oldest.');
     }
 
     public function test_blog_show_renders_published_post(): void
@@ -155,6 +208,17 @@ class BlogRoutesTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('href="' . route('blog.index') . '"', false);
-        $response->assertSee('>Blog</a>', false);
+    }
+
+    public function test_seeded_primary_menu_renders_blog_link(): void
+    {
+        $this->seed(MenuSeeder::class);
+        SiteComposer::clearCache();
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('href="' . route('blog.index') . '"', false);
+        $response->assertSee(__('blog.nav_label'), false);
     }
 }
