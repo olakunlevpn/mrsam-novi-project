@@ -1,0 +1,135 @@
+<?php
+
+namespace Tests\Feature\Blog;
+
+use App\Models\Post;
+use App\Models\PostCategory;
+use App\Models\Tag;
+use App\View\Composers\SiteComposer;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class BlogRoutesTest extends TestCase
+{
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        SiteComposer::clearCache();
+    }
+
+    public function test_blog_index_returns_200_and_lists_published_posts(): void
+    {
+        $published = Post::factory()->count(3)->published()->create();
+        $drafts    = Post::factory()->count(2)->create();
+
+        $response = $this->get('/blog');
+
+        $response->assertOk();
+        foreach ($published as $post) {
+            $response->assertSee($post->title, false);
+        }
+        foreach ($drafts as $post) {
+            $response->assertDontSee($post->title, false);
+        }
+    }
+
+    public function test_blog_index_paginates_at_ten(): void
+    {
+        Post::factory()->count(15)->published()->create();
+
+        $response = $this->get('/blog');
+
+        $response->assertOk();
+        // Pagination link to page 2 must be present on page 1.
+        $response->assertSee('page=2', false);
+
+        $total = Post::published()->count();
+        $this->assertSame(15, $total);
+    }
+
+    public function test_blog_show_renders_published_post(): void
+    {
+        $post = Post::factory()->published()->create([
+            'title' => 'A Glimpse Into Animal Nutrition',
+            'body'  => '<p>Body of the published post about animal nutrition.</p>',
+        ]);
+
+        $response = $this->get('/blog/' . $post->slug);
+
+        $response->assertOk();
+        $response->assertSee('A Glimpse Into Animal Nutrition', false);
+        $response->assertSee('Body of the published post about animal nutrition.', false);
+    }
+
+    public function test_blog_show_returns_404_for_unpublished_post(): void
+    {
+        $post = Post::factory()->create([
+            'status'       => 'draft',
+            'published_at' => null,
+        ]);
+
+        $this->get('/blog/' . $post->slug)->assertNotFound();
+    }
+
+    public function test_blog_show_returns_404_for_future_published_post(): void
+    {
+        $post = Post::factory()->create([
+            'status'       => 'published',
+            'published_at' => now()->addDay(),
+        ]);
+
+        $this->get('/blog/' . $post->slug)->assertNotFound();
+    }
+
+    public function test_blog_category_archive_shows_only_that_category(): void
+    {
+        $catA = PostCategory::create(['name' => 'Cattle Care']);
+        $catB = PostCategory::create(['name' => 'Poultry Care']);
+
+        $postsA = Post::factory()->count(2)->published()->create(['post_category_id' => $catA->id]);
+        $postsB = Post::factory()->count(2)->published()->create(['post_category_id' => $catB->id]);
+
+        $response = $this->get('/blog/category/' . $catA->slug);
+
+        $response->assertOk();
+        foreach ($postsA as $post) {
+            $response->assertSee($post->title, false);
+        }
+        foreach ($postsB as $post) {
+            $response->assertDontSee($post->title, false);
+        }
+    }
+
+    public function test_blog_tag_archive_shows_only_tagged_posts(): void
+    {
+        $tag = Tag::create(['name' => 'Premix']);
+
+        $tagged   = Post::factory()->count(2)->published()->create();
+        $untagged = Post::factory()->count(2)->published()->create();
+
+        foreach ($tagged as $post) {
+            $post->tags()->attach($tag->id);
+        }
+
+        $response = $this->get('/blog/tag/' . $tag->slug);
+
+        $response->assertOk();
+        foreach ($tagged as $post) {
+            $response->assertSee($post->title, false);
+        }
+        foreach ($untagged as $post) {
+            $response->assertDontSee($post->title, false);
+        }
+    }
+
+    public function test_blog_index_link_in_nav(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('href="' . route('blog.index') . '"', false);
+        $response->assertSee('>Blog</a>', false);
+    }
+}
