@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\View\Composers\SiteComposer;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -67,26 +68,7 @@ class ManageSiteSettings extends Page implements HasForms
         foreach (self::definitions() as $group => $fields) {
             $components = [];
             foreach ($fields as $key => $meta) {
-                $field = ($meta['textarea'] ?? false)
-                    ? Textarea::make(self::flatKey($group, $key))->rows(3)->autosize()
-                    : TextInput::make(self::flatKey($group, $key))->maxLength(500);
-
-                $field = $field
-                    ->label(__($meta['label']))
-                    ->placeholder($meta['placeholder'] ?? '')
-                    ->columnSpanFull();
-
-                if ($meta['required'] ?? false) {
-                    $field = $field->required();
-                }
-                if ($meta['url'] ?? false) {
-                    $field = $field->url();
-                }
-                if ($meta['email'] ?? false) {
-                    $field = $field->email();
-                }
-
-                $components[] = $field;
+                $components[] = $this->buildField($group, $key, $meta);
             }
 
             $sections[] = Section::make(__("cms.site_settings.group.{$group}"))
@@ -97,6 +79,64 @@ class ManageSiteSettings extends Page implements HasForms
         return $schema
             ->statePath('data')
             ->components($sections);
+    }
+
+    /**
+     * Build the Filament component for a single (group, key) setting.
+     *
+     * @param array<string, mixed> $meta
+     */
+    private function buildField(string $group, string $key, array $meta): mixed
+    {
+        $name = self::flatKey($group, $key);
+        $type = $meta['type'] ?? 'text';
+
+        if ($type === 'gallery_repeater') {
+            return Repeater::make($name)
+                ->label(__($meta['label']))
+                ->components([
+                    TextInput::make('src')
+                        ->label(__('cms.site_settings.field.footer_gallery_src'))
+                        ->required()
+                        ->maxLength(500)
+                        ->placeholder('/storage/footer/gallery-1.jpg'),
+                    TextInput::make('alt')
+                        ->label(__('cms.site_settings.field.footer_gallery_alt'))
+                        ->maxLength(191)
+                        ->placeholder(__('cms.site_settings.field.footer_gallery_alt')),
+                ])
+                ->columns(2)
+                ->reorderable()
+                ->collapsible()
+                ->collapsed()
+                ->minItems(0)
+                ->maxItems(12)
+                ->defaultItems(0)
+                ->addActionLabel(__('cms.site_settings.field.footer_gallery_add'))
+                ->itemLabel(fn (array $state): ?string => $state['alt'] ?? $state['src'] ?? null)
+                ->columnSpanFull();
+        }
+
+        $field = ($meta['textarea'] ?? false)
+            ? Textarea::make($name)->rows(3)->autosize()
+            : TextInput::make($name)->maxLength(500);
+
+        $field = $field
+            ->label(__($meta['label']))
+            ->placeholder($meta['placeholder'] ?? '')
+            ->columnSpanFull();
+
+        if ($meta['required'] ?? false) {
+            $field = $field->required();
+        }
+        if ($meta['url'] ?? false) {
+            $field = $field->url();
+        }
+        if ($meta['email'] ?? false) {
+            $field = $field->email();
+        }
+
+        return $field;
     }
 
     public function save(): void
@@ -171,6 +211,15 @@ class ManageSiteSettings extends Page implements HasForms
                     'label'       => 'cms.site_settings.field.seo_robots_txt',
                     'placeholder' => "User-agent: *\nDisallow: /admin",
                     'textarea'    => true,
+                ],
+            ],
+            'footer' => [
+                'categories_title' => ['label' => 'cms.site_settings.field.footer_categories_title'],
+                'gallery_title'    => ['label' => 'cms.site_settings.field.footer_gallery_title'],
+                'products_title'   => ['label' => 'cms.site_settings.field.footer_products_title'],
+                'gallery_images'   => [
+                    'label' => 'cms.site_settings.field.footer_gallery_images',
+                    'type'  => 'gallery_repeater',
                 ],
             ],
         ];

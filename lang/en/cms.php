@@ -165,6 +165,7 @@ return [
             'social'  => 'Social',
             'site'    => 'Site',
             'seo'     => 'SEO',
+            'footer'  => 'Footer',
         ],
         'field' => [
             'brand_name'                 => 'Brand name',
@@ -177,6 +178,13 @@ return [
             'social_instagram'           => 'Instagram URL',
             'site_title_suffix'          => 'Title suffix',
             'seo_robots_txt'             => 'robots.txt content',
+            'footer_categories_title'    => 'Categories widget heading',
+            'footer_gallery_title'       => 'Gallery widget heading',
+            'footer_products_title'      => 'Products widget heading',
+            'footer_gallery_images'      => 'Gallery images',
+            'footer_gallery_src'         => 'Image URL',
+            'footer_gallery_alt'         => 'Alt text',
+            'footer_gallery_add'         => 'Add image',
         ],
     ],
 
