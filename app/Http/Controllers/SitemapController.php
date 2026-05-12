@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\SeoMeta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -77,8 +78,8 @@ class SitemapController extends Controller
             );
         }
 
-        // Admin-created Pages (catch-all `/{slug}.html`). Skip the slugs
-        // already covered by named routes above and any with noindex.
+        // Admin-created Pages (catch-all `/{slug}`). Skip the slugs already
+        // covered by named routes above and any with noindex.
         $reservedSlugs = array_values($staticRoutes);
         $reservedSlugs[] = 'home';
 
@@ -106,6 +107,24 @@ class SitemapController extends Controller
                     ->setPriority(0.7)
             );
         }
+
+        // Published Products. Each gets its own canonical /products/{slug}
+        // URL — kept out of the cache busting for now (admin edits to a
+        // product invalidate via the 1-hour TTL).
+        Product::query()
+            ->published()
+            ->with('seoMeta')
+            ->get()
+            ->each(function (Product $product) use ($sitemap) {
+                if ($this->isNoindex($product)) {
+                    return;
+                }
+                $sitemap->add(
+                    Url::create(route('products.show', $product))
+                        ->setLastModificationDate($product->updated_at ?? now())
+                        ->setPriority(0.5)
+                );
+            });
 
         // Published Posts. Drafts/scheduled are excluded by the scope.
         Post::published()

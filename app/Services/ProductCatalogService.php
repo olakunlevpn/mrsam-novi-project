@@ -79,6 +79,9 @@ class ProductCatalogService
     {
         return [
             'id' => $p->sku ?: $p->slug,
+            // Slug is the canonical key for the per-product detail page;
+            // the catalog JS uses it to build `/products/{slug}` links.
+            'slug' => $p->slug,
             'name' => $p->name,
             'image' => $p->hero_image ? Storage::disk('public')->url($p->hero_image) : null,
             'category' => $p->productCategory?->name,

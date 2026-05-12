@@ -22,7 +22,6 @@
     <script src="/assets/js/services/product.service.js"></script>
     <script src="/assets/js/ui/product.card.js"></script>
     <script src="/assets/js/ui/product.list.js"></script>
-    <script src="/assets/js/ui/product.detail.js"></script>
     <script src="/assets/js/ui/pagination.js"></script>
     <script src="/assets/js/main.js"></script>
 @endpush
