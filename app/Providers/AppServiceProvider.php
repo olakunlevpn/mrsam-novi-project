@@ -5,9 +5,12 @@ namespace App\Providers;
 use App\Cms\BlockRegistry;
 use App\Http\Controllers\SitemapController;
 use App\Models\Comment;
+use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\SeoMeta;
+use App\Models\Setting;
 use App\Observers\CommentObserver;
 use App\View\Composers\SiteComposer;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -61,6 +64,16 @@ class AppServiceProvider extends ServiceProvider
         foreach ([Page::class, Post::class, SeoMeta::class] as $model) {
             $model::saved($flushSitemap);
             $model::deleted($flushSitemap);
+        }
+
+        // Clear SiteComposer's in-process caches whenever the underlying
+        // settings or navigation data changes so admin updates surface on
+        // the next request instead of waiting for a worker restart.
+        $flushSiteComposer = fn () => SiteComposer::clearCache();
+
+        foreach ([Setting::class, Menu::class, MenuItem::class] as $model) {
+            $model::saved($flushSiteComposer);
+            $model::deleted($flushSiteComposer);
         }
     }
 }
