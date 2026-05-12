@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'NOVI AGRO LTD')
-
 @push('meta')
     <!-- Schema.org Structured Data -->
     @verbatim

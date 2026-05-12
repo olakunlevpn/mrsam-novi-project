@@ -83,8 +83,10 @@ class DynamicPageRouteTest extends TestCase
         ]);
 
         $response = $this->get('/about.html')->assertOk();
-        // The dedicated pages.about Blade defines this title, not the DB row.
-        $response->assertSee('About | Novi-Agro | Quality Livestock Solutions', false);
+        // The dedicated pages.about Blade includes the about-detail and
+        // feature-grid-about partials — proving the named route hit the
+        // legacy Blade rather than the generic CMS shell.
+        $response->assertSee('we are committed to providing quality livestock additives', false);
     }
 
     public function test_cms_shell_renders_seo_meta_from_db(): void

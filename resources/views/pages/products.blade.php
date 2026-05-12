@@ -1,22 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Products | Novi-Agro | Premium Livestock Products')
-
 @section('body_category', 'All')
 
 @push('meta')
-    <link rel="canonical" href="https://novi-agro.com/products.html" />
-    <meta name="description"
-        content="Browse Novi-Agro's full range of premium livestock feed additives for cattle, pigs, and poultry — trusted by farmers across Nigeria." />
-    <meta property="og:title" content="Products | Novi-Agro | Premium Livestock Products" />
-    <meta property="og:description" content="Browse Novi-Agro's full range of premium livestock feed additives for cattle, pigs, and poultry — trusted by farmers across Nigeria." />
-    <meta property="og:image" content="https://novi-agro.com/assets/images/generated/gallery_feed.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://novi-agro.com/products.html" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Products | Novi-Agro | Premium Livestock Products" />
-    <meta name="twitter:description" content="Browse Novi-Agro's full range of premium livestock feed additives for cattle, pigs, and poultry — trusted by farmers across Nigeria." />
-
     @include('partials.breadcrumb-jsonld', ['crumbs' => [
         ['name' => __('seo.breadcrumb.home'),     'url' => route('home')],
         ['name' => __('seo.breadcrumb.products'), 'url' => route('products')],
