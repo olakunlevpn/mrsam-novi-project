@@ -21,12 +21,15 @@ class MenuFrontendTest extends TestCase
 
     public function test_default_menu_renders_when_db_is_empty(): void
     {
-        // No MenuSeeder. Hardcoded fallback applies.
+        // No MenuSeeder. Primary nav falls back to the hardcoded header
+        // defaults; footer Categories widget falls back to the static
+        // "All Products" / "FAQ" tail (no Animals + no footer menu).
         $response = $this->get('/')->assertOk();
         $response->assertSee('>Home</a>', false);
         $response->assertSee('>Products</a>', false);
         $response->assertSee('>Cattle</a>', false);
-        $response->assertSee('>Cattle Solutions</a>', false);
+        $response->assertSee('>All Products</a>', false);
+        $response->assertSee('>FAQ</a>', false);
     }
 
     public function test_seeded_primary_menu_renders_with_children(): void

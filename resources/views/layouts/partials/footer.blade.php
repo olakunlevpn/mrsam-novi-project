@@ -4,6 +4,24 @@
             $contactPhn = $settings['contact.phone']    ?? '+2347041041756';
             $socialFb   = $settings['social.facebook']  ?? 'https://www.facebook.com/profile.php?id=100077163775495';
             $socialIg   = $settings['social.instagram'] ?? 'https://www.instagram.com/novi_agroltd/';
+
+            $footerCategoriesTitle = $settings['footer.categories_title'] ?? __('site.footer.categories');
+            $footerGalleryTitle    = $settings['footer.gallery_title']    ?? __('site.footer.gallery');
+            $footerProductsTitle   = $settings['footer.products_title']   ?? __('site.footer.products');
+
+            // Admin-curated gallery (Settings page: Footer > Gallery images).
+            // Only render the widget if the admin has supplied at least one
+            // entry — keeps the slot empty rather than falling back to images
+            // the editor never picked.
+            $footerGalleryItems = collect($settings['footer.gallery_images'] ?? [])
+                ->filter(fn ($entry) => is_array($entry) && ! empty($entry['src']))
+                ->values();
+
+            // SiteComposer injects $footerCategories / $footerProducts as
+            // collections. Coalesce defensively so any view that bypasses the
+            // composer still renders cleanly.
+            $footerCategoryItems = collect($footerCategories ?? []);
+            $footerProductItems  = collect($footerProducts ?? []);
         @endphp
         <footer class="main-footer main-footer--two">
             <div class="main-footer__bg" style="background: linear-gradient(135deg, #07c543 0%, #078f19 100%);">
@@ -26,84 +44,68 @@
                         </div><!-- /.col-md-6 -->
                         <div class="footer-widget__col  footer-widget__col__col2">
                             <div class="footer-widget footer-widget--links">
-                                <h6 class="footer-widget__title">Categories</h6>
+                                <h6 class="footer-widget__title">{{ $footerCategoriesTitle }}</h6>
                                 <ul class="list-unstyled footer-widget__links">
                                     @php $footerMenu = $menus['footer'] ?? null; @endphp
                                     @if ($footerMenu && $footerMenu->items->isNotEmpty())
                                         @foreach ($footerMenu->items as $item)
                                             <li><a href="{{ $item->resolved_url }}"@if ($item->target && $item->target !== '_self') target="{{ $item->target }}"@endif>{{ $item->label }}</a></li>
                                         @endforeach
+                                    @elseif ($footerCategoryItems->isNotEmpty())
+                                        @foreach ($footerCategoryItems as $cat)
+                                            <li><a href="{{ $cat['url'] }}">{{ $cat['label'] }}</a></li>
+                                        @endforeach
                                     @else
-                                        <li><a href="{{ route('animals.cattle') }}">Cattle Solutions</a></li>
-                                        <li><a href="{{ route('animals.pigs') }}">Swine Care</a></li>
-                                        <li><a href="{{ route('animals.poultry') }}">Poultry Products</a></li>
-                                        <li><a href="{{ route('products') }}">All Products</a></li>
-                                        <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                        {{-- DB is empty (no Animals seeded) and no admin footer menu. --}}
+                                        <li><a href="{{ route('products') }}">{{ __('site.footer.all_products') }}</a></li>
+                                        <li><a href="{{ route('faq') }}">{{ __('site.footer.faq') }}</a></li>
                                     @endif
                                 </ul><!-- /.list-unstyled footer-widget__links -->
                             </div><!-- /.footer-widget -->
                         </div><!-- /.col-md-6 -->
-                        <div class="footer-widget__col  footer-widget__col__col3">
-                            <div class="footer-widget footer-widget--gallery">
-                                <h6 class="footer-widget__title">Gallery</h6><!-- /.footer-widget__title -->
-                                <div class="footer-widget__gallerywrap d-flex flex-wrap">
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_cattle.png" alt="Quality Cattle">
+                        @if ($footerGalleryItems->isNotEmpty())
+                            <div class="footer-widget__col  footer-widget__col__col3">
+                                <div class="footer-widget footer-widget--gallery">
+                                    <h6 class="footer-widget__title">{{ $footerGalleryTitle }}</h6><!-- /.footer-widget__title -->
+                                    <div class="footer-widget__gallerywrap d-flex flex-wrap">
+                                        @foreach ($footerGalleryItems as $galleryItem)
+                                            <div class="footer-widget__gallerywrap__img">
+                                                <img loading="lazy" src="{{ $galleryItem['src'] }}" alt="{{ $galleryItem['alt'] ?? '' }}">
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_poultry.png" alt="Modern Poultry">
-                                    </div>
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_pigs.png" alt="Swine Care">
-                                    </div>
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_feed.png" alt="Premium Feed">
-                                    </div>
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_support.png" alt="Expert Support">
-                                    </div>
-                                    <div class="footer-widget__gallerywrap__img">
-                                        <img loading="lazy" src="/assets/images/generated/gallery_pasture.png"
-                                            alt="Sustainable Pasture">
-                                    </div>
-                                </div>
-                            </div><!-- /.footer-widget -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="footer-widget__col  footer-widget__col__col4">
-                            <div class="footer-widget footer-widget--blog">
-                                <h6 class="footer-widget__title">Products</h6><!-- /.footer-widget__title -->
+                                </div><!-- /.footer-widget -->
+                            </div><!-- /.col-md-6 -->
+                        @endif
+                        @if ($footerProductItems->isNotEmpty())
+                            <div class="footer-widget__col  footer-widget__col__col4">
+                                <div class="footer-widget footer-widget--blog">
+                                    <h6 class="footer-widget__title">{{ $footerProductsTitle }}</h6><!-- /.footer-widget__title -->
 
-                                <div class="footer-widget__post-wrap">
-                                    <div class="footer-widget__post-col">
-                                        <div class="footer-widget__post-img">
-                                            <img loading="lazy" src="/assets/images/generated/product_thumb_feed.png" alt="Novi Feed">
-                                        </div>
-                                        <div class="footer-widget__post-info">
-                                            <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
-                                                <span> 02 Mar 2026</span>
-                                            </span>
-                                            <h6 class="footer-widget__post-heading"><a href="{{ route('products') }}">Products
-                                                </a></h6>
-                                        </div>
+                                    <div class="footer-widget__post-wrap">
+                                        @foreach ($footerProductItems as $product)
+                                            @php
+                                                $thumb = $product->hero_image
+                                                    ? \Illuminate\Support\Facades\Storage::disk('public')->url($product->hero_image)
+                                                    : '/assets/images/generated/product_thumb_feed.png';
+                                            @endphp
+                                            <div class="footer-widget__post-col">
+                                                <div class="footer-widget__post-img">
+                                                    <img loading="lazy" src="{{ $thumb }}" alt="{{ $product->name }}">
+                                                </div>
+                                                <div class="footer-widget__post-info">
+                                                    <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
+                                                        <span> {{ optional($product->updated_at)->format('d M Y') }}</span>
+                                                    </span>
+                                                    <h6 class="footer-widget__post-heading"><a href="{{ route('products.show', $product) }}">{{ $product->name }}</a></h6>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
 
-                                    <div class="footer-widget__post-col">
-                                        <div class="footer-widget__post-img">
-                                            <img loading="lazy" src="/assets/images/generated/product_thumb_feed.png"
-                                                alt="Premium Care">
-                                        </div>
-                                        <div class="footer-widget__post-info">
-                                            <span class="footer-widget__post-date"><i class="far fa-calendar"></i>
-                                                <span> 05 Mar 2026</span>
-                                            </span>
-                                            <h6 class="footer-widget__post-heading"><a href="{{ route('products') }}">Products
-                                                </a></h6>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div><!-- /.footer-widget -->
-                        </div><!-- /.col-md-6 -->
+                                </div><!-- /.footer-widget -->
+                            </div><!-- /.col-md-6 -->
+                        @endif
                     </div><!-- /.row -->
                 </div><!-- /.container -->
             </div><!-- /.main-footer__top -->

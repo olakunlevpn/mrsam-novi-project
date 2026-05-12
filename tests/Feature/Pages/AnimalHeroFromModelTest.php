@@ -58,13 +58,24 @@ class AnimalHeroFromModelTest extends TestCase
             ],
         ]);
 
-        // Block override is the highest precedence.
-        $this->get('/pigs')
+        // Block override is the highest precedence. Scope the "must not see"
+        // checks to the page-header section: the renamed Animal record now
+        // also surfaces in the footer Categories widget (animals collection)
+        // and breadcrumb labels, which is the intended new behavior and
+        // unrelated to the block-override precedence under test here.
+        $response = $this->get('/pigs')
             ->assertOk()
             ->assertSee('/block-driven.jpg', false)
-            ->assertSee('page-header__title">Block-driven title', false)
-            ->assertDontSee('Animal-driven name', false)
-            ->assertDontSee('/animal-driven.jpg', false);
+            ->assertSee('page-header__title">Block-driven title', false);
+
+        $body         = $response->getContent();
+        $headerStart  = strpos($body, '<section class="page-header"');
+        $headerEnd    = strpos($body, '</section>', $headerStart);
+        $this->assertNotFalse($headerStart, 'page-header section should render');
+        $this->assertNotFalse($headerEnd,   'page-header section should close');
+        $headerHtml   = substr($body, $headerStart, $headerEnd - $headerStart);
+        $this->assertStringNotContainsString('Animal-driven name', $headerHtml);
+        $this->assertStringNotContainsString('/animal-driven.jpg',  $headerHtml);
     }
 
     public function test_animal_hero_image_without_leading_slash_is_normalized(): void

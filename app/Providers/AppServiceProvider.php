@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Cms\BlockRegistry;
 use App\Http\Controllers\SitemapController;
+use App\Models\Animal;
 use App\Models\Comment;
 use App\Models\ContactSubmission;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\SeoMeta;
 use App\Models\Setting;
 use App\Observers\CommentObserver;
@@ -18,6 +20,7 @@ use App\View\Composers\SiteComposer;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -81,5 +84,17 @@ class AppServiceProvider extends ServiceProvider
             $model::saved($flushSiteComposer);
             $model::deleted($flushSiteComposer);
         }
+
+        // The footer "Categories" / "Products" widgets are cached per
+        // SiteComposer::FOOTER_CACHE_TTL. Bust the targeted keys when their
+        // underlying tables change so admin edits surface immediately.
+        $flushFooterCategories = fn () => Cache::forget(SiteComposer::FOOTER_CATEGORIES_KEY);
+        $flushFooterProducts   = fn () => Cache::forget(SiteComposer::FOOTER_PRODUCTS_KEY);
+
+        Animal::saved($flushFooterCategories);
+        Animal::deleted($flushFooterCategories);
+
+        Product::saved($flushFooterProducts);
+        Product::deleted($flushFooterProducts);
     }
 }
