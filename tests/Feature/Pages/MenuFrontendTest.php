@@ -101,7 +101,7 @@ class MenuFrontendTest extends TestCase
         $this->seed(MenuSeeder::class);
         SiteComposer::clearCache();
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         // The About item should be marked current.
         $response->assertSee('<li class="current">', false);
     }

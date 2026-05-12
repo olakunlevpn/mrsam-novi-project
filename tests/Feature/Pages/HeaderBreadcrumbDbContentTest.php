@@ -20,7 +20,7 @@ class HeaderBreadcrumbDbContentTest extends TestCase
     public function test_page_header_renders_default_when_no_db_row(): void
     {
         // No PageSeeder. The transient stub has no blocks; defaults render.
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('page-header__title">Cattle', false)
             ->assertSee('/assets/images/backgrounds/cows-green-field-sunny-day.jpg', false);
@@ -28,7 +28,7 @@ class HeaderBreadcrumbDbContentTest extends TestCase
 
     public function test_breadcrumb_renders_default_when_no_db_row(): void
     {
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('Livestock Solutions', false);
     }
@@ -46,7 +46,7 @@ class HeaderBreadcrumbDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('Custom Cattle Heading', false)
             ->assertSee('/assets/images/backgrounds/custom-cattle.jpg', false)
@@ -62,7 +62,7 @@ class HeaderBreadcrumbDbContentTest extends TestCase
         $block = $page->blocks()->where('type', 'breadcrumb-pigs')->first();
         $block->update(['data' => ['label' => 'Pork Solutions']]);
 
-        $this->get('/pigs.html')
+        $this->get('/pigs')
             ->assertOk()
             ->assertSee('Pork Solutions', false)
             ->assertDontSee('Swine Solutions', false);
@@ -84,7 +84,7 @@ class HeaderBreadcrumbDbContentTest extends TestCase
             'data'       => ['label' => 'Hidden Override'],
         ]);
 
-        $response = $this->get('/pigs.html')->assertOk();
+        $response = $this->get('/pigs')->assertOk();
         // Hidden block's data is filtered out by HasBlocks::blocksOfType,
         // so the partial falls back to its hardcoded default.
         $response->assertSee('Swine Solutions', false);

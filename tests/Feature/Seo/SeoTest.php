@@ -52,7 +52,7 @@ class SeoTest extends TestCase
 
     public function test_about_emits_breadcrumb_jsonld(): void
     {
-        $response = $this->get('/about.html');
+        $response = $this->get('/about');
 
         $response->assertOk();
         $response->assertSee('"@type":"BreadcrumbList"', false);
@@ -72,7 +72,7 @@ class SeoTest extends TestCase
         ]);
         $page->setSeo(['title' => 'Custom SEO Title']);
 
-        $response = $this->get('/seo-title-page.html');
+        $response = $this->get('/seo-title-page');
 
         $response->assertOk();
         $response->assertSee('<title>Custom SEO Title', false);
@@ -89,7 +89,7 @@ class SeoTest extends TestCase
         ]);
         $page->setSeo(['canonical_url' => 'https://other.test/canonical-page']);
 
-        $response = $this->get('/canonical-page.html');
+        $response = $this->get('/canonical-page');
 
         $response->assertOk();
         $response->assertSee('<link rel="canonical" href="https://other.test/canonical-page"', false);
@@ -106,7 +106,7 @@ class SeoTest extends TestCase
         ]);
         $page->setSeo(['noindex' => true]);
 
-        $response = $this->get('/noindex-page.html');
+        $response = $this->get('/noindex-page');
 
         $response->assertOk();
         $response->assertSee('<meta name="robots" content="noindex', false);
@@ -129,7 +129,8 @@ class SeoTest extends TestCase
         $body = $response->getContent();
         $this->assertStringContainsString('<urlset', $body);
         $this->assertStringContainsString(route('home'), $body);
-        $this->assertStringContainsString('/sitemap-page.html', $body);
+        $this->assertStringContainsString('/sitemap-page', $body);
+        $this->assertStringNotContainsString('/sitemap-page.html', $body);
     }
 
     public function test_sitemap_excludes_noindex_pages(): void
@@ -153,8 +154,9 @@ class SeoTest extends TestCase
 
         $body = $this->get('/sitemap.xml')->assertOk()->getContent();
 
-        $this->assertStringContainsString('/visible-page.html', $body);
-        $this->assertStringNotContainsString('/hidden-page.html', $body);
+        $this->assertStringContainsString('/visible-page', $body);
+        $this->assertStringNotContainsString('/hidden-page', $body);
+        $this->assertStringNotContainsString('/visible-page.html', $body);
     }
 
     public function test_sitemap_includes_published_blog_posts_and_excludes_drafts(): void

@@ -12,7 +12,7 @@ class ContactSubmissionControllerTest extends TestCase
 
     public function test_valid_submission_persists_and_redirects(): void
     {
-        $response = $this->from('/contact.html')->post(route('contact.submit'), [
+        $response = $this->from('/contact')->post(route('contact.submit'), [
             'name'    => 'Adesola Adeyemi',
             'email'   => 'adesola@example.com',
             'phone'   => '+2348012345678',
@@ -20,7 +20,7 @@ class ContactSubmissionControllerTest extends TestCase
             'message' => 'Please share pricing for layer feeds.',
         ]);
 
-        $response->assertRedirect('/contact.html');
+        $response->assertRedirect('/contact');
         $response->assertSessionHas('contact_status', 'sent');
 
         $this->assertSame(1, ContactSubmission::count());
@@ -60,16 +60,16 @@ class ContactSubmissionControllerTest extends TestCase
 
     public function test_missing_required_fields_returns_validation_errors(): void
     {
-        $response = $this->from('/contact.html')->post(route('contact.submit'), []);
+        $response = $this->from('/contact')->post(route('contact.submit'), []);
 
-        $response->assertRedirect('/contact.html');
+        $response->assertRedirect('/contact');
         $response->assertSessionHasErrors(['name', 'email', 'message']);
         $this->assertSame(0, ContactSubmission::count());
     }
 
     public function test_invalid_email_rejected(): void
     {
-        $response = $this->from('/contact.html')->post(route('contact.submit'), [
+        $response = $this->from('/contact')->post(route('contact.submit'), [
             'name'    => 'X',
             'email'   => 'not-an-email',
             'message' => 'msg',
@@ -81,7 +81,7 @@ class ContactSubmissionControllerTest extends TestCase
 
     public function test_honeypot_filled_blocks_submission(): void
     {
-        $response = $this->from('/contact.html')->post(route('contact.submit'), [
+        $response = $this->from('/contact')->post(route('contact.submit'), [
             'name'    => 'Bot',
             'email'   => 'bot@example.com',
             'message' => 'spam',
@@ -94,7 +94,7 @@ class ContactSubmissionControllerTest extends TestCase
 
     public function test_message_length_capped(): void
     {
-        $response = $this->from('/contact.html')->post(route('contact.submit'), [
+        $response = $this->from('/contact')->post(route('contact.submit'), [
             'name'    => 'X',
             'email'   => 'x@example.com',
             'message' => str_repeat('a', 6000),

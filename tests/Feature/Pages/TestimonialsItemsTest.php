@@ -13,7 +13,7 @@ class TestimonialsItemsTest extends TestCase
 
     public function test_default_testimonials_render_when_no_db_array(): void
     {
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('Tymoshenko', false)
             ->assertSee('Kolawole Ishola', false)
@@ -46,7 +46,7 @@ class TestimonialsItemsTest extends TestCase
             ],
         ]);
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         $response->assertSee('Custom Reviewer A', false);
         $response->assertSee('Custom Reviewer B', false);
         $response->assertSee('Custom review one body.', false);
@@ -77,7 +77,7 @@ class TestimonialsItemsTest extends TestCase
             ],
         ]);
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         $response->assertSee('Three Star Reviewer', false);
         // Three stars in the rating block.
         $count = substr_count($response->getContent(), 'fa fa-star"></i></span>');

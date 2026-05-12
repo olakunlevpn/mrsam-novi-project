@@ -16,7 +16,7 @@ class AnimalHeroFromModelTest extends TestCase
     public function test_default_hero_image_renders_when_no_animal_record(): void
     {
         // No AnimalSeeder. Hardcoded fallback applies.
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('/assets/images/backgrounds/cows-green-field-sunny-day.jpg', false)
             ->assertSee('page-header__title">Cattle', false);
@@ -31,7 +31,7 @@ class AnimalHeroFromModelTest extends TestCase
         $cattle = Animal::where('slug', 'cattle')->first();
         $cattle->update(['hero_image' => '/assets/images/custom-cattle-hero.jpg']);
 
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('/assets/images/custom-cattle-hero.jpg', false)
             // The default hero must NOT appear.
@@ -59,7 +59,7 @@ class AnimalHeroFromModelTest extends TestCase
         ]);
 
         // Block override is the highest precedence.
-        $this->get('/pigs.html')
+        $this->get('/pigs')
             ->assertOk()
             ->assertSee('/block-driven.jpg', false)
             ->assertSee('page-header__title">Block-driven title', false)
@@ -75,7 +75,7 @@ class AnimalHeroFromModelTest extends TestCase
         // Seeder stores without leading slash.
         $cattle->update(['hero_image' => 'assets/images/relative-path.jpg']);
 
-        $this->get('/cattle.html')
+        $this->get('/cattle')
             ->assertOk()
             ->assertSee('url(/assets/images/relative-path.jpg)', false);
     }
@@ -87,7 +87,7 @@ class AnimalHeroFromModelTest extends TestCase
         // The seeded animal hero_image is the same path as the hardcoded
         // default, but with no leading slash. The partial should normalize
         // and produce the same URL.
-        $this->get('/poultry.html')
+        $this->get('/poultry')
             ->assertOk()
             ->assertSee('/assets/images/backgrounds/hens-factory-chicken-cages.jpg', false);
     }
@@ -97,9 +97,9 @@ class AnimalHeroFromModelTest extends TestCase
         // Home / about / etc never inject $animal but their blocks do not
         // reference it, so they must keep working unchanged.
         $this->get('/')->assertOk();
-        $this->get('/about.html')->assertOk();
-        $this->get('/services.html')->assertOk();
-        $this->get('/contact.html')->assertOk();
-        $this->get('/faq.html')->assertOk();
+        $this->get('/about')->assertOk();
+        $this->get('/services')->assertOk();
+        $this->get('/contact')->assertOk();
+        $this->get('/faq')->assertOk();
     }
 }

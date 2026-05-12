@@ -49,7 +49,7 @@ class AboutHomeBlockDbContentTest extends TestCase
 
     public function test_about_detail_renders_default_content(): void
     {
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('We offer expert livestock solutions', false)
             ->assertSee('Premium feed additives and nutritional supplements', false);
@@ -68,7 +68,7 @@ class AboutHomeBlockDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('Custom About Title', false)
             ->assertSee('Get In Touch', false)

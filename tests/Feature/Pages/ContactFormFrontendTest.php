@@ -12,7 +12,7 @@ class ContactFormFrontendTest extends TestCase
 
     public function test_contact_form_action_points_at_local_route_by_default(): void
     {
-        $this->get('/contact.html')
+        $this->get('/contact')
             ->assertOk()
             ->assertSee('action="' . route('contact.submit') . '"', false)
             ->assertSee('name="_token"', false)
@@ -22,7 +22,7 @@ class ContactFormFrontendTest extends TestCase
     public function test_contact_form_uses_phone_field_name(): void
     {
         // Controller validates `phone`, not `tel`. Make sure the input matches.
-        $this->get('/contact.html')
+        $this->get('/contact')
             ->assertOk()
             ->assertSee('name="phone"', false)
             ->assertDontSee('name="tel"', false);
@@ -31,7 +31,7 @@ class ContactFormFrontendTest extends TestCase
     public function test_submitting_rendered_form_persists_a_submission(): void
     {
         // Get the rendered page to seed the CSRF cookie / session.
-        $this->get('/contact.html')->assertOk();
+        $this->get('/contact')->assertOk();
 
         $response = $this->post(route('contact.submit'), [
             'name'    => 'Frontend User',
@@ -54,7 +54,7 @@ class ContactFormFrontendTest extends TestCase
 
     public function test_success_flash_renders_alert_on_redirect(): void
     {
-        $this->get('/contact.html')->assertOk();
+        $this->get('/contact')->assertOk();
 
         $response = $this->post(route('contact.submit'), [
             'name'    => 'Alert Tester',
@@ -65,7 +65,7 @@ class ContactFormFrontendTest extends TestCase
         $response->assertRedirect();
         // Follow to the contact page and look for the success alert.
         $this->followingRedirects()
-            ->get('/contact.html')
+            ->get('/contact')
             ->assertOk();
     }
 }

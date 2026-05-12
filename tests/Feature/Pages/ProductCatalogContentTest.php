@@ -13,19 +13,17 @@ class ProductCatalogContentTest extends TestCase
 
     public function test_default_catalog_chrome_renders(): void
     {
-        $this->get('/products.html')
+        // The in-page detail labels (Back to Catalog, Description, etc.)
+        // moved to the server-rendered /products/{slug} route, so the
+        // listing-only catalog no longer emits them.
+        $this->get('/products')
             ->assertOk()
             ->assertSee('Search for available products', false)
             ->assertSee('Sort by Default', false)
             ->assertSee('>Product Type ', false)
             ->assertSee('Animal Category', false)
-            ->assertSee('Back to Catalog', false)
-            ->assertSee('>Description</h5>', false)
-            ->assertSee('>Composition</h5>', false)
-            ->assertSee('Typical Benefits', false)
-            ->assertSee('Usage &amp; Directions', false)
-            ->assertSee('>Enquire Now</span>', false)
-            ->assertSee('>Related Products</h4>', false);
+            ->assertDontSee('Back to Catalog', false)
+            ->assertDontSee('>Related Products</h4>', false);
     }
 
     public function test_overrides_replace_search_and_sort_labels(): void
@@ -42,7 +40,7 @@ class ProductCatalogContentTest extends TestCase
             ],
         ]);
 
-        $response = $this->get('/products.html')->assertOk();
+        $response = $this->get('/products')->assertOk();
         $response->assertSee('placeholder="Find a product..."', false);
         $response->assertSee('Default Order', false);
         $response->assertSee('Newest First', false);
@@ -63,37 +61,11 @@ class ProductCatalogContentTest extends TestCase
             ],
         ]);
 
-        $response = $this->get('/products.html')->assertOk();
+        $response = $this->get('/products')->assertOk();
         $response->assertSee('>Type of Product ', false);
         $response->assertSee('Species', false);
         $response->assertSee('>Pork</a>', false);
         $response->assertDontSee('>Swine/Pigs</a>', false);
-    }
-
-    public function test_overrides_replace_detail_view_labels(): void
-    {
-        $this->seed(PageSeeder::class);
-
-        $page  = Page::where('slug', 'cattle')->first();
-        $block = $page->blocks()->where('type', 'product-catalog')->first();
-        $block->update([
-            'data' => [
-                'back_label'                => 'Browse all',
-                'detail_description_label'  => 'Overview',
-                'detail_benefits_label'     => 'Why this product',
-                'enquire_label'             => 'Request a quote',
-                'related_label'             => 'You might also like',
-            ],
-        ]);
-
-        $response = $this->get('/cattle.html')->assertOk();
-        $response->assertSee('Browse all', false);
-        $response->assertSee('>Overview</h5>', false);
-        $response->assertSee('Why this product', false);
-        $response->assertSee('Request a quote', false);
-        $response->assertSee('You might also like', false);
-        $response->assertDontSee('>Description</h5>', false);
-        $response->assertDontSee('>Related Products</h4>', false);
     }
 
     public function test_animal_pages_inherit_their_own_overrides_per_block(): void
@@ -106,8 +78,8 @@ class ProductCatalogContentTest extends TestCase
         $cattle->blocks()->where('type', 'product-catalog')->first()
             ->update(['data' => ['cat_cattle_label' => 'Premium Cattle']]);
 
-        $cattleResponse   = $this->get('/cattle.html')->assertOk();
-        $productsResponse = $this->get('/products.html')->assertOk();
+        $cattleResponse   = $this->get('/cattle')->assertOk();
+        $productsResponse = $this->get('/products')->assertOk();
 
         $cattleResponse->assertSee('Premium Cattle', false);
         $productsResponse->assertDontSee('Premium Cattle', false);

@@ -28,7 +28,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('Trusted Globally', false)
             ->assertSee('Used by partners in 12 countries worldwide.', false)
@@ -50,7 +50,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('Custom About Benefits Heading', false)
             ->assertSee('Custom bullet item one', false)
@@ -73,7 +73,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('Our Story', false)
             ->assertSee('>20</h2>', false)
@@ -96,7 +96,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('PROGRESS', false)
             ->assertSee('Customer Reach', false)
@@ -119,7 +119,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/contact.html')
+        $this->get('/contact')
             ->assertOk()
             ->assertSee('New office address goes here.', false)
             ->assertSee('hello@novi-agro.com', false)
@@ -140,7 +140,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/contact.html')
+        $this->get('/contact')
             ->assertOk()
             ->assertSee('Submit Inquiry', false)
             ->assertSee('https://example.com/submit', false)
@@ -160,7 +160,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/services.html')
+        $this->get('/services')
             ->assertOk()
             ->assertSee('Premium Additives', false)
             ->assertSee('Global Trade', false)
@@ -182,7 +182,7 @@ class AboutContactBlocksDbContentTest extends TestCase
             ],
         ]);
 
-        $this->get('/faq.html')
+        $this->get('/faq')
             ->assertOk()
             ->assertSee('Got questions?', false)
             ->assertSee('Custom FAQ heading line', false)

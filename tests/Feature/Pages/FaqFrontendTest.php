@@ -15,7 +15,7 @@ class FaqFrontendTest extends TestCase
     public function test_default_faqs_render_when_table_is_empty(): void
     {
         // No FaqSeeder. The accordion falls back to its hardcoded items.
-        $this->get('/faq.html')
+        $this->get('/faq')
             ->assertOk()
             ->assertSee("What's wrong with my Livestock farm?", false)
             ->assertSee('What is your return policy?', false);
@@ -29,7 +29,7 @@ class FaqFrontendTest extends TestCase
         $faq = Faq::orderBy('order_column')->first();
         $faq->update(['question' => 'CUSTOM SENTINEL QUESTION']);
 
-        $this->get('/faq.html')
+        $this->get('/faq')
             ->assertOk()
             ->assertSee('CUSTOM SENTINEL QUESTION', false);
     }
@@ -44,7 +44,7 @@ class FaqFrontendTest extends TestCase
             'is_published' => false,
         ]);
 
-        $this->get('/faq.html')
+        $this->get('/faq')
             ->assertOk()
             ->assertDontSee('HIDDEN FROM PUBLIC', false);
     }
@@ -60,7 +60,7 @@ class FaqFrontendTest extends TestCase
             'is_published'    => true,
         ]);
 
-        $this->get('/faq.html')
+        $this->get('/faq')
             ->assertOk()
             ->assertSee('Brand-new admin question?', false)
             ->assertSee('Brand-new admin answer body.', false);
@@ -84,7 +84,7 @@ class FaqFrontendTest extends TestCase
             'is_published'    => true,
         ]);
 
-        $response = $this->get('/faq.html')->assertOk();
+        $response = $this->get('/faq')->assertOk();
         // First item has active class.
         $response->assertSee('class="accrodion active"', false);
         $response->assertSee('First Q', false);

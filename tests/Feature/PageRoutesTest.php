@@ -20,14 +20,14 @@ class PageRoutesTest extends TestCase
     {
         return [
             ['/'],
-            ['/about.html'],
-            ['/products.html'],
-            ['/cattle.html'],
-            ['/pigs.html'],
-            ['/poultry.html'],
-            ['/services.html'],
-            ['/contact.html'],
-            ['/faq.html'],
+            ['/about'],
+            ['/products'],
+            ['/cattle'],
+            ['/pigs'],
+            ['/poultry'],
+            ['/services'],
+            ['/contact'],
+            ['/faq'],
         ];
     }
 
@@ -40,15 +40,15 @@ class PageRoutesTest extends TestCase
 
     public function test_animal_page_sets_body_category(): void
     {
-        $this->get('/cattle.html')->assertSee('data-category="Cattle"', false);
-        $this->get('/pigs.html')->assertSee('data-category="Pigs"', false);
-        $this->get('/poultry.html')->assertSee('data-category="Poultry"', false);
-        $this->get('/products.html')->assertSee('data-category="All"', false);
+        $this->get('/cattle')->assertSee('data-category="Cattle"', false);
+        $this->get('/pigs')->assertSee('data-category="Pigs"', false);
+        $this->get('/poultry')->assertSee('data-category="Poultry"', false);
+        $this->get('/products')->assertSee('data-category="All"', false);
     }
 
     public function test_non_catalog_pages_omit_body_category(): void
     {
-        foreach (['/', '/about.html', '/services.html', '/contact.html', '/faq.html'] as $url) {
+        foreach (['/', '/about', '/services', '/contact', '/faq'] as $url) {
             $this->get($url)->assertDontSee('data-category=', false);
         }
     }
@@ -82,7 +82,7 @@ class PageRoutesTest extends TestCase
 
     public function test_about_renders_all_section_blocks(): void
     {
-        $response = $this->get('/about.html');
+        $response = $this->get('/about');
         $response->assertOk();
         // page-header-about block
         $response->assertSee('committed to providing quality livestock additives', false);
@@ -113,7 +113,7 @@ class PageRoutesTest extends TestCase
     public function test_inner_pages_emit_breadcrumb_jsonld(): void
     {
         // BreadcrumbList JSON-LD lives in every major inner page's @push('meta').
-        foreach (['/about.html', '/products.html', '/contact.html', '/faq.html', '/services.html'] as $url) {
+        foreach (['/about', '/products', '/contact', '/faq', '/services'] as $url) {
             $response = $this->get($url);
             $response->assertOk();
             $response->assertSee('"@type":"BreadcrumbList"', false);
@@ -142,7 +142,7 @@ class PageRoutesTest extends TestCase
 
     public function test_products_renders_all_section_blocks(): void
     {
-        $response = $this->get('/products.html');
+        $response = $this->get('/products');
         $response->assertOk();
         // page-header-products block
         $response->assertSee('Our Products', false);
@@ -154,15 +154,16 @@ class PageRoutesTest extends TestCase
         $response->assertSee('product-type-filters', false);
         // product-catalog block — product container slot
         $response->assertSee('product-container', false);
-        // product-catalog block — product detail view
-        $response->assertSee('product-details', false);
-        // product-catalog block — sort controls
+        // product-catalog block — sort controls (the in-page detail view
+        // moved to a dedicated /products/{slug} route, so it is intentionally
+        // absent from the catalog markup).
         $response->assertSee('sort-dropdown', false);
+        $response->assertDontSee('product-details', false);
     }
 
     public function test_products_loads_catalog_scripts(): void
     {
-        $response = $this->get('/products.html');
+        $response = $this->get('/products');
         $response->assertOk();
         $response->assertDontSee('/assets/js/products-data.js', false);
         $response->assertSee('/assets/js/state/app.state.js', false);
@@ -178,7 +179,7 @@ class PageRoutesTest extends TestCase
 
     public function test_cattle_renders_all_section_blocks(): void
     {
-        $response = $this->get('/cattle.html');
+        $response = $this->get('/cattle');
         $response->assertOk();
         $response->assertSee('page-header__title">Cattle', false);
         $response->assertSee('Livestock Solutions', false);
@@ -187,7 +188,7 @@ class PageRoutesTest extends TestCase
 
     public function test_pigs_renders_all_section_blocks(): void
     {
-        $response = $this->get('/pigs.html');
+        $response = $this->get('/pigs');
         $response->assertOk();
         $response->assertSee('page-header__title">Pigs', false);
         $response->assertSee('Swine Solutions', false);
@@ -196,7 +197,7 @@ class PageRoutesTest extends TestCase
 
     public function test_poultry_renders_all_section_blocks(): void
     {
-        $response = $this->get('/poultry.html');
+        $response = $this->get('/poultry');
         $response->assertOk();
         $response->assertSee('page-header__title">Poultry', false);
         $response->assertSee('product__showing-wrap', false);
@@ -204,7 +205,7 @@ class PageRoutesTest extends TestCase
 
     public function test_animal_pages_load_catalog_scripts(): void
     {
-        foreach (['/cattle.html', '/pigs.html', '/poultry.html'] as $url) {
+        foreach (['/cattle', '/pigs', '/poultry'] as $url) {
             $response = $this->get($url);
             // products-data.js was removed - frontend now fetches /api/products
             $response->assertDontSee('/assets/js/products-data.js', false);
@@ -215,15 +216,15 @@ class PageRoutesTest extends TestCase
 
     public function test_animal_pages_check_correct_radio(): void
     {
-        $this->get('/cattle.html')->assertSee('id="cat-cattle" value="cattle"', false)->assertSee('checked', false);
-        $this->get('/pigs.html')->assertSee('id="cat-pigs" value="pigs"', false)->assertSee('checked', false);
-        $this->get('/poultry.html')->assertSee('id="cat-poultry" value="poultry"', false)->assertSee('checked', false);
-        $this->get('/products.html')->assertSee('id="cat-all" value="all"', false)->assertSee('checked', false);
+        $this->get('/cattle')->assertSee('id="cat-cattle" value="cattle"', false)->assertSee('checked', false);
+        $this->get('/pigs')->assertSee('id="cat-pigs" value="pigs"', false)->assertSee('checked', false);
+        $this->get('/poultry')->assertSee('id="cat-poultry" value="poultry"', false)->assertSee('checked', false);
+        $this->get('/products')->assertSee('id="cat-all" value="all"', false)->assertSee('checked', false);
     }
 
     public function test_services_renders_all_section_blocks(): void
     {
-        $response = $this->get('/services.html');
+        $response = $this->get('/services');
         $response->assertOk();
         // page-header-services block
         $response->assertSee('Take a look at the services we offer', false);
@@ -237,7 +238,7 @@ class PageRoutesTest extends TestCase
 
     public function test_contact_renders_all_section_blocks(): void
     {
-        $response = $this->get('/contact.html');
+        $response = $this->get('/contact');
         $response->assertOk();
         // page-header-contact block
         $response->assertSee('Contact Our Team', false);
@@ -256,7 +257,7 @@ class PageRoutesTest extends TestCase
 
     public function test_faq_renders_all_section_blocks(): void
     {
-        $response = $this->get('/faq.html');
+        $response = $this->get('/faq');
         $response->assertOk();
         // page-header-faq block
         $response->assertSee('Your Business Should Thrive', false);
@@ -271,7 +272,7 @@ class PageRoutesTest extends TestCase
 
     public function test_info_pages_dont_load_catalog_scripts(): void
     {
-        foreach (['/services.html', '/contact.html', '/faq.html'] as $url) {
+        foreach (['/services', '/contact', '/faq'] as $url) {
             $response = $this->get($url);
             $response->assertDontSee('/assets/js/products-data.js', false);
             $response->assertDontSee('/assets/js/state/app.state.js', false);
@@ -287,6 +288,33 @@ class PageRoutesTest extends TestCase
             'status' => 'draft',
         ]);
 
-        $this->get('/about.html')->assertNotFound();
+        $this->get('/about')->assertNotFound();
+    }
+
+    /**
+     * Every legacy `.html` URL must keep returning a 301 to its clean
+     * equivalent. Preserves SEO + inbound links from before the conversion.
+     */
+    #[DataProvider('legacyHtmlRedirectProvider')]
+    public function test_old_html_urls_redirect_301_to_clean_versions(string $old, string $new): void
+    {
+        $this->get($old)
+            ->assertStatus(301)
+            ->assertRedirect($new);
+    }
+
+    public static function legacyHtmlRedirectProvider(): array
+    {
+        return [
+            ['/about.html',    '/about'],
+            ['/products.html', '/products'],
+            ['/cattle.html',   '/cattle'],
+            ['/pigs.html',     '/pigs'],
+            ['/poultry.html',  '/poultry'],
+            ['/services.html', '/services'],
+            ['/contact.html',  '/contact'],
+            ['/faq.html',      '/faq'],
+            ['/custom-page.html', '/custom-page'],
+        ];
     }
 }

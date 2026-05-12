@@ -13,7 +13,7 @@ class DynamicPageRouteTest extends TestCase
 
     public function test_unknown_slug_returns_404(): void
     {
-        $this->get('/this-page-does-not-exist.html')->assertNotFound();
+        $this->get('/this-page-does-not-exist')->assertNotFound();
     }
 
     public function test_admin_created_page_renders_via_generic_shell(): void
@@ -37,7 +37,7 @@ class DynamicPageRouteTest extends TestCase
             'is_visible'   => true,
         ]);
 
-        $response = $this->get('/promo-spring.html');
+        $response = $this->get('/promo-spring');
         $response->assertOk();
         $response->assertSee('Spring Sale Headline', false);
         $response->assertSee('PROMO SENTINEL', false);
@@ -54,7 +54,7 @@ class DynamicPageRouteTest extends TestCase
             'status'       => 'draft',
         ]);
 
-        $this->get('/draft-only.html')->assertNotFound();
+        $this->get('/draft-only')->assertNotFound();
     }
 
     public function test_future_published_at_returns_404(): void
@@ -67,7 +67,7 @@ class DynamicPageRouteTest extends TestCase
             'published_at' => now()->addDay(),
         ]);
 
-        $this->get('/future-page.html')->assertNotFound();
+        $this->get('/future-page')->assertNotFound();
     }
 
     public function test_named_routes_still_take_precedence(): void
@@ -82,7 +82,7 @@ class DynamicPageRouteTest extends TestCase
             'status' => 'published',
         ]);
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         // The dedicated pages.about Blade includes the about-detail and
         // feature-grid-about partials — proving the named route hit the
         // legacy Blade rather than the generic CMS shell.
@@ -104,7 +104,7 @@ class DynamicPageRouteTest extends TestCase
             'canonical_url'    => 'https://novi-agro.com/with-seo',
         ]);
 
-        $response = $this->get('/with-seo.html')->assertOk();
+        $response = $this->get('/with-seo')->assertOk();
         $response->assertSee('<title>Custom SEO Title', false);
         $response->assertSee('Custom SEO description.', false);
         $response->assertSee('canonical" href="https://novi-agro.com/with-seo"', false);

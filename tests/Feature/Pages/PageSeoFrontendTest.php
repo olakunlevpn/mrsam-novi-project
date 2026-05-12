@@ -19,7 +19,7 @@ class PageSeoFrontendTest extends TestCase
     {
         $this->seed(PageSeeder::class);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('<link rel="canonical" href="https://novi-agro.com/" />', false)
             ->assertSee('<meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />', false);
@@ -36,7 +36,7 @@ class PageSeoFrontendTest extends TestCase
             'canonical_url'    => 'https://novi-agro.com/about',
         ]);
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         $response->assertSee('<title>About Us | Custom SEO Title | Quality Feeds - Healthy Life</title>', false);
         $response->assertSee('<link rel="canonical" href="https://novi-agro.com/about" />', false);
         $response->assertSee('<meta name="description" content="Custom about-page description for search engines." />', false);
@@ -56,7 +56,7 @@ class PageSeoFrontendTest extends TestCase
             'canonical_url'  => 'https://novi-agro.com/about',
         ]);
 
-        $response = $this->get('/about.html')->assertOk();
+        $response = $this->get('/about')->assertOk();
         $response->assertSee('<meta property="og:title" content="Custom OG Title" />', false);
         $response->assertSee('<meta property="og:description" content="Custom OG description text." />', false);
         $response->assertSee('<meta property="og:image" content="https://novi-agro.com/share-card.png" />', false);
@@ -74,7 +74,7 @@ class PageSeoFrontendTest extends TestCase
             'noindex'          => true,
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('<meta name="robots" content="noindex, nofollow" />', false);
     }
@@ -90,7 +90,7 @@ class PageSeoFrontendTest extends TestCase
             'robots'           => 'index, nofollow',
         ]);
 
-        $this->get('/about.html')
+        $this->get('/about')
             ->assertOk()
             ->assertSee('<meta name="robots" content="index, nofollow" />', false)
             ->assertDontSee('<meta name="robots" content="noindex', false);
