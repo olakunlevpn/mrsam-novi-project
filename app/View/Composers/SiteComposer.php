@@ -98,42 +98,40 @@ class SiteComposer
      */
     public function footerCategories(): Collection
     {
-        return Cache::remember(self::FOOTER_CATEGORIES_KEY, self::FOOTER_CACHE_TTL, function (): Collection {
-            $animals = Animal::query()
-                ->orderBy('order_column')
-                ->orderBy('name')
-                ->get(['id', 'name', 'slug'])
-                ->map(fn (Animal $animal): array => [
-                    'label' => $animal->name,
-                    'url'   => Route::has('animals.' . $animal->slug)
-                        ? route('animals.' . $animal->slug)
-                        : url('/' . $animal->slug),
-                ]);
+        $animals = Animal::query()
+            ->orderBy('order_column')
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug'])
+            ->map(fn (Animal $animal): array => [
+                'label' => $animal->name,
+                'url'   => Route::has('animals.' . $animal->slug)
+                    ? route('animals.' . $animal->slug)
+                    : url('/' . $animal->slug),
+            ]);
 
-            return $animals->push(
-                ['label' => __('site.footer.all_products'), 'url' => route('products')],
-                ['label' => __('site.footer.faq'),          'url' => route('faq')],
-            )->values();
-        });
+        return $animals->push(
+            ['label' => __('site.footer.all_products'), 'url' => route('products')],
+            ['label' => __('site.footer.faq'),          'url' => route('faq')],
+        )->values();
     }
 
     /**
      * Footer "Products" widget data. Two most-recently-touched published
      * products, restricted to those that have a hero image so the card slot
-     * never renders an empty <img>.
+     * never renders an empty <img>. Not cached: caching Eloquent models in
+     * the framework cache breaks across deploys when the model signature
+     * changes (stale rows unserialize as __PHP_Incomplete_Class).
      *
      * @return Collection<int, \App\Models\Product>
      */
     public function footerProducts(): Collection
     {
-        return Cache::remember(self::FOOTER_PRODUCTS_KEY, self::FOOTER_CACHE_TTL, function (): Collection {
-            return Product::query()
-                ->where('status', 'published')
-                ->whereNotNull('hero_image')
-                ->orderByDesc('updated_at')
-                ->limit(2)
-                ->get(['id', 'slug', 'name', 'hero_image', 'updated_at']);
-        });
+        return Product::query()
+            ->where('status', 'published')
+            ->whereNotNull('hero_image')
+            ->orderByDesc('updated_at')
+            ->limit(2)
+            ->get(['id', 'slug', 'name', 'hero_image', 'updated_at']);
     }
 
     /**
