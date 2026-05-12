@@ -50,11 +50,18 @@ class PageController extends Controller
 
     private function renderPage(string $slug)
     {
-        $page = Page::where('slug', $slug)
+        $page = Page::published()
+            ->where('slug', $slug)
             ->with(['blocks', 'seoMeta'])
             ->first();
 
         if (! $page) {
+            // A row exists but is not currently published (draft or scheduled).
+            // 404 so admin-controlled visibility wins over the legacy stub.
+            if (Page::where('slug', $slug)->exists()) {
+                throw new NotFoundHttpException("Page '{$slug}' not found");
+            }
+
             $page = new Page(['slug' => $slug, 'title' => ucfirst($slug)]);
             $page->setRelation('blocks', collect());
             $page->setRelation('seoMeta', null);

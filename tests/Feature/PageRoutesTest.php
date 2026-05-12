@@ -277,4 +277,16 @@ class PageRoutesTest extends TestCase
             $response->assertDontSee('/assets/js/state/app.state.js', false);
         }
     }
+
+    public function test_draft_page_returns_404_on_named_route(): void
+    {
+        \App\Models\Page::create([
+            'slug'   => 'about',
+            'title'  => 'About',
+            'layout' => 'about',
+            'status' => 'draft',
+        ]);
+
+        $this->get('/about.html')->assertNotFound();
+    }
 }
