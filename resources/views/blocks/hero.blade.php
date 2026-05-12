@@ -22,7 +22,7 @@
                                 {{ $page->block('hero', 'headline', 'Advanced Animal Care Solutions') }}
                             </h2>
                             <div class="video-hero-one__btn">
-                                <a href="{{ $page->block('hero', 'cta_url', '/products.html') }}" class="grdeen-btn grdeen-btn--base"><span>{{ $page->block('hero', 'cta_label', 'Browse Products') }}</span></a>
+                                <a href="{{ $page->block('hero', 'cta_url', '/products') }}" class="grdeen-btn grdeen-btn--base"><span>{{ $page->block('hero', 'cta_label', 'Browse Products') }}</span></a>
                             </div>
                         </div>
                     </div>

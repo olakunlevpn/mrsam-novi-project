@@ -23,7 +23,7 @@ class PageController extends Controller
      * dedicated route + Blade. Renders via the shared `pages.cms` shell.
      *
      * The named routes above take precedence because Laravel matches them
-     * before this fallback. So /about.html still hits about(), not show().
+     * before this fallback. So /about still hits about(), not show().
      */
     public function show(string $slug)
     {

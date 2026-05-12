@@ -156,7 +156,7 @@ class PageSeeder extends Seeder
                             'subtitle'  => 'WELCOME TO NOVI-AGRO',
                             'headline'  => 'Advanced Animal Care Solutions',
                             'cta_label' => 'Browse Products',
-                            'cta_url'   => '/products.html',
+                            'cta_url'   => '/products',
                             'video_src' => '/assets/videos/Nigerian_Breed_Cow_Video_Generated.mp4',
                         ];
                     }

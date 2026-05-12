@@ -4,19 +4,26 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
+// Clean named routes (primary). Standard Laravel-style URLs — no `.html`.
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/about.html', [PageController::class, 'about'])->name('about');
-Route::get('/products.html', [PageController::class, 'products'])->name('products');
-Route::get('/cattle.html', [PageController::class, 'cattle'])->name('animals.cattle');
-Route::get('/pigs.html', [PageController::class, 'pigs'])->name('animals.pigs');
-Route::get('/poultry.html', [PageController::class, 'poultry'])->name('animals.poultry');
-Route::get('/services.html', [PageController::class, 'services'])->name('services');
-Route::get('/contact.html', [PageController::class, 'contact'])->name('contact');
-Route::get('/faq.html', [PageController::class, 'faq'])->name('faq');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/products', [PageController::class, 'products'])->name('products');
+Route::get('/cattle', [PageController::class, 'cattle'])->name('animals.cattle');
+Route::get('/pigs', [PageController::class, 'pigs'])->name('animals.pigs');
+Route::get('/poultry', [PageController::class, 'poultry'])->name('animals.poultry');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+
+// Per-product detail page (server-rendered; replaces the in-page SPA detail
+// view that used to live inside the catalog).
+Route::get('/products/{product:slug}', [ProductDetailController::class, 'show'])
+    ->name('products.show');
 
 // Dynamic sitemap endpoint. SitemapController caches its render for 1 hour.
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
@@ -49,8 +56,24 @@ Route::post('/blog/{post:slug}/comments', [CommentController::class, 'store'])
 
 require __DIR__.'/auth.php';
 
-// Generic catch-all for admin-created pages with custom slugs. Must be last
-// so it does not steal traffic from the named routes above.
-Route::get('/{slug}.html', [PageController::class, 'show'])
+// 301 redirects from old `.html` URLs to the clean equivalents. Preserves
+// SEO and inbound links from before the conversion (plan D4 decision).
+Route::redirect('/about.html',    '/about',    301);
+Route::redirect('/products.html', '/products', 301);
+Route::redirect('/cattle.html',   '/cattle',   301);
+Route::redirect('/pigs.html',     '/pigs',     301);
+Route::redirect('/poultry.html',  '/poultry',  301);
+Route::redirect('/services.html', '/services', 301);
+Route::redirect('/contact.html',  '/contact',  301);
+Route::redirect('/faq.html',      '/faq',      301);
+
+// Generic `.html` catch-all -> 301 redirect to the clean slug. Covers any
+// admin-created custom page that was previously served at `/{slug}.html`.
+Route::get('/{slug}.html', fn (string $slug) => redirect("/{$slug}", 301))
+    ->where('slug', '[A-Za-z0-9\-]+');
+
+// Generic catch-all for admin-created custom pages. Must be LAST so it does
+// not steal traffic from any named route, auth route, or admin panel above.
+Route::get('/{slug}', [PageController::class, 'show'])
     ->where('slug', '[A-Za-z0-9\-]+')
     ->name('page.show');
