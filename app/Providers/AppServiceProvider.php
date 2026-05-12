@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Cms\BlockRegistry;
 use App\Http\Controllers\SitemapController;
 use App\Models\Comment;
+use App\Models\ContactSubmission;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Page;
@@ -12,6 +13,7 @@ use App\Models\Post;
 use App\Models\SeoMeta;
 use App\Models\Setting;
 use App\Observers\CommentObserver;
+use App\Observers\ContactSubmissionObserver;
 use App\View\Composers\SiteComposer;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -56,6 +58,10 @@ class AppServiceProvider extends ServiceProvider
         // Queues email notifications to admins (and the parent comment
         // author for replies) whenever a new comment is persisted.
         Comment::observe(CommentObserver::class);
+
+        // Queues an email alert to admins whenever a public contact form
+        // submission lands in the database.
+        ContactSubmission::observe(ContactSubmissionObserver::class);
 
         // Flush the cached sitemap whenever publishable content changes so
         // admin edits surface in /sitemap.xml before the 1-hour TTL elapses.
