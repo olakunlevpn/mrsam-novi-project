@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductCatalogService
@@ -79,7 +80,7 @@ class ProductCatalogService
         return [
             'id' => $p->sku ?: $p->slug,
             'name' => $p->name,
-            'image' => $p->hero_image,
+            'image' => $p->hero_image ? Storage::disk('public')->url($p->hero_image) : null,
             'category' => $p->productCategory?->name,
             'animal' => $p->animal?->slug,
             'description' => (string) $p->description,

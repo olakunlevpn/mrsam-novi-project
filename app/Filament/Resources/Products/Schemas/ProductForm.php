@@ -82,6 +82,7 @@ class ProductForm
                         FileUpload::make('hero_image')
                             ->label(__('cms.products.field.hero_image'))
                             ->image()
+                            ->disk('public')
                             ->directory('products/hero')
                             ->imageEditor()
                             ->columnSpanFull(),

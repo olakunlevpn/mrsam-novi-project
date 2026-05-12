@@ -21,6 +21,7 @@ class ProductsTable
             ->columns([
                 ImageColumn::make('hero_image')
                     ->label(__('cms.products.field.hero_image'))
+                    ->disk('public')
                     ->square()
                     ->size(40),
                 TextColumn::make('name')
