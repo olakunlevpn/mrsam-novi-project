@@ -15,6 +15,7 @@ class FaqCategoriesTable
     {
         return $table
             ->defaultSort('order_column')
+            ->reorderable('order_column')
             ->columns([
                 TextColumn::make('name')
                     ->label(__('cms.faq_categories.field.name'))

@@ -17,6 +17,7 @@ class ProductsTable
     {
         return $table
             ->defaultSort('order_column')
+            ->reorderable('order_column')
             ->columns([
                 ImageColumn::make('hero_image')
                     ->label(__('cms.products.field.hero_image'))

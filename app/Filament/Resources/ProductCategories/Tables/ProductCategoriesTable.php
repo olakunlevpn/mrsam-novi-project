@@ -16,6 +16,7 @@ class ProductCategoriesTable
     {
         return $table
             ->defaultSort('order_column')
+            ->reorderable('order_column')
             ->columns([
                 TextColumn::make('name')
                     ->label(__('cms.product_categories.field.name'))

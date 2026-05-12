@@ -16,6 +16,7 @@ class AnimalsTable
     {
         return $table
             ->defaultSort('order_column')
+            ->reorderable('order_column')
             ->columns([
                 ImageColumn::make('hero_image')
                     ->label(__('cms.animals.field.hero_image'))
