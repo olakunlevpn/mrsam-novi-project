@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Setting;
+use App\Support\AssetUrl;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,9 +29,21 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->darkMode(false)
+            ->font('Inter')
             ->brandName(__('admin.brand_name'))
+            ->brandLogo(fn (): ?string => $this->resolveBrandAsset('brand.logo'))
+            ->favicon(fn (): ?string => $this->resolveBrandAsset('brand.favicon'))
+            // Palette pulled from the public site. #1a9120 is the dominant
+            // Novi Agro green used across grdeen.css; we mirror it as the
+            // admin's primary so notifications, focus rings, badges and
+            // active nav items all read as the same brand.
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#1a9120'),
+                'success' => Color::hex('#1a9120'),
+                'info'    => Color::hex('#078f19'),
+                'warning' => Color::Amber,
+                'danger'  => Color::Red,
+                'gray'    => Color::Slate,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -52,5 +66,21 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    /**
+     * Read a branding setting and return a URL the panel can serve. Wrapped
+     * in a try/catch so a missing settings table (e.g. before the very
+     * first migrate) never breaks panel boot.
+     */
+    private function resolveBrandAsset(string $key): ?string
+    {
+        try {
+            $value = Setting::get($key);
+        } catch (\Throwable) {
+            return null;
+        }
+
+        return is_string($value) ? AssetUrl::resolve($value) : null;
     }
 }
