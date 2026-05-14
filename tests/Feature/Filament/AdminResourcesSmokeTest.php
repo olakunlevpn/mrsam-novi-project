@@ -13,7 +13,6 @@ use App\Filament\Resources\PostCategories\PostCategoryResource;
 use App\Filament\Resources\Posts\PostResource;
 use App\Filament\Resources\ProductCategories\ProductCategoryResource;
 use App\Filament\Resources\Products\ProductResource;
-use App\Filament\Resources\Settings\SettingResource;
 use App\Filament\Resources\Tags\TagResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,7 +38,6 @@ class AdminResourcesSmokeTest extends TestCase
             'animals'            => [AnimalResource::class],
             'product-categories' => [ProductCategoryResource::class],
             'products'           => [ProductResource::class],
-            'settings'           => [SettingResource::class],
             'contact-submissions' => [ContactSubmissionResource::class],
             'posts'              => [PostResource::class],
             'post-categories'    => [PostCategoryResource::class],
@@ -78,7 +76,6 @@ class AdminResourcesSmokeTest extends TestCase
         $this->assertSame('Catalog', AnimalResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductCategoryResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductResource::getNavigationGroup());
-        $this->assertSame('System',  SettingResource::getNavigationGroup());
         $this->assertSame('Inbox',   ContactSubmissionResource::getNavigationGroup());
         $this->assertSame('Blog',    PostResource::getNavigationGroup());
         $this->assertSame('Blog',    PostCategoryResource::getNavigationGroup());

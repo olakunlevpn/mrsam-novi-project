@@ -67,7 +67,34 @@ class SiteComposer
             ->mapWithKeys(fn (Setting $s) => [$s->key => $s->value])
             ->all();
 
+        foreach (['brand.logo', 'brand.favicon'] as $assetKey) {
+            if (isset($rows[$assetKey])) {
+                $rows[$assetKey] = self::resolveAssetUrl((string) $rows[$assetKey]);
+            }
+        }
+
         return static::$settingsCache = $rows;
+    }
+
+    /**
+     * Turn a brand-asset setting value into a browser-loadable URL.
+     *
+     * - Absolute URLs (http/https/protocol-relative) and absolute web paths
+     *   ("/assets/...") are returned unchanged so legacy hardcoded values and
+     *   admin-entered URLs keep working.
+     * - Anything else is treated as a key on the public disk, the same shape
+     *   Filament's FileUpload produces.
+     */
+    public static function resolveAssetUrl(string $value): string
+    {
+        $value = trim($value);
+        if ($value === '') {
+            return $value;
+        }
+        if (preg_match('#^(https?:)?//#i', $value) === 1 || str_starts_with($value, '/')) {
+            return $value;
+        }
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($value);
     }
 
     /**

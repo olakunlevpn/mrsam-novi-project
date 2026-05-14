@@ -30,12 +30,19 @@ class SettingSeeder extends Seeder
 
     private const GALLERY_DESTINATION = 'footer/gallery';
 
+    private const LOGO_SOURCE      = 'assets/images/images-removebg-preview.png';
+    private const LOGO_DESTINATION = 'branding/logo';
+
+    private const FAVICON_SOURCE      = 'assets/images/favicons/favicon_io/favicon-32x32.png';
+    private const FAVICON_DESTINATION = 'branding/favicons';
+
     public function run(): void
     {
         $settings = [
             ['brand.name',             'Novi Agro',                                              'brand'],
             ['brand.tagline',          'Quality Feed - Healthy Life',                            'brand'],
-            ['brand.logo',             '/assets/images/images-removebg-preview.png',             'brand'],
+            ['brand.logo',             $this->prepareBrandAsset(self::LOGO_SOURCE,    self::LOGO_DESTINATION),    'brand'],
+            ['brand.favicon',          $this->prepareBrandAsset(self::FAVICON_SOURCE, self::FAVICON_DESTINATION), 'brand'],
             ['contact.email',          'info@novi-agro.com',                                     'contact'],
             ['contact.phone',          '+2347041041756',                                         'contact'],
             ['contact.address',        'New Garage, Ibadan.',                                    'contact'],
@@ -51,6 +58,30 @@ class SettingSeeder extends Seeder
         foreach ($settings as [$key, $value, $group]) {
             Setting::set($key, $value, $group);
         }
+    }
+
+    /**
+     * Copy a single branding asset (logo, favicon, etc.) onto the public
+     * disk so the saved value matches what Filament's FileUpload writes.
+     * Idempotent: if the destination already exists the path is returned
+     * unchanged so re-seeds never duplicate files.
+     */
+    private function prepareBrandAsset(string $source, string $destinationDir): ?string
+    {
+        $absolute = public_path($source);
+        $destPath = $destinationDir . '/' . basename($source);
+
+        if (Storage::disk('public')->exists($destPath)) {
+            return $destPath;
+        }
+
+        if (! File::exists($absolute)) {
+            return null;
+        }
+
+        Storage::disk('public')->put($destPath, File::get($absolute));
+
+        return $destPath;
     }
 
     /**
