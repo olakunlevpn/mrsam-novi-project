@@ -12,7 +12,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class PostForm
 {
@@ -20,6 +23,13 @@ class PostForm
     {
         return $schema
             ->components([
+                Tabs::make('post-tabs')
+                    ->columnSpanFull()
+                    ->persistTabInQueryString()
+                    ->tabs([
+                        Tab::make(__('cms.posts.tab.content'))
+                            ->icon(Heroicon::OutlinedDocumentText)
+                            ->schema([
                 Section::make(__('cms.posts.section.details'))
                     ->columns(2)
                     ->components([
@@ -57,7 +67,11 @@ class PostForm
                             ->required()
                             ->columnSpanFull(),
                     ]),
+                            ]),
 
+                        Tab::make(__('cms.posts.tab.meta'))
+                            ->icon(Heroicon::OutlinedAdjustmentsHorizontal)
+                            ->schema([
                 Section::make(__('cms.posts.section.meta'))
                     ->columns(2)
                     ->components([
@@ -113,8 +127,14 @@ class PostForm
                             ->default(true)
                             ->columnSpanFull(),
                     ]),
+                            ]),
 
-                SeoMetaSection::make(),
+                        Tab::make(__('cms.posts.tab.seo'))
+                            ->icon(Heroicon::OutlinedMagnifyingGlass)
+                            ->schema([
+                                SeoMetaSection::make(),
+                            ]),
+                    ]),
             ]);
     }
 }

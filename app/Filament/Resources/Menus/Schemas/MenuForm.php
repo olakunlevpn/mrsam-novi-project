@@ -7,7 +7,10 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class MenuForm
 {
@@ -15,37 +18,50 @@ class MenuForm
     {
         return $schema
             ->components([
-                Section::make(__('cms.menus.section.details'))
-                    ->columns(2)
-                    ->components([
-                        TextInput::make('name')
-                            ->label(__('cms.menus.field.name'))
-                            ->required()
-                            ->maxLength(191),
-                        TextInput::make('location')
-                            ->label(__('cms.menus.field.location'))
-                            ->required()
-                            ->alphaDash()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(64),
-                    ]),
+                Tabs::make('menu-tabs')
+                    ->columnSpanFull()
+                    ->persistTabInQueryString()
+                    ->tabs([
+                        Tab::make(__('cms.menus.tab.details'))
+                            ->icon(Heroicon::OutlinedDocumentText)
+                            ->schema([
+                                Section::make(__('cms.menus.section.details'))
+                                    ->columns(2)
+                                    ->components([
+                                        TextInput::make('name')
+                                            ->label(__('cms.menus.field.name'))
+                                            ->required()
+                                            ->maxLength(191),
+                                        TextInput::make('location')
+                                            ->label(__('cms.menus.field.location'))
+                                            ->required()
+                                            ->alphaDash()
+                                            ->unique(ignoreRecord: true)
+                                            ->maxLength(64),
+                                    ]),
+                            ]),
 
-                Section::make(__('cms.menus.section.items'))
-                    ->components([
-                        Repeater::make('items')
-                            ->label('')
-                            ->relationship('items')
-                            ->orderColumn('order_column')
-                            ->reorderable()
-                            ->collapsible()
-                            ->collapsed()
-                            ->itemLabel(fn (array $state): ?string =>
-                                self::itemLabel($state)
-                            )
-                            ->components(self::itemFields(includeChildren: true))
-                            ->columns(2)
-                            ->defaultItems(0)
-                            ->addActionLabel(__('cms.menus.item.add')),
+                        Tab::make(__('cms.menus.tab.items'))
+                            ->icon(Heroicon::OutlinedListBullet)
+                            ->schema([
+                                Section::make(__('cms.menus.section.items'))
+                                    ->components([
+                                        Repeater::make('items')
+                                            ->label('')
+                                            ->relationship('items')
+                                            ->orderColumn('order_column')
+                                            ->reorderable()
+                                            ->collapsible()
+                                            ->collapsed()
+                                            ->itemLabel(fn (array $state): ?string =>
+                                                self::itemLabel($state)
+                                            )
+                                            ->components(self::itemFields(includeChildren: true))
+                                            ->columns(2)
+                                            ->defaultItems(0)
+                                            ->addActionLabel(__('cms.menus.item.add')),
+                                    ]),
+                            ]),
                     ]),
             ]);
     }

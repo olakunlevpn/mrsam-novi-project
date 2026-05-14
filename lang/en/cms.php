@@ -253,6 +253,10 @@ return [
     'menus' => [
         'nav'   => ['label' => 'Menus'],
         'model' => ['singular' => 'Menu', 'plural' => 'Menus'],
+        'tab' => [
+            'details' => 'Details',
+            'items'   => 'Items',
+        ],
         'section' => [
             'details' => 'Menu Details',
             'items'   => 'Menu Items',
@@ -327,6 +331,10 @@ return [
     'animals' => [
         'nav'   => ['label' => 'Animals'],
         'model' => ['singular' => 'Animal', 'plural' => 'Animals'],
+        'tab' => [
+            'details' => 'Details',
+            'seo'     => 'SEO',
+        ],
         'field' => [
             'name'         => 'Name',
             'slug'         => 'Slug',
@@ -354,6 +362,11 @@ return [
     'posts' => [
         'nav'   => ['label' => 'Posts'],
         'model' => ['singular' => 'Post', 'plural' => 'Posts'],
+        'tab' => [
+            'content' => 'Content',
+            'meta'    => 'Publishing',
+            'seo'     => 'SEO',
+        ],
         'section' => [
             'details' => 'Post Details',
             'meta'    => 'Authoring & Publishing',
@@ -458,6 +471,12 @@ return [
     'products' => [
         'nav'   => ['label' => 'Products'],
         'model' => ['singular' => 'Product', 'plural' => 'Products'],
+        'tab' => [
+            'overview' => 'Overview',
+            'media'    => 'Media',
+            'content'  => 'Content',
+            'seo'      => 'SEO',
+        ],
         'section' => [
             'identity' => 'Identity',
             'taxonomy' => 'Taxonomy',
