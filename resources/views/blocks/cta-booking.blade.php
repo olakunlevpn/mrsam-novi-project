@@ -39,7 +39,7 @@
                                         <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
                                     </div><!-- /.form-one__control -->
                                     <div class="form-one__control">
-                                        <input type="tel" name="tel" placeholder="Your Phone" aria-label="Your Phone">
+                                        <input type="text" name="tel" inputmode="tel" autocomplete="tel" placeholder="Your Phone" aria-label="Your Phone">
                                     </div><!-- /.form-one__control -->
                                     <div class="form-one__control">
                                         <div class="form-one__control__select">

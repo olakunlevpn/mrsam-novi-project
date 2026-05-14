@@ -41,7 +41,7 @@
                             </div>
                             <div class="work-process-one__col__info text-center">
                                 <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_1_title', 'Livestock Nutrition') }}</h4>
-                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_1_text', 'Premium additives to boost animal health and productivity.') }}</p>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_1_text', 'Premium feed additives crafted to boost animal health and productivity across your farm.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="work-process-one__col__info text-center">
                                 <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_4_title', 'Logistics') }}</h4>
-                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_4_text', 'Fast and reliable nationwide delivery, ensuring your supplies reach you when you need them.') }}</p>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_4_text', 'Fast and reliable delivery nationwide, ensuring your supplies arrive when you need them.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
