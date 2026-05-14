@@ -14,8 +14,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Arr;
 
 class PageForm
@@ -24,108 +27,125 @@ class PageForm
     {
         return $schema
             ->components([
-                Section::make(__('cms.pages.section.details'))
-                    ->columns(2)
-                    ->components([
-                        SlugField::source(
-                            TextInput::make('title')
-                                ->label(__('cms.pages.field.title'))
-                                ->required()
-                                ->maxLength(255),
-                        ),
-                        SlugField::slug(
-                            TextInput::make('slug')
-                                ->label(__('cms.pages.field.slug'))
-                                ->required()
-                                ->maxLength(255)
-                                ->unique(ignoreRecord: true)
-                                ->helperText(__('cms.pages.help.slug')),
-                        ),
-                        Select::make('layout')
-                            ->label(__('cms.pages.field.layout'))
-                            ->options(self::layoutOptions())
-                            ->required()
-                            ->default('custom')
-                            ->native(false),
-                        Select::make('status')
-                            ->label(__('cms.pages.field.status'))
-                            ->options([
-                                'draft'     => __('cms.pages.status.draft'),
-                                'published' => __('cms.pages.status.published'),
-                            ])
-                            ->required()
-                            ->default('draft')
-                            ->native(false),
-                        DateTimePicker::make('published_at')
-                            ->label(__('cms.pages.field.published_at'))
-                            ->seconds(false),
-                        Toggle::make('is_homepage')
-                            ->label(__('cms.pages.field.is_homepage'))
-                            ->helperText(__('cms.pages.help.is_homepage')),
-                        TextInput::make('order_column')
-                            ->label(__('cms.pages.field.order_column'))
-                            ->numeric()
-                            ->default(0)
-                            ->minValue(0),
-                    ]),
+                Tabs::make('page-tabs')
+                    ->columnSpanFull()
+                    ->persistTabInQueryString()
+                    ->tabs([
+                        Tab::make(__('cms.pages.tab.details'))
+                            ->icon(Heroicon::OutlinedDocumentText)
+                            ->schema([
+                                Section::make(__('cms.pages.section.details'))
+                                    ->columns(2)
+                                    ->components([
+                                        SlugField::source(
+                                            TextInput::make('title')
+                                                ->label(__('cms.pages.field.title'))
+                                                ->required()
+                                                ->maxLength(255),
+                                        ),
+                                        SlugField::slug(
+                                            TextInput::make('slug')
+                                                ->label(__('cms.pages.field.slug'))
+                                                ->required()
+                                                ->maxLength(255)
+                                                ->unique(ignoreRecord: true)
+                                                ->helperText(__('cms.pages.help.slug')),
+                                        ),
+                                        Select::make('layout')
+                                            ->label(__('cms.pages.field.layout'))
+                                            ->options(self::layoutOptions())
+                                            ->required()
+                                            ->default('custom')
+                                            ->native(false),
+                                        Select::make('status')
+                                            ->label(__('cms.pages.field.status'))
+                                            ->options([
+                                                'draft'     => __('cms.pages.status.draft'),
+                                                'published' => __('cms.pages.status.published'),
+                                            ])
+                                            ->required()
+                                            ->default('draft')
+                                            ->native(false),
+                                        DateTimePicker::make('published_at')
+                                            ->label(__('cms.pages.field.published_at'))
+                                            ->seconds(false),
+                                        Toggle::make('is_homepage')
+                                            ->label(__('cms.pages.field.is_homepage'))
+                                            ->helperText(__('cms.pages.help.is_homepage')),
+                                        TextInput::make('order_column')
+                                            ->label(__('cms.pages.field.order_column'))
+                                            ->numeric()
+                                            ->default(0)
+                                            ->minValue(0),
+                                    ]),
+                            ]),
 
-                SeoMetaSection::make(),
+                        Tab::make(__('cms.pages.tab.blocks'))
+                            ->icon(Heroicon::OutlinedSquares2x2)
+                            ->schema([
+                                Section::make(__('cms.pages.section.blocks'))
+                                    ->description(__('cms.pages.section.blocks_description'))
+                                    ->components([
+                                        Repeater::make('blocks')
+                                            ->label('')
+                                            ->relationship('blocks')
+                                            ->mutateRelationshipDataBeforeFillUsing(self::unpackDataForFill(...))
+                                            ->mutateRelationshipDataBeforeCreateUsing(self::packDataForSave(...))
+                                            ->mutateRelationshipDataBeforeSaveUsing(self::packDataForSave(...))
+                                            ->orderColumn('order_column')
+                                            ->reorderable()
+                                            ->collapsible()
+                                            ->collapsed()
+                                            ->cloneable()
+                                            ->itemLabel(fn (array $state): ?string =>
+                                                self::blockItemLabel($state)
+                                            )
+                                            ->components([
+                                                Select::make('type')
+                                                    ->label(__('cms.pages.block.type'))
+                                                    ->options(fn () => app(BlockRegistry::class)->selectOptions())
+                                                    ->searchable()
+                                                    ->required()
+                                                    ->native(false)
+                                                    ->live(),
+                                                Toggle::make('is_visible')
+                                                    ->label(__('cms.pages.block.is_visible'))
+                                                    ->default(true)
+                                                    ->inline(false),
 
-                Section::make(__('cms.pages.section.blocks'))
-                    ->description(__('cms.pages.section.blocks_description'))
-                    ->components([
-                        Repeater::make('blocks')
-                            ->label('')
-                            ->relationship('blocks')
-                            ->mutateRelationshipDataBeforeFillUsing(self::unpackDataForFill(...))
-                            ->mutateRelationshipDataBeforeCreateUsing(self::packDataForSave(...))
-                            ->mutateRelationshipDataBeforeSaveUsing(self::packDataForSave(...))
-                            ->orderColumn('order_column')
-                            ->reorderable()
-                            ->collapsible()
-                            ->collapsed()
-                            ->cloneable()
-                            ->itemLabel(fn (array $state): ?string =>
-                                self::blockItemLabel($state)
-                            )
-                            ->components([
-                                Select::make('type')
-                                    ->label(__('cms.pages.block.type'))
-                                    ->options(fn () => app(BlockRegistry::class)->selectOptions())
-                                    ->searchable()
-                                    ->required()
-                                    ->native(false)
-                                    ->live(),
-                                Toggle::make('is_visible')
-                                    ->label(__('cms.pages.block.is_visible'))
-                                    ->default(true)
-                                    ->inline(false),
+                                                // Typed schemas: one Group per registered type,
+                                                // visible only when that type is selected. Each
+                                                // Group's components are resolved at schema-
+                                                // build time so Filament caches the right
+                                                // children. Fields use flat state paths; the
+                                                // Repeater pack/unpack hooks above stuff them
+                                                // into and out of the page_blocks.data column.
+                                                ...self::typedFieldGroups(),
 
-                                // Typed schemas: one Group per registered type,
-                                // visible only when that type is selected. Each
-                                // Group's components are resolved at schema-
-                                // build time so Filament caches the right
-                                // children. Fields use flat state paths; the
-                                // Repeater pack/unpack hooks above stuff them
-                                // into and out of the page_blocks.data column.
-                                ...self::typedFieldGroups(),
+                                                // Generic editor: shown for block types without
+                                                // a registered schema. Its `data` key is the
+                                                // raw flat KeyValue blob and is also flattened
+                                                // and re-packed by the Repeater hooks.
+                                                KeyValue::make('data')
+                                                    ->label(__('cms.pages.block.data'))
+                                                    ->keyLabel(__('cms.pages.block.data_key'))
+                                                    ->valueLabel(__('cms.pages.block.data_value'))
+                                                    ->reorderable()
+                                                    ->columnSpanFull()
+                                                    ->visible(fn (Get $get): bool =>
+                                                        ! ($type = $get('type')) || ! app(BlockRegistry::class)->hasFieldsFor($type)
+                                                    ),
+                                            ])
+                                            ->defaultItems(0)
+                                            ->addActionLabel(__('cms.pages.block.add')),
+                                    ]),
+                            ]),
 
-                                // Generic editor: shown for block types without
-                                // a registered schema. Its `data` key is the
-                                // raw flat KeyValue blob and is also flattened
-                                // and re-packed by the Repeater hooks.
-                                KeyValue::make('data')
-                                    ->label(__('cms.pages.block.data'))
-                                    ->keyLabel(__('cms.pages.block.data_key'))
-                                    ->valueLabel(__('cms.pages.block.data_value'))
-                                    ->reorderable()
-                                    ->columnSpanFull()
-                                    ->visible(fn (Get $get): bool =>
-                                        ! ($type = $get('type')) || ! app(BlockRegistry::class)->hasFieldsFor($type)
-                                    ),
-                            ])
-                            ->defaultItems(0)
-                            ->addActionLabel(__('cms.pages.block.add')),
+                        Tab::make(__('cms.pages.tab.seo'))
+                            ->icon(Heroicon::OutlinedMagnifyingGlass)
+                            ->schema([
+                                SeoMetaSection::make(),
+                            ]),
                     ]),
             ]);
     }

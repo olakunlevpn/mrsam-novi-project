@@ -100,6 +100,11 @@ return [
             'singular' => 'Page',
             'plural'   => 'Pages',
         ],
+        'tab' => [
+            'details' => 'Details',
+            'blocks'  => 'Content Blocks',
+            'seo'     => 'SEO',
+        ],
         'section' => [
             'details'            => 'Page Details',
             'seo'                => 'SEO & Social',
