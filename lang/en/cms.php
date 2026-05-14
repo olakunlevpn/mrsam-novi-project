@@ -11,6 +11,25 @@ return [
         ],
     ],
 
+    'dashboard' => [
+        'stats' => [
+            'pages'                          => 'Published Pages',
+            'pages_description'              => 'Live on the site',
+            'posts'                          => 'Published Posts',
+            'posts_description'              => 'Articles visible to readers',
+            'products'                       => 'Published Products',
+            'products_description'           => 'Active catalog items',
+            'pending_comments'               => 'Pending Comments',
+            'pending_comments_description'   => 'Awaiting moderation',
+            'new_submissions'                => 'New Submissions',
+            'new_submissions_description'    => 'Unread contact messages',
+        ],
+        'posts_per_month' => [
+            'heading' => 'Posts published — last 6 months',
+            'label'   => 'Posts',
+        ],
+    ],
+
     'block_fields' => [
         'hero' => [
             'subtitle'    => 'Subtitle / eyebrow',
