@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use App\Filament\Schemas\SeoMetaSection;
+use App\Filament\Support\SlugField;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -19,17 +20,19 @@ class ProductForm
                 Section::make(__('cms.products.section.identity'))
                     ->columns(2)
                     ->components([
-                        TextInput::make('name')
-                            ->label(__('cms.products.field.name'))
-                            ->required()
-                            ->maxLength(191)
-                            ->live(onBlur: true),
-                        TextInput::make('slug')
-                            ->label(__('cms.products.field.slug'))
-                            ->required()
-                            ->alphaDash()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(191),
+                        SlugField::source(
+                            TextInput::make('name')
+                                ->label(__('cms.products.field.name'))
+                                ->required()
+                                ->maxLength(191),
+                        ),
+                        SlugField::slug(
+                            TextInput::make('slug')
+                                ->label(__('cms.products.field.slug'))
+                                ->required()
+                                ->unique(ignoreRecord: true)
+                                ->maxLength(191),
+                        ),
                         TextInput::make('sku')
                             ->label(__('cms.products.field.sku'))
                             ->maxLength(64),

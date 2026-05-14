@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Pages\Schemas;
 use App\Cms\BlockRegistry;
 use App\Cms\BlockSchemas;
 use App\Filament\Schemas\SeoMetaSection;
+use App\Filament\Support\SlugField;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
@@ -26,18 +27,20 @@ class PageForm
                 Section::make(__('cms.pages.section.details'))
                     ->columns(2)
                     ->components([
-                        TextInput::make('title')
-                            ->label(__('cms.pages.field.title'))
-                            ->required()
-                            ->maxLength(255)
-                            ->live(onBlur: true),
-                        TextInput::make('slug')
-                            ->label(__('cms.pages.field.slug'))
-                            ->required()
-                            ->maxLength(255)
-                            ->alphaDash()
-                            ->unique(ignoreRecord: true)
-                            ->helperText(__('cms.pages.help.slug')),
+                        SlugField::source(
+                            TextInput::make('title')
+                                ->label(__('cms.pages.field.title'))
+                                ->required()
+                                ->maxLength(255),
+                        ),
+                        SlugField::slug(
+                            TextInput::make('slug')
+                                ->label(__('cms.pages.field.slug'))
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(ignoreRecord: true)
+                                ->helperText(__('cms.pages.help.slug')),
+                        ),
                         Select::make('layout')
                             ->label(__('cms.pages.field.layout'))
                             ->options(self::layoutOptions())

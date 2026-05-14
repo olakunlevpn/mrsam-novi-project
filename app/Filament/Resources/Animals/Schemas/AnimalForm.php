@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Animals\Schemas;
 
 use App\Filament\Schemas\SeoMetaSection;
+use App\Filament\Support\SlugField;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -18,17 +19,19 @@ class AnimalForm
                 Section::make(__('cms.animals.model.singular'))
                     ->columns(2)
                     ->components([
-                        TextInput::make('name')
-                            ->label(__('cms.animals.field.name'))
-                            ->required()
-                            ->maxLength(191)
-                            ->live(onBlur: true),
-                        TextInput::make('slug')
-                            ->label(__('cms.animals.field.slug'))
-                            ->required()
-                            ->alphaDash()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(191),
+                        SlugField::source(
+                            TextInput::make('name')
+                                ->label(__('cms.animals.field.name'))
+                                ->required()
+                                ->maxLength(191),
+                        ),
+                        SlugField::slug(
+                            TextInput::make('slug')
+                                ->label(__('cms.animals.field.slug'))
+                                ->required()
+                                ->unique(ignoreRecord: true)
+                                ->maxLength(191),
+                        ),
                         Textarea::make('description')
                             ->label(__('cms.animals.field.description'))
                             ->rows(4)

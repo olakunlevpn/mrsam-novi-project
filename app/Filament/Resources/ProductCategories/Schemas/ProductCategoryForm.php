@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ProductCategories\Schemas;
 
+use App\Filament\Support\SlugField;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -20,17 +21,19 @@ class ProductCategoryForm
                     ->searchable()
                     ->preload()
                     ->native(false),
-                TextInput::make('name')
-                    ->label(__('cms.product_categories.field.name'))
-                    ->required()
-                    ->maxLength(191)
-                    ->live(onBlur: true),
-                TextInput::make('slug')
-                    ->label(__('cms.product_categories.field.slug'))
-                    ->required()
-                    ->alphaDash()
-                    ->maxLength(191)
-                    ->helperText(__('cms.pages.help.slug')),
+                SlugField::source(
+                    TextInput::make('name')
+                        ->label(__('cms.product_categories.field.name'))
+                        ->required()
+                        ->maxLength(191),
+                ),
+                SlugField::slug(
+                    TextInput::make('slug')
+                        ->label(__('cms.product_categories.field.slug'))
+                        ->required()
+                        ->maxLength(191)
+                        ->helperText(__('cms.pages.help.slug')),
+                ),
                 Textarea::make('description')
                     ->label(__('cms.product_categories.field.description'))
                     ->rows(3)

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Schemas\SeoMetaSection;
+use App\Filament\Support\SlugField;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -21,19 +22,21 @@ class PostForm
                 Section::make(__('cms.posts.section.details'))
                     ->columns(2)
                     ->components([
-                        TextInput::make('title')
-                            ->label(__('cms.posts.field.title'))
-                            ->required()
-                            ->maxLength(255)
-                            ->live(onBlur: true)
-                            ->columnSpanFull(),
-                        TextInput::make('slug')
-                            ->label(__('cms.posts.field.slug'))
-                            ->required()
-                            ->alphaDash()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(255)
-                            ->helperText(__('cms.posts.help.slug')),
+                        SlugField::source(
+                            TextInput::make('title')
+                                ->label(__('cms.posts.field.title'))
+                                ->required()
+                                ->maxLength(255)
+                                ->columnSpanFull(),
+                        ),
+                        SlugField::slug(
+                            TextInput::make('slug')
+                                ->label(__('cms.posts.field.slug'))
+                                ->required()
+                                ->unique(ignoreRecord: true)
+                                ->maxLength(255)
+                                ->helperText(__('cms.posts.help.slug')),
+                        ),
                         TextInput::make('cover_image')
                             ->label(__('cms.posts.field.cover_image'))
                             ->maxLength(500)
@@ -86,15 +89,18 @@ class PostForm
                             ->preload()
                             ->searchable()
                             ->createOptionForm([
-                                TextInput::make('name')
-                                    ->label(__('cms.tags.field.name'))
-                                    ->required()
-                                    ->maxLength(255),
-                                TextInput::make('slug')
-                                    ->label(__('cms.tags.field.slug'))
-                                    ->alphaDash()
-                                    ->unique('tags', 'slug')
-                                    ->maxLength(255),
+                                SlugField::source(
+                                    TextInput::make('name')
+                                        ->label(__('cms.tags.field.name'))
+                                        ->required()
+                                        ->maxLength(255),
+                                ),
+                                SlugField::slug(
+                                    TextInput::make('slug')
+                                        ->label(__('cms.tags.field.slug'))
+                                        ->unique('tags', 'slug')
+                                        ->maxLength(255),
+                                ),
                             ])
                             ->columnSpanFull(),
                         Toggle::make('allow_comments')
