@@ -286,6 +286,9 @@ return [
     'faqs' => [
         'nav'   => ['label' => 'FAQs'],
         'model' => ['singular' => 'FAQ', 'plural' => 'FAQs'],
+        'section' => [
+            'details' => 'FAQ Details',
+        ],
         'field' => [
             'category'     => 'Category',
             'question'     => 'Question',
@@ -299,6 +302,9 @@ return [
     'faq_categories' => [
         'nav'   => ['label' => 'FAQ Categories'],
         'model' => ['singular' => 'FAQ Category', 'plural' => 'FAQ Categories'],
+        'section' => [
+            'details' => 'Category Details',
+        ],
         'field' => [
             'name'         => 'Name',
             'slug'         => 'Slug',
@@ -349,6 +355,9 @@ return [
     'product_categories' => [
         'nav'   => ['label' => 'Product Categories'],
         'model' => ['singular' => 'Category', 'plural' => 'Product Categories'],
+        'section' => [
+            'details' => 'Category Details',
+        ],
         'field' => [
             'animal'         => 'Animal',
             'name'           => 'Name',

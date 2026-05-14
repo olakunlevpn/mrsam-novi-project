@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class FaqForm
@@ -14,33 +15,38 @@ class FaqForm
     {
         return $schema
             ->components([
-                Select::make('faq_category_id')
-                    ->label(__('cms.faqs.field.category'))
-                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->required()
-                    ->native(false),
-                TextInput::make('question')
-                    ->label(__('cms.faqs.field.question'))
-                    ->required()
-                    ->maxLength(500)
-                    ->columnSpanFull(),
-                Textarea::make('answer')
-                    ->label(__('cms.faqs.field.answer'))
-                    ->required()
-                    ->rows(6)
-                    ->autosize()
-                    ->columnSpanFull(),
-                TextInput::make('order_column')
-                    ->label(__('cms.faqs.field.order_column'))
-                    ->required()
-                    ->numeric()
-                    ->default(0)
-                    ->minValue(0),
-                Toggle::make('is_published')
-                    ->label(__('cms.faqs.field.is_published'))
-                    ->default(true),
+                Section::make(__('cms.faqs.section.details'))
+                    ->columns(2)
+                    ->components([
+                        Select::make('faq_category_id')
+                            ->label(__('cms.faqs.field.category'))
+                            ->relationship('category', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required()
+                            ->native(false),
+                        TextInput::make('order_column')
+                            ->label(__('cms.faqs.field.order_column'))
+                            ->required()
+                            ->numeric()
+                            ->default(0)
+                            ->minValue(0),
+                        TextInput::make('question')
+                            ->label(__('cms.faqs.field.question'))
+                            ->required()
+                            ->maxLength(500)
+                            ->columnSpanFull(),
+                        Textarea::make('answer')
+                            ->label(__('cms.faqs.field.answer'))
+                            ->required()
+                            ->rows(6)
+                            ->autosize()
+                            ->columnSpanFull(),
+                        Toggle::make('is_published')
+                            ->label(__('cms.faqs.field.is_published'))
+                            ->default(true)
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }
