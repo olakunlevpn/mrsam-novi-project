@@ -8,7 +8,7 @@
     style="background:#fff;border:1px solid #e9ecef;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.04);">
     @if ($post->cover_image)
         <a href="{{ route('blog.show', $post) }}" class="blog-card__image d-block">
-            <img src="{{ $post->cover_image }}" alt="{{ $post->title }}"
+            <img src="{{ $post->cover_image_url }}" alt="{{ $post->title }}"
                 style="width:100%;height:220px;object-fit:cover;display:block;">
         </a>
     @endif

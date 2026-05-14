@@ -2,6 +2,7 @@
 
 namespace App\Filament\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -41,10 +42,14 @@ class SeoMetaSection
                 TextInput::make('og_title')
                     ->label(__('cms.pages.seo.og_title'))
                     ->maxLength(191),
-                TextInput::make('og_image')
+                FileUpload::make('og_image')
                     ->label(__('cms.pages.seo.og_image'))
-                    ->url()
-                    ->maxLength(500),
+                    ->image()
+                    ->disk('public')
+                    ->directory('seo/og')
+                    ->imageEditor()
+                    ->maxSize(4096)
+                    ->columnSpanFull(),
                 Textarea::make('og_description')
                     ->label(__('cms.pages.seo.og_description'))
                     ->maxLength(500)

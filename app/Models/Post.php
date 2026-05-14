@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasSeo;
+use App\Support\AssetUrl;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -44,6 +45,16 @@ class Post extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Browser-loadable URL for the post's cover image. Routes uploaded
+     * paths through the public disk while leaving legacy absolute paths
+     * and external URLs untouched.
+     */
+    public function getCoverImageUrlAttribute(): ?string
+    {
+        return AssetUrl::resolve($this->cover_image);
     }
 
     /**

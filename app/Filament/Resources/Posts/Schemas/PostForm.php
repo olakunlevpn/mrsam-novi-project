@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Posts\Schemas;
 use App\Filament\Schemas\SeoMetaSection;
 use App\Filament\Support\SlugField;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -37,11 +38,15 @@ class PostForm
                                 ->maxLength(255)
                                 ->helperText(__('cms.posts.help.slug')),
                         ),
-                        TextInput::make('cover_image')
+                        FileUpload::make('cover_image')
                             ->label(__('cms.posts.field.cover_image'))
-                            ->maxLength(500)
-                            ->placeholder('/assets/images/blog/cover.jpg')
-                            ->helperText(__('cms.posts.help.cover_image')),
+                            ->image()
+                            ->disk('public')
+                            ->directory('posts/covers')
+                            ->imageEditor()
+                            ->maxSize(4096)
+                            ->helperText(__('cms.posts.help.cover_image'))
+                            ->columnSpanFull(),
                         Textarea::make('excerpt')
                             ->label(__('cms.posts.field.excerpt'))
                             ->rows(3)

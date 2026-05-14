@@ -49,8 +49,8 @@
         @if ($seo->og_description)
             <meta property="og:description" content="{{ $seo->og_description }}" />
         @endif
-        @if ($seo->og_image)
-            <meta property="og:image" content="{{ $seo->og_image }}" />
+        @if ($seo->og_image_url)
+            <meta property="og:image" content="{{ $seo->og_image_url }}" />
         @endif
         <meta property="og:type" content="website" />
         @if ($seo->canonical_url)

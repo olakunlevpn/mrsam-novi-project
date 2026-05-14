@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasSeo;
+use App\Support\AssetUrl;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -51,5 +52,14 @@ class Animal extends Model implements HasMedia
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Browser-loadable URL for the hero image. Resolves uploaded paths
+     * via the public disk and passes legacy absolute paths through.
+     */
+    public function getHeroImageUrlAttribute(): ?string
+    {
+        return AssetUrl::resolve($this->hero_image);
     }
 }

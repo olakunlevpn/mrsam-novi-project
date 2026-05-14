@@ -48,6 +48,7 @@
                     @foreach ($partners as $partner)
                         @php
                             $logo  = is_array($partner) ? ($partner['logo'] ?? null) : $partner;
+                            $logo  = \App\Support\AssetUrl::resolve($logo);
                             $url   = is_array($partner) ? ($partner['url']  ?? null) : null;
                             $alt   = is_array($partner) ? ($partner['alt']  ?? 'Partner Logo') : 'Partner Logo';
                             $href  = $url ?: route('products');

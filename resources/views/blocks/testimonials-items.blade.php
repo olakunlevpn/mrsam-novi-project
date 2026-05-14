@@ -70,7 +70,7 @@
                                 </div><!-- /.testimonials-card__content -->
                                 <div class="testimonials-card__top">
                                     <div class="testimonials-card__image">
-                                        <img loading="lazy" src="{{ $item['image'] ?? '' }}" alt="{{ $item['name'] ?? '' }}">
+                                        <img loading="lazy" src="{{ \App\Support\AssetUrl::resolve($item['image'] ?? null, '') ?? '' }}" alt="{{ $item['name'] ?? '' }}">
                                     </div><!-- /.testimonials-card__image -->
 
                                     <div class="testimonials-card__top__left">

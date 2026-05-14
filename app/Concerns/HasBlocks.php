@@ -2,6 +2,7 @@
 
 namespace App\Concerns;
 
+use App\Support\AssetUrl;
 use Illuminate\Support\Collection;
 
 /**
@@ -51,6 +52,20 @@ trait HasBlocks
     {
         $data = $this->blockData($type) ?? [];
         return data_get($data, $key, $default);
+    }
+
+    /**
+     * Same as `block()` but resolves the returned value through AssetUrl
+     * so image fields stored as public-disk paths render as URLs. Use
+     * for `background_image`, `image_vet`, partner logos and similar.
+     */
+    public function blockAsset(string $type, string $key, ?string $default = null): ?string
+    {
+        $raw = $this->block($type, $key);
+        if (! is_string($raw) || $raw === '') {
+            return $default;
+        }
+        return AssetUrl::resolve($raw, $default);
     }
 
     /**

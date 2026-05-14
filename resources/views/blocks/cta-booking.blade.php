@@ -1,5 +1,5 @@
         <section class="free-booking-one">
-            <div class="free-booking-one__bg" style="background-image: url('{{ $page->block('cta-booking', 'background_image', '/assets/images/shapes/booking-bg1-1.jpg') }}');">
+            <div class="free-booking-one__bg" style="background-image: url('{{ $page->blockAsset('cta-booking', 'background_image', '/assets/images/shapes/booking-bg1-1.jpg') }}');">
             </div>
             <div class="container">
                 <div class="row">
@@ -70,11 +70,11 @@
                         <div class="grdeen-stretch-element-inside-column">
                             <div class="free-booking-one__image">
                                 <div class="free-booking-one__image__shape">
-                                    <img loading="lazy" src="{{ $page->block('cta-booking', 'image_bg', '/assets/images/generated/booking_bg.png') }}" alt="Novi">
+                                    <img loading="lazy" src="{{ $page->blockAsset('cta-booking', 'image_bg', '/assets/images/generated/booking_bg.png') }}" alt="Novi">
                                 </div>
                                 <div class="free-booking-one__image__maskingimg  wow fadeInRight"
                                     data-wow-delay="300ms">
-                                    <img loading="lazy" src="{{ $page->block('cta-booking', 'image_vet', '/assets/images/generated/booking_vet1.png') }}" alt="Consultation">
+                                    <img loading="lazy" src="{{ $page->blockAsset('cta-booking', 'image_vet', '/assets/images/generated/booking_vet1.png') }}" alt="Consultation">
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\AssetUrl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -32,5 +33,14 @@ class SeoMeta extends Model
     public function seoable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Browser-loadable og:image URL. Routes uploaded paths through the
+     * public disk while passing absolute URLs straight through.
+     */
+    public function getOgImageUrlAttribute(): ?string
+    {
+        return AssetUrl::resolve($this->og_image);
     }
 }

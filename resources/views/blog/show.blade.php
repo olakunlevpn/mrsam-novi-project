@@ -25,8 +25,8 @@
 
     <meta property="og:title" content="{{ $seo?->og_title ?? $post->title }}" />
     <meta property="og:description" content="{{ $seo?->og_description ?? $metaDescription }}" />
-    @if ($seo?->og_image ?? $post->cover_image)
-        <meta property="og:image" content="{{ $seo?->og_image ?? $post->cover_image }}" />
+    @if ($seo?->og_image_url ?? $post->cover_image_url)
+        <meta property="og:image" content="{{ $seo?->og_image_url ?? $post->cover_image_url }}" />
     @endif
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -46,8 +46,8 @@
     --}}
     @if ($post->published_at)
         @php
-            $articleImage = $seo?->og_image
-                ?? $post->cover_image
+            $articleImage = $seo?->og_image_url
+                ?? $post->cover_image_url
                 ?? url('/assets/images/backgrounds/about.png');
             $articleAuthor = $post->author?->name ?? __('blog.unknown_author');
             $articleDescription = $seo?->meta_description ?? $metaDescription;
@@ -139,7 +139,7 @@
 @section('content')
     <section class="page-header">
         <div class="page-header__bg"
-            style="background-image: url('{{ $post->cover_image ?? '/assets/images/backgrounds/about.png' }}');"></div>
+            style="background-image: url('{{ $post->cover_image_url ?? '/assets/images/backgrounds/about.png' }}');"></div>
         <div class="page-header__shape wow fadeInUp" data-wow-delay="200ms"></div>
         <div class="page-header__overlay"></div>
         <div class="container">

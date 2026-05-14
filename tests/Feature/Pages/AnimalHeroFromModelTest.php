@@ -7,11 +7,18 @@ use App\Models\Page;
 use Database\Seeders\AnimalSeeder;
 use Database\Seeders\PageSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class AnimalHeroFromModelTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Storage::fake('public');
+    }
 
     public function test_default_hero_image_renders_when_no_animal_record(): void
     {
@@ -78,29 +85,29 @@ class AnimalHeroFromModelTest extends TestCase
         $this->assertStringNotContainsString('/animal-driven.jpg',  $headerHtml);
     }
 
-    public function test_animal_hero_image_without_leading_slash_is_normalized(): void
+    public function test_relative_hero_image_resolves_to_storage_url(): void
     {
         $this->seed(AnimalSeeder::class);
 
         $cattle = Animal::where('slug', 'cattle')->first();
-        // Seeder stores without leading slash.
-        $cattle->update(['hero_image' => 'assets/images/relative-path.jpg']);
+        // FileUpload writes relative paths like "animals/hero/foo.jpg".
+        $cattle->update(['hero_image' => 'animals/hero/relative-path.jpg']);
 
         $this->get('/cattle')
             ->assertOk()
-            ->assertSee('url(/assets/images/relative-path.jpg)', false);
+            ->assertSee('/storage/animals/hero/relative-path.jpg', false);
     }
 
     public function test_seeded_animal_overrides_default_hero_image(): void
     {
         $this->seed(AnimalSeeder::class);
 
-        // The seeded animal hero_image is the same path as the hardcoded
-        // default, but with no leading slash. The partial should normalize
-        // and produce the same URL.
+        // The seeder copies the source onto the public disk and stores the
+        // relative path; the partial resolves that into a /storage URL.
         $this->get('/poultry')
             ->assertOk()
-            ->assertSee('/assets/images/backgrounds/hens-factory-chicken-cages.jpg', false);
+            ->assertSee('/storage/animals/hero/poultry-hens-factory-chicken-cages.jpg', false)
+            ->assertDontSee('/assets/images/backgrounds/hens-factory-chicken-cages.jpg', false);
     }
 
     public function test_non_animal_pages_do_not_break_when_animal_var_missing(): void

@@ -1,5 +1,5 @@
         <section class="service-one">
-            <div class="service-one__bg" style="background-image:url('{{ $page->block('services-summary', 'background_image', '/assets/images/generated/services_bg.png') }}')">
+            <div class="service-one__bg" style="background-image:url('{{ $page->blockAsset('services-summary', 'background_image', '/assets/images/generated/services_bg.png') }}')">
             </div>
             <div class="container">
                 <div class="row">

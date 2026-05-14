@@ -40,7 +40,6 @@ class PageSeoTest extends TestCase
                     'canonical_url'    => 'https://novi-agro.com/promo',
                     'og_title'         => 'Spring Promo',
                     'og_description'   => 'Save on spring feed deals.',
-                    'og_image'         => 'https://novi-agro.com/promo.png',
                     'noindex'          => false,
                     'robots'           => 'index, follow',
                 ],

@@ -2,6 +2,7 @@
 
 namespace App\Cms;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -65,10 +66,13 @@ class BlockSchemas
                 ->label(__('cms.block_fields.page_header.title'))
                 ->maxLength(255)
                 ->columnSpanFull(),
-            TextInput::make('background_image')
+            FileUpload::make('background_image')
                 ->label(__('cms.block_fields.page_header.background_image'))
-                ->maxLength(500)
-                ->placeholder('/assets/images/backgrounds/...')
+                ->image()
+                ->disk('public')
+                ->directory('blocks/page-header')
+                ->imageEditor()
+                ->maxSize(8192)
                 ->columnSpanFull(),
         ];
     }
@@ -112,12 +116,22 @@ class BlockSchemas
                 ->url()
                 ->maxLength(500)
                 ->columnSpanFull(),
-            TextInput::make('background_image')
+            FileUpload::make('background_image')
                 ->label(__('cms.block_fields.cta_booking.background_image'))
-                ->maxLength(500),
-            TextInput::make('image_vet')
+                ->image()
+                ->disk('public')
+                ->directory('blocks/cta-booking')
+                ->imageEditor()
+                ->maxSize(8192)
+                ->columnSpanFull(),
+            FileUpload::make('image_vet')
                 ->label(__('cms.block_fields.cta_booking.image_vet'))
-                ->maxLength(500),
+                ->image()
+                ->disk('public')
+                ->directory('blocks/cta-booking')
+                ->imageEditor()
+                ->maxSize(4096)
+                ->columnSpanFull(),
         ];
     }
 
@@ -137,10 +151,14 @@ class BlockSchemas
             Repeater::make('partners')
                 ->label(__('cms.block_fields.partners_carousel.partners'))
                 ->components([
-                    TextInput::make('logo')
+                    FileUpload::make('logo')
                         ->label(__('cms.block_fields.partners_carousel.logo'))
                         ->required()
-                        ->maxLength(500),
+                        ->image()
+                        ->disk('public')
+                        ->directory('blocks/partners')
+                        ->imageEditor()
+                        ->maxSize(2048),
                     TextInput::make('url')
                         ->label(__('cms.block_fields.partners_carousel.url'))
                         ->url()
@@ -184,9 +202,13 @@ class BlockSchemas
                     TextInput::make('designation')
                         ->label(__('cms.block_fields.testimonials.designation'))
                         ->maxLength(191),
-                    TextInput::make('image')
+                    FileUpload::make('image')
                         ->label(__('cms.block_fields.testimonials.image'))
-                        ->maxLength(500),
+                        ->image()
+                        ->disk('public')
+                        ->directory('blocks/testimonials')
+                        ->imageEditor()
+                        ->maxSize(4096),
                     Select::make('rating')
                         ->label(__('cms.block_fields.testimonials.rating'))
                         ->options([1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'])

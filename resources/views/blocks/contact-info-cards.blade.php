@@ -6,7 +6,7 @@
                 <p class="contact-one__text">{{ $page->block('contact-info-cards', 'subtitle', 'You can also reach out to us by phone or email for any enquiries') }}</p>
                 <!-- /.contact-one__text -->
                 <div class="contact-one__info-wrapper"
-                    style="background-image: url({{ $page->block('contact-info-cards', 'background_image', '/assets/images/shapes/contact-bg-1.png') }});">
+                    style="background-image: url({{ $page->blockAsset('contact-info-cards', 'background_image', '/assets/images/shapes/contact-bg-1.png') }});">
                     <div class="row gutter-y-30">
                         <div class="col-lg-4 col-md-6">
                             <div class="contact-one__info">
