@@ -197,14 +197,31 @@ button.fi-color-primary.fi-btn:hover {
 }
 
 /* Table header tinted to match the sidebar so the panel reads as one
-   continuous surface instead of a white slab next to a green rail. */
+   continuous surface instead of a white slab next to a green rail. The
+   selection checkbox and per-row action cells also live in the header
+   row, so tint those too or you get a white notch on either edge. */
 .fi-ta thead,
-.fi-ta-header-cell {
+.fi-ta thead > tr,
+.fi-ta thead > tr > th,
+.fi-ta-header-cell,
+.fi-ta-actions-header-cell,
+.fi-ta-empty-header-cell {
     background-color: var(--novi-50) !important;
 }
-.fi-ta-header-cell {
+.fi-ta-header-cell,
+.fi-ta-actions-header-cell {
     color: var(--novi-900) !important;
     border-bottom-color: var(--novi-100) !important;
+}
+
+/* Row hover picks up the same tint so it visually links to the header
+   the row's columns belong to. */
+.fi-ta-row:hover,
+.fi-ta tbody > tr:hover,
+.fi-ta tbody > tr:hover > .fi-ta-cell,
+.fi-ta tbody > tr:hover > .fi-ta-selection-cell,
+.fi-ta tbody > tr:hover > .fi-ta-actions {
+    background-color: var(--novi-50) !important;
 }
 CSS;
 
