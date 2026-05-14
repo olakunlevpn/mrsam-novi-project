@@ -149,17 +149,25 @@ button.fi-color-primary.fi-btn:hover {
     letter-spacing: 0.04em;
 }
 
-/* Default + hover state for sidebar menu items. */
+/* Default state for sidebar menu items. */
 .fi-sidebar-item-btn {
-    color: var(--novi-900) !important;
-}
-.fi-sidebar-item-btn:hover {
-    background-color: var(--novi-100) !important;
     color: var(--novi-900) !important;
 }
 .fi-sidebar-item-btn .fi-icon,
 .fi-sidebar-item-btn svg {
     color: var(--novi-700) !important;
+}
+
+/* Hover: solid brand green with white text + icon. */
+.fi-sidebar-item-btn:hover,
+.fi-sidebar-item > .fi-sidebar-item-btn:hover {
+    background-color: var(--novi-600) !important;
+    color: #ffffff !important;
+}
+.fi-sidebar-item-btn:hover .fi-icon,
+.fi-sidebar-item-btn:hover svg,
+.fi-sidebar-item-btn:hover .fi-sidebar-item-label {
+    color: #ffffff !important;
 }
 
 /* Active item: solid brand green pill with white text. */
@@ -175,8 +183,10 @@ button.fi-color-primary.fi-btn:hover {
 }
 .fi-sidebar-item.fi-active .fi-icon,
 .fi-sidebar-item.fi-active svg,
+.fi-sidebar-item.fi-active .fi-sidebar-item-label,
 .fi-sidebar-item-btn.fi-active .fi-icon,
-.fi-sidebar-item-btn.fi-active svg {
+.fi-sidebar-item-btn.fi-active svg,
+.fi-sidebar-item-btn.fi-active .fi-sidebar-item-label {
     color: #ffffff !important;
 }
 
@@ -184,6 +194,17 @@ button.fi-color-primary.fi-btn:hover {
 .fi-topbar-open-sidebar-btn:hover,
 .fi-sidebar-close-collapse-sidebar-btn:hover {
     background-color: var(--novi-100) !important;
+}
+
+/* Table header tinted to match the sidebar so the panel reads as one
+   continuous surface instead of a white slab next to a green rail. */
+.fi-ta thead,
+.fi-ta-header-cell {
+    background-color: var(--novi-50) !important;
+}
+.fi-ta-header-cell {
+    color: var(--novi-900) !important;
+    border-bottom-color: var(--novi-100) !important;
 }
 CSS;
 
