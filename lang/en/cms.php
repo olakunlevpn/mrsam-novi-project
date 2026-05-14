@@ -182,7 +182,7 @@ return [
             'footer_gallery_title'       => 'Gallery widget heading',
             'footer_products_title'      => 'Products widget heading',
             'footer_gallery_images'      => 'Gallery images',
-            'footer_gallery_src'         => 'Image URL',
+            'footer_gallery_src'         => 'Image',
             'footer_gallery_alt'         => 'Alt text',
             'footer_gallery_add'         => 'Add image',
         ],

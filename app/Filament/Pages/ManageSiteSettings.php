@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\View\Composers\SiteComposer;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -95,11 +96,14 @@ class ManageSiteSettings extends Page implements HasForms
             return Repeater::make($name)
                 ->label(__($meta['label']))
                 ->components([
-                    TextInput::make('src')
+                    FileUpload::make('src')
                         ->label(__('cms.site_settings.field.footer_gallery_src'))
                         ->required()
-                        ->maxLength(500)
-                        ->placeholder('/storage/footer/gallery-1.jpg'),
+                        ->image()
+                        ->disk('public')
+                        ->directory('footer/gallery')
+                        ->imageEditor()
+                        ->maxSize(4096),
                     TextInput::make('alt')
                         ->label(__('cms.site_settings.field.footer_gallery_alt'))
                         ->maxLength(191)

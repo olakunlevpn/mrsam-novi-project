@@ -15,6 +15,17 @@
             // the editor never picked.
             $footerGalleryItems = collect($settings['footer.gallery_images'] ?? [])
                 ->filter(fn ($entry) => is_array($entry) && ! empty($entry['src']))
+                ->map(function (array $entry): array {
+                    $raw = $entry['src'];
+                    // Absolute URL or absolute web path: render as-is so legacy
+                    // hardcoded entries keep working. Relative paths are
+                    // interpreted as public-disk keys written by FileUpload
+                    // or by SettingSeeder.
+                    $entry['src'] = preg_match('#^(https?:)?//#i', $raw) === 1 || str_starts_with($raw, '/')
+                        ? $raw
+                        : \Illuminate\Support\Facades\Storage::disk('public')->url($raw);
+                    return $entry;
+                })
                 ->values();
 
             // SiteComposer injects $footerCategories / $footerProducts as

@@ -4,9 +4,32 @@ namespace Database\Seeders;
 
 use App\Models\Setting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SettingSeeder extends Seeder
 {
+    /**
+     * Footer gallery files to copy into the public disk, ordered by the
+     * sequence they should appear in the widget. Each tuple is
+     * [source path under public/, alt text]. Files are copied to
+     * storage/app/public/footer/gallery/<basename> so the Settings page
+     * sees them as proper FileUpload values, indistinguishable from a
+     * real admin upload.
+     *
+     * @var array<int, array{0: string, 1: string}>
+     */
+    private const GALLERY_SOURCES = [
+        ['assets/images/generated/gallery_cattle.png',  'Quality Cattle'],
+        ['assets/images/generated/gallery_poultry.png', 'Modern Poultry'],
+        ['assets/images/generated/gallery_pigs.png',    'Swine Care'],
+        ['assets/images/generated/gallery_feed.png',    'Premium Feed'],
+        ['assets/images/generated/gallery_support.png', 'Expert Support'],
+        ['assets/images/generated/gallery_pasture.png', 'Sustainable Pasture'],
+    ];
+
+    private const GALLERY_DESTINATION = 'footer/gallery';
+
     public function run(): void
     {
         $settings = [
@@ -22,7 +45,7 @@ class SettingSeeder extends Seeder
             ['footer.categories_title','Categories',                                             'footer'],
             ['footer.gallery_title',   'Gallery',                                                'footer'],
             ['footer.products_title',  'Products',                                               'footer'],
-            ['footer.gallery_images',  self::defaultGalleryImages(),                             'footer'],
+            ['footer.gallery_images',  $this->prepareGalleryImages(),                            'footer'],
         ];
 
         foreach ($settings as [$key, $value, $group]) {
@@ -31,21 +54,33 @@ class SettingSeeder extends Seeder
     }
 
     /**
-     * Seed the original hardcoded gallery thumbnails so the footer widget
-     * renders out-of-the-box on a fresh install. Admin can edit or clear the
-     * list from the Site Settings page.
+     * Copy each source thumbnail onto the public disk so the saved value
+     * mirrors what Filament's FileUpload component writes when an admin
+     * uploads a file. Idempotent: an existing destination file is reused
+     * and re-seeding preserves the path the admin sees.
      *
      * @return array<int, array{src: string, alt: string}>
      */
-    private static function defaultGalleryImages(): array
+    private function prepareGalleryImages(): array
     {
-        return [
-            ['src' => '/assets/images/generated/gallery_cattle.png',  'alt' => 'Quality Cattle'],
-            ['src' => '/assets/images/generated/gallery_poultry.png', 'alt' => 'Modern Poultry'],
-            ['src' => '/assets/images/generated/gallery_pigs.png',    'alt' => 'Swine Care'],
-            ['src' => '/assets/images/generated/gallery_feed.png',    'alt' => 'Premium Feed'],
-            ['src' => '/assets/images/generated/gallery_support.png', 'alt' => 'Expert Support'],
-            ['src' => '/assets/images/generated/gallery_pasture.png', 'alt' => 'Sustainable Pasture'],
-        ];
+        $items = [];
+        foreach (self::GALLERY_SOURCES as [$source, $alt]) {
+            $absolute = public_path($source);
+            $destPath = self::GALLERY_DESTINATION . '/' . basename($source);
+
+            if (Storage::disk('public')->exists($destPath)) {
+                $items[] = ['src' => $destPath, 'alt' => $alt];
+                continue;
+            }
+
+            if (! File::exists($absolute)) {
+                continue;
+            }
+
+            Storage::disk('public')->put($destPath, File::get($absolute));
+            $items[] = ['src' => $destPath, 'alt' => $alt];
+        }
+
+        return $items;
     }
 }
