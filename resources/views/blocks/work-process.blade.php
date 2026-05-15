@@ -86,7 +86,7 @@
                             </div>
                             <div class="work-process-one__col__info text-center">
                                 <h4 class="work-process-one__col__title">{{ $page->block('work-process', 'step_4_title', 'Logistics') }}</h4>
-                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_4_text', 'Fast and reliable delivery nationwide, ensuring your supplies arrive when you need them.') }}</p>
+                                <p class="work-process-one__col__text">{{ $page->block('work-process', 'step_4_text', 'Fast reliable delivery, ensuring your supplies arrive when you need them.') }}</p>
                             </div>
                             <div class="work-process-one__col__shapebg"></div>
                         </div>
