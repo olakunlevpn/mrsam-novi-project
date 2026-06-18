@@ -11,6 +11,12 @@ use Illuminate\Validation\Rule;
 class StoreCommentRequest extends FormRequest
 {
     /**
+     * Minimum seconds the comment form must stay open before submit. Catches
+     * instant bot autofill without rejecting genuine users — keep it small.
+     */
+    private const MIN_FILL_SECONDS = 5;
+
+    /**
      * Only verified users can post on published posts whose owner has not
      * closed comments. Anything else short-circuits at the policy gate so the
      * controller never has to repeat the check.
@@ -73,11 +79,11 @@ class StoreCommentRequest extends FormRequest
             '_hp_email' => ['nullable', 'string', 'max:0'],
 
             // Minimum-fill-time gate: form rendered at this unix timestamp must
-            // be at least 60 seconds old when the POST arrives.
+            // be at least MIN_FILL_SECONDS old when the POST arrives.
             '_form_loaded_at' => [
                 'required',
                 'integer',
-                'lte:'.(time() - 60),
+                'lte:'.(time() - self::MIN_FILL_SECONDS),
             ],
         ];
     }
