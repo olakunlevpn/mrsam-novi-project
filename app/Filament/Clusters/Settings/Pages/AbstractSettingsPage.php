@@ -57,7 +57,13 @@ abstract class AbstractSettingsPage extends Page implements HasForms
         $values = [];
         foreach ($this->fieldDefinitions() as $group => $fields) {
             foreach ($fields as $key => $meta) {
-                $values[$this->flatKey($group, $key)] = Setting::get("{$group}.{$key}");
+                // Fall back to the field's declared default when the row is
+                // unset, so toggles/selects display the value the app actually
+                // uses (e.g. moderation defaults on) instead of appearing off.
+                $values[$this->flatKey($group, $key)] = Setting::get(
+                    "{$group}.{$key}",
+                    $meta['default'] ?? null,
+                );
             }
         }
         $this->form->fill($values);

@@ -92,6 +92,15 @@ class SettingsClusterTest extends TestCase
         $this->assertFalse((bool) Setting::get('comments.moderation'));
     }
 
+    public function test_moderation_toggle_shows_default_on_when_unset(): void
+    {
+        Setting::query()->where('key', 'comments.moderation')->delete();
+
+        Livewire::actingAs($this->admin)
+            ->test(ManageComments::class)
+            ->assertSet('data.comments__moderation', true);
+    }
+
     public function test_branding_page_accepts_logo_and_favicon_uploads(): void
     {
         $logo    = UploadedFile::fake()->image('logo.png',  240, 80);
