@@ -36,6 +36,26 @@ class SiteComposer
     public const FOOTER_PRODUCTS_KEY = 'site.footer_products';
 
     /**
+     * Supported social profiles in display order, each mapped to its
+     * FontAwesome brand icon (all present in the vendored icon set) and a
+     * human label used for accessibility. A profile renders on the frontend
+     * only when its `social.<key>` setting holds a non-empty URL.
+     *
+     * @var array<string, array{icon: string, name: string}>
+     */
+    public const SOCIAL_LINKS = [
+        'facebook'  => ['icon' => 'fab fa-facebook-f',     'name' => 'Facebook'],
+        'instagram' => ['icon' => 'fab fa-instagram',      'name' => 'Instagram'],
+        'twitter'   => ['icon' => 'fab fa-twitter',        'name' => 'X (Twitter)'],
+        'linkedin'  => ['icon' => 'fab fa-linkedin-in',    'name' => 'LinkedIn'],
+        'youtube'   => ['icon' => 'fab fa-youtube',        'name' => 'YouTube'],
+        'tiktok'    => ['icon' => 'fab fa-tiktok',         'name' => 'TikTok'],
+        'whatsapp'  => ['icon' => 'fab fa-whatsapp',       'name' => 'WhatsApp'],
+        'telegram'  => ['icon' => 'fab fa-telegram-plane', 'name' => 'Telegram'],
+        'pinterest' => ['icon' => 'fab fa-pinterest-p',    'name' => 'Pinterest'],
+    ];
+
+    /**
      * @var array<string, mixed>|null
      */
     private static ?array $settingsCache = null;
@@ -48,9 +68,39 @@ class SiteComposer
     public function compose(View $view): void
     {
         $view->with('settings',         $this->settings());
+        $view->with('socials',          $this->socials());
         $view->with('menus',            $this->menus());
         $view->with('footerCategories', $this->footerCategories());
         $view->with('footerProducts',   $this->footerProducts());
+    }
+
+    /**
+     * Non-empty social profiles in display order, ready to render. Each entry
+     * is {url, icon, name}. Profiles whose `social.<key>` setting is blank are
+     * omitted, so an unset profile never shows on the frontend.
+     *
+     * @return array<int, array{url: string, icon: string, name: string}>
+     */
+    private function socials(): array
+    {
+        $settings = $this->settings();
+        $out = [];
+
+        foreach (self::SOCIAL_LINKS as $key => $meta) {
+            $url = trim((string) ($settings["social.{$key}"] ?? ''));
+
+            if ($url === '') {
+                continue;
+            }
+
+            $out[] = [
+                'url'  => $url,
+                'icon' => $meta['icon'],
+                'name' => $meta['name'],
+            ];
+        }
+
+        return $out;
     }
 
     /**

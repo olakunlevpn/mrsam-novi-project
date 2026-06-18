@@ -5,8 +5,6 @@
             $brandParts = explode(' ', trim($brandName), 2);
             $contactEml = $settings['contact.email']    ?? 'info@novi-agro.com';
             $contactPhn = $settings['contact.phone']    ?? '+2347041041756';
-            $socialFb   = $settings['social.facebook']  ?? 'https://www.facebook.com/profile.php?id=100077163775495';
-            $socialIg   = $settings['social.instagram'] ?? 'https://www.instagram.com/novi_agroltd/';
 
             $footerCategoriesTitle = $settings['footer.categories_title'] ?? __('site.footer.categories');
             $footerGalleryTitle    = $settings['footer.gallery_title']    ?? __('site.footer.gallery');
@@ -132,10 +130,10 @@
                         <div class="main-footer__social-row">
                             <p class="main-footer__social-row-text">Social</p>
                             <ul class="main-footer__social-list">
-                                <li><a href="{{ $socialFb }}" target="_blank"
-                                        rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="{{ $socialIg }}" target="_blank"
-                                        rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                                @foreach ($socials as $social)
+                                    <li><a href="{{ $social['url'] }}" target="_blank" rel="noopener noreferrer"
+                                            aria-label="{{ $social['name'] }}"><i class="{{ $social['icon'] }}"></i></a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div><!-- /.main-footer__inner -->
@@ -170,15 +168,12 @@
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__social">
-                <a href="{{ $socialFb }}" target="_blank"
-                    rel="noopener noreferrer">
-                    <i class="fab fa-facebook-f"></i>
-                    <span class="sr-only">Facebook</span>
-                </a>
-                <a href="{{ $socialIg }}" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
-                    <span class="sr-only">Instagram</span>
-                </a>
+                @foreach ($socials as $social)
+                    <a href="{{ $social['url'] }}" target="_blank" rel="noopener noreferrer">
+                        <i class="{{ $social['icon'] }}"></i>
+                        <span class="sr-only">{{ $social['name'] }}</span>
+                    </a>
+                @endforeach
             </div><!-- /.mobile-nav__social -->
         </div>
         <!-- /.mobile-nav__content -->

@@ -4,8 +4,6 @@
         $contactAdr = $settings['contact.address'] ?? 'New Garage, Ibadan.';
         $contactEml = $settings['contact.email']   ?? 'info@novi-agro.com';
         $contactPhn = $settings['contact.phone']   ?? '+2347041041756';
-        $socialFb   = $settings['social.facebook'] ?? 'https://www.facebook.com/profile.php?id=100077163775495';
-        $socialIg   = $settings['social.instagram'] ?? 'https://www.instagram.com/novi_agroltd/';
     @endphp
     <div class="page-wrapper">
         <div class="topbar-one topbar-one--one_only">
@@ -50,15 +48,12 @@
                     <div class="topbar-one__right">
                         <!-- <p class="topbar-one__text">Mon to Sat: 9:00am – 6:00pm Sun: Closed</p> -->
                         <div class="topbar-one__social">
-                            <a href="{{ $socialFb }}" target="_blank"
-                                rel="noopener noreferrer">
-                                <i class="fab fa-facebook-f"></i>
-                                <span class="sr-only">Facebook</span>
-                            </a>
-                            <a href="{{ $socialIg }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-instagram"></i>
-                                <span class="sr-only">Instagram</span>
-                            </a>
+                            @foreach ($socials as $social)
+                                <a href="{{ $social['url'] }}" target="_blank" rel="noopener noreferrer">
+                                    <i class="{{ $social['icon'] }}"></i>
+                                    <span class="sr-only">{{ $social['name'] }}</span>
+                                </a>
+                            @endforeach
                         </div><!-- /.topbar-one__social -->
                     </div><!-- /.topbar-one__right -->
                 </div><!-- /.topbar-one__inner -->
