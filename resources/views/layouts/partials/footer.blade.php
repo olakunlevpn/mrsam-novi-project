@@ -1,5 +1,8 @@
         @php
             $brandLogo  = $settings['brand.logo']       ?? '/assets/images/images-removebg-preview.png';
+            $brandName  = $settings['brand.name']       ?? 'Novi Agro';
+            // Two-tone logo text: first word default, remainder in coloured span.
+            $brandParts = explode(' ', trim($brandName), 2);
             $contactEml = $settings['contact.email']    ?? 'info@novi-agro.com';
             $contactPhn = $settings['contact.phone']    ?? '+2347041041756';
             $socialFb   = $settings['social.facebook']  ?? 'https://www.facebook.com/profile.php?id=100077163775495';
@@ -45,7 +48,7 @@
                         <div class="footer-widget__col footer-widget__col__col1">
                             <div class="footer-widget footer-widget--about">
                                 <a href="{{ route('home') }}" class="footer-widget__logo">
-                                    <span class="footer-widget__logo-text">Novi <span>Agro</span></span>
+                                    <span class="footer-widget__logo-text">{{ $brandParts[0] }}@isset($brandParts[1]) <span>{{ $brandParts[1] }}</span>@endisset</span>
                                 </a>
                                 <p class="footer-widget__experience-text">Dedicated to providing premium products,
                                     reliable feed additives, and comprehensive animal care supplies for professionals
@@ -124,7 +127,7 @@
             <div class="main-footer__bottom">
                 <div class="container">
                     <div class="main-footer__bottom__inner">
-                        <p class="main-footer__copyright"> &copy; <span class="dynamic-year"></span> Novi Agro All
+                        <p class="main-footer__copyright"> &copy; <span class="dynamic-year"></span> {{ $brandName }} All
                             Rights Reserved</p>
                         <div class="main-footer__social-row">
                             <p class="main-footer__social-row-text">Social</p>
