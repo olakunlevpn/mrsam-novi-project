@@ -21,7 +21,7 @@ class PageSeoFrontendTest extends TestCase
 
         $this->get('/about')
             ->assertOk()
-            ->assertSee('<link rel="canonical" href="https://novi-agro.com/" />', false)
+            ->assertSee('<link rel="canonical" href="'.url('/about').'" />', false)
             ->assertSee('<meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />', false);
     }
 

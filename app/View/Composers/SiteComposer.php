@@ -118,7 +118,7 @@ class SiteComposer
             ->mapWithKeys(fn (Setting $s) => [$s->key => $s->value])
             ->all();
 
-        foreach (['brand.logo', 'brand.favicon'] as $assetKey) {
+        foreach (['brand.logo', 'brand.favicon', 'seo.og_image'] as $assetKey) {
             if (isset($rows[$assetKey])) {
                 $rows[$assetKey] = AssetUrl::resolve((string) $rows[$assetKey]);
             }

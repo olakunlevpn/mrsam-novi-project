@@ -2,7 +2,9 @@
     /** @var \App\Models\Page|null $page */
     $page = $page ?? null;
     $seo  = $page?->seoMeta;
-    $defaultTitle = 'NOVI AGRO LTD';
+    // Admin-editable (Settings > Site Identity). Base <title> used when a page
+    // has no SEO override / yielded title.
+    $defaultTitle = trim((string) ($settings['site.default_title'] ?? '')) ?: 'NOVI AGRO LTD';
     // Admin-editable (Settings > Site Identity). Stored value carries its own
     // separator (e.g. "| Quality Feeds…"); prepend one space so it reads cleanly.
     $rawSuffix    = trim((string) ($settings['site.title_suffix'] ?? '| Quality Feeds - Healthy Life'));
@@ -67,19 +69,26 @@
             <meta name="twitter:description" content="{{ $seo->og_description }}" />
         @endif
     @else
-        <link rel="canonical" href="https://novi-agro.com/" />
-        <meta name="description"
-            content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+        @php
+            // Site-wide SEO defaults (Settings > SEO) used on pages without a
+            // per-page SEO record. Fall back to the original copy when unset.
+            $siteTitle   = $resolvedTitle . $titleSuffix;
+            $siteDesc    = trim((string) ($settings['seo.meta_description'] ?? ''))
+                ?: 'Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training.';
+            $siteOgImage = $settings['seo.og_image'] ?? 'https://novi-agro.com/assets/images/generated/about_main.png';
+        @endphp
+        <link rel="canonical" href="{{ url()->current() }}" />
+        <meta name="description" content="{{ $siteDesc }}" />
 
         <!-- Open Graph Tags -->
-        <meta property="og:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
-        <meta property="og:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
-        <meta property="og:image" content="https://novi-agro.com/assets/images/generated/about_main.png" />
+        <meta property="og:title" content="{{ $siteTitle }}" />
+        <meta property="og:description" content="{{ $siteDesc }}" />
+        <meta property="og:image" content="{{ $siteOgImage }}" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://novi-agro.com/" />
+        <meta property="og:url" content="{{ url()->current() }}" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="NOVI AGRO LTD | Quality Feeds - Healthy Life" />
-        <meta name="twitter:description" content="Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training." />
+        <meta name="twitter:title" content="{{ $siteTitle }}" />
+        <meta name="twitter:description" content="{{ $siteDesc }}" />
     @endif
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

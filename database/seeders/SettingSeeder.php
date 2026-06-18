@@ -54,6 +54,9 @@ class SettingSeeder extends Seeder
             ['footer.products_title',  'Products',                                               'footer'],
             ['footer.gallery_images',  $this->prepareGalleryImages(),                            'footer'],
 
+            ['site.default_title',     'NOVI AGRO LTD',                                          'site'],
+            ['seo.meta_description',   'Novi-Agro is a leading provider of premium livestock solutions, including high-quality feeds, expert consultancy, animal care products, and agricultural training.', 'seo'],
+
             ['comments.moderation',    true,                                                     'comments'],
         ];
 

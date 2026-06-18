@@ -25,7 +25,8 @@ class ManageSiteIdentity extends AbstractSettingsPage
     {
         return [
             'site' => [
-                'title_suffix' => ['label' => 'cms.settings_cluster.field.site_title_suffix'],
+                'default_title' => ['label' => 'cms.settings_cluster.field.site_default_title'],
+                'title_suffix'  => ['label' => 'cms.settings_cluster.field.site_title_suffix'],
             ],
         ];
     }
