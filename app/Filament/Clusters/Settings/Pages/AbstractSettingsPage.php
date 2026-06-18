@@ -139,6 +139,32 @@ abstract class AbstractSettingsPage extends Page implements HasForms
                 ->columnSpanFull();
         }
 
+        if ($type === 'password') {
+            return TextInput::make($name)
+                ->label(__($meta['label']))
+                ->password()
+                ->revealable()
+                ->autocomplete('new-password')
+                ->helperText($helperText)
+                ->maxLength(500)
+                ->columnSpanFull();
+        }
+
+        if ($type === 'select') {
+            $options = [];
+            foreach (($meta['options'] ?? []) as $value => $labelKey) {
+                $options[$value] = __($labelKey);
+            }
+
+            return \Filament\Forms\Components\Select::make($name)
+                ->label(__($meta['label']))
+                ->options($options)
+                ->default($meta['default'] ?? null)
+                ->native(false)
+                ->helperText($helperText)
+                ->columnSpanFull();
+        }
+
         if ($type === 'gallery_repeater') {
             return Repeater::make($name)
                 ->label(__($meta['label']))

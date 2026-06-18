@@ -6,6 +6,7 @@ use App\Filament\Clusters\Settings\Pages\ManageBranding;
 use App\Filament\Clusters\Settings\Pages\ManageComments;
 use App\Filament\Clusters\Settings\Pages\ManageContactInfo;
 use App\Filament\Clusters\Settings\Pages\ManageFooter;
+use App\Filament\Clusters\Settings\Pages\ManageMail;
 use App\Filament\Clusters\Settings\Pages\ManageSeo;
 use App\Filament\Clusters\Settings\Pages\ManageSiteIdentity;
 use App\Filament\Clusters\Settings\Pages\ManageSocialLinks;
@@ -41,6 +42,7 @@ class SettingsClusterTest extends TestCase
             'footer'   => [ManageFooter::class],
             'seo'      => [ManageSeo::class],
             'comments' => [ManageComments::class],
+            'mail'     => [ManageMail::class],
         ];
     }
 

@@ -40,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Apply admin-managed SMTP settings (Settings > Mail) over the
+        // config defaults. No-op when unconfigured or the DB isn't ready.
+        \App\Support\DatabaseMailConfig::apply();
+
         View::composer('layouts.app', SiteComposer::class);
 
         // Paginator markup matches the rest of the site (Bootstrap 5).
