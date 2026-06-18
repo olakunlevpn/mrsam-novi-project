@@ -40,6 +40,7 @@ if git diff HEAD@{1} --name-only 2>/dev/null | grep -q "composer.lock"; then
     "$COMPOSER_BIN" install --no-dev --no-interaction --optimize-autoloader
 fi
 
+# Apply any new database migrations shipped in this push (forward-only).
 "$PHP_BIN" artisan migrate --force --no-interaction
 "$PHP_BIN" artisan optimize:clear
 "$PHP_BIN" artisan optimize
