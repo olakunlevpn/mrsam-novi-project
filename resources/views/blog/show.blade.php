@@ -224,8 +224,7 @@
                         @endif
                     </article>
 
-                    @include('blog._comments', ['post' => $post, 'comments' => $post->comments])
-                    @include('blog._comment-form', ['post' => $post])
+                    <livewire:post-comments :post="$post" />
                 </div>
 
                 <div class="col-lg-4">

@@ -38,15 +38,10 @@ class BlogController extends Controller
             throw new NotFoundHttpException('Post not found.');
         }
 
-        // Scoped comment load: only approved top-level rows with their
-        // approved replies + each author. Pending/rejected/spam never leak.
+        // Comments (list + form) are rendered by the PostComments Livewire
+        // component, which loads its own approved thread; the controller only
+        // needs the article's own relations here.
         $post->load(self::POST_LIST_RELATIONS);
-        $post->load([
-            'comments' => fn ($q) => $q->approved()->whereNull('parent_id')->latest(),
-            'comments.replies' => fn ($q) => $q->approved()->latest(),
-            'comments.author',
-            'comments.replies.author',
-        ]);
 
         // 3 other published posts in the same category, fallback to latest 3
         // elsewhere if the category has no siblings.

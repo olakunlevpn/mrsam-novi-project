@@ -9,5 +9,6 @@
 
     @include('layouts.partials.footer')
     @include('layouts.partials.scripts')
+    @livewireScripts
 </body>
 </html>

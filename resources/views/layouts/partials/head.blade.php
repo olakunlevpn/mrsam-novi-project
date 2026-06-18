@@ -114,4 +114,5 @@
 
     @stack('styles')
     @stack('meta')
+    @livewireStyles
 </head>
