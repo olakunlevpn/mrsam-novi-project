@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
+        // Land on the "check your email" notice rather than the homepage so a
+        // freshly-registered user understands they must verify their address.
+        return redirect()->route('verification.notice');
     }
 }

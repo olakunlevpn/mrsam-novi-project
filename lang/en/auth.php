@@ -40,7 +40,7 @@ return [
     'already_registered' => 'Already have an account?',
     'forgot_prompt' => 'Forgot your password?',
     'forgot_help' => 'No problem. Enter your email address and we will send you a link to choose a new password.',
-    'verify_help' => 'Thanks for signing up! Please verify your email address by clicking the link we just sent you. If you did not receive the email, we can send another.',
+    'verify_help' => "We've sent you an email. Click the link in the email to activate your account. If you don't see the email, check other places it might be, like your junk, spam, social, or other folders.",
     'verify_sent' => 'A new verification link has been sent to your email address.',
     'confirm_help' => 'This is a secure area of the site. Please confirm your password before continuing.',
 

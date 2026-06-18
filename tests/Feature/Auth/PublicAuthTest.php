@@ -31,12 +31,26 @@ class PublicAuthTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect('/');
+        $response->assertRedirect(route('verification.notice'));
 
         $this->assertDatabaseHas('users', [
             'email' => 'sam.tester@example.com',
             'name' => 'Sam Tester',
         ]);
+    }
+
+    public function test_registration_lands_on_verify_email_notice(): void
+    {
+        $this->post('/register', [
+            'name' => 'Notice Tester',
+            'email' => 'notice.tester@example.com',
+            'password' => 'Sup3rsecret!',
+            'password_confirmation' => 'Sup3rsecret!',
+        ])->assertRedirect(route('verification.notice'));
+
+        $this->get(route('verification.notice'))
+            ->assertOk()
+            ->assertSee('check other places it might be, like your junk, spam, social, or other folders', false);
     }
 
     public function test_registration_creates_unverified_user_and_fires_event(): void
