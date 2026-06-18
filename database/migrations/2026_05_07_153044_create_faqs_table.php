@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('faq_category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('question');
             $table->text('answer');
             $table->unsignedInteger('order_column')->default(0);
             $table->boolean('is_published')->default(true);
             $table->timestamps();
 
-            $table->index(['faq_category_id', 'order_column']);
+            $table->index('order_column');
             $table->index('is_published');
         });
     }

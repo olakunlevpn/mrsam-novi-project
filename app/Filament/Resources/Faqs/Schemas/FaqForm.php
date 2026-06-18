@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Faqs\Schemas;
 
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -18,13 +17,6 @@ class FaqForm
                 Section::make(__('cms.faqs.section.details'))
                     ->columns(2)
                     ->components([
-                        Select::make('faq_category_id')
-                            ->label(__('cms.faqs.field.category'))
-                            ->relationship('category', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->required()
-                            ->native(false),
                         TextInput::make('order_column')
                             ->label(__('cms.faqs.field.order_column'))
                             ->required()

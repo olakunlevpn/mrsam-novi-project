@@ -8,7 +8,6 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
@@ -25,11 +24,6 @@ class FaqsTable
                     ->searchable()
                     ->wrap()
                     ->limit(80),
-                TextColumn::make('category.name')
-                    ->label(__('cms.faqs.field.category'))
-                    ->badge()
-                    ->color('gray')
-                    ->sortable(),
                 IconColumn::make('is_published')
                     ->label(__('cms.faqs.field.is_published'))
                     ->boolean(),
@@ -44,9 +38,6 @@ class FaqsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('faq_category_id')
-                    ->label(__('cms.faqs.field.category'))
-                    ->relationship('category', 'name'),
                 TernaryFilter::make('is_published')
                     ->label(__('cms.faqs.field.is_published')),
             ])

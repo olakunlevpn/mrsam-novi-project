@@ -3,7 +3,6 @@
 namespace Tests\Feature\Seeders;
 
 use App\Models\Faq;
-use App\Models\FaqCategory;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Setting;
@@ -53,10 +52,9 @@ class SiteSeederTest extends TestCase
         $this->assertSame(5, $items->count());
     }
 
-    public function test_faq_seeder_creates_general_category_and_at_least_5_faqs(): void
+    public function test_faq_seeder_creates_at_least_5_published_faqs(): void
     {
         $this->seed(FaqSeeder::class);
-        $this->assertTrue(FaqCategory::where('slug', 'general')->exists());
         $this->assertGreaterThanOrEqual(5, Faq::count());
         $this->assertSame(0, Faq::where('is_published', false)->count());
     }

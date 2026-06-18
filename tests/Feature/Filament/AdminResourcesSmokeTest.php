@@ -5,7 +5,6 @@ namespace Tests\Feature\Filament;
 use App\Filament\Resources\Animals\AnimalResource;
 use App\Filament\Resources\Comments\CommentResource;
 use App\Filament\Resources\ContactSubmissions\ContactSubmissionResource;
-use App\Filament\Resources\FaqCategories\FaqCategoryResource;
 use App\Filament\Resources\Faqs\FaqResource;
 use App\Filament\Resources\Menus\MenuResource;
 use App\Filament\Resources\Pages\PageResource;
@@ -34,7 +33,6 @@ class AdminResourcesSmokeTest extends TestCase
             'pages'              => [PageResource::class],
             'menus'              => [MenuResource::class],
             'faqs'               => [FaqResource::class],
-            'faq-categories'     => [FaqCategoryResource::class],
             'animals'            => [AnimalResource::class],
             'product-categories' => [ProductCategoryResource::class],
             'products'           => [ProductResource::class],
@@ -72,7 +70,6 @@ class AdminResourcesSmokeTest extends TestCase
         $this->assertSame('Content', PageResource::getNavigationGroup());
         $this->assertSame('Content', MenuResource::getNavigationGroup());
         $this->assertSame('Content', FaqResource::getNavigationGroup());
-        $this->assertSame('Content', FaqCategoryResource::getNavigationGroup());
         $this->assertSame('Catalog', AnimalResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductCategoryResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductResource::getNavigationGroup());

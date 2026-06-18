@@ -3,7 +3,6 @@
 namespace Tests\Feature\Pages;
 
 use App\Models\Faq;
-use App\Models\FaqCategory;
 use Database\Seeders\FaqSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -51,13 +50,11 @@ class FaqFrontendTest extends TestCase
 
     public function test_admin_added_faq_appears_on_public_page(): void
     {
-        $cat = FaqCategory::create(['name' => 'General']);
         Faq::create([
-            'faq_category_id' => $cat->id,
-            'question'        => 'Brand-new admin question?',
-            'answer'          => '<p>Brand-new admin answer body.</p>',
-            'order_column'    => 0,
-            'is_published'    => true,
+            'question'     => 'Brand-new admin question?',
+            'answer'       => '<p>Brand-new admin answer body.</p>',
+            'order_column' => 0,
+            'is_published' => true,
         ]);
 
         $this->get('/faq')
@@ -68,20 +65,17 @@ class FaqFrontendTest extends TestCase
 
     public function test_first_faq_has_active_class(): void
     {
-        $cat = FaqCategory::create(['name' => 'General']);
         Faq::create([
-            'faq_category_id' => $cat->id,
-            'question'        => 'First Q',
-            'answer'          => '<p>A1</p>',
-            'order_column'    => 0,
-            'is_published'    => true,
+            'question'     => 'First Q',
+            'answer'       => '<p>A1</p>',
+            'order_column' => 0,
+            'is_published' => true,
         ]);
         Faq::create([
-            'faq_category_id' => $cat->id,
-            'question'        => 'Second Q',
-            'answer'          => '<p>A2</p>',
-            'order_column'    => 1,
-            'is_published'    => true,
+            'question'     => 'Second Q',
+            'answer'       => '<p>A2</p>',
+            'order_column' => 1,
+            'is_published' => true,
         ]);
 
         $response = $this->get('/faq')->assertOk();

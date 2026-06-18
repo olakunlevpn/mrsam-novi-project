@@ -307,26 +307,11 @@ return [
             'details' => 'FAQ Details',
         ],
         'field' => [
-            'category'     => 'Category',
             'question'     => 'Question',
             'answer'       => 'Answer',
             'order_column' => 'Order',
             'is_published' => 'Published',
             'updated_at'   => 'Last updated',
-        ],
-    ],
-
-    'faq_categories' => [
-        'nav'   => ['label' => 'FAQ Categories'],
-        'model' => ['singular' => 'FAQ Category', 'plural' => 'FAQ Categories'],
-        'section' => [
-            'details' => 'Category Details',
-        ],
-        'field' => [
-            'name'         => 'Name',
-            'slug'         => 'Slug',
-            'order_column' => 'Order',
-            'faqs_count'   => 'Questions',
         ],
     ],
 
