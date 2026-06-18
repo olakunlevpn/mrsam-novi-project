@@ -16,9 +16,20 @@
 @endpush
 
 @section('content')
-    @include('blocks.page-header-contact')
-    @include('blocks.breadcrumb-contact')
-    @include('blocks.contact-info-cards')
-    @include('blocks.contact-form')
-    @include('blocks.contact-map')
+    @php
+        // Render each section only when its page_block is visible, so the
+        // admin's "Visible on page" toggle takes effect on the frontend.
+        $pageBlocks = [
+            'page-header-contact',
+            'breadcrumb-contact',
+            'contact-info-cards',
+            'contact-form',
+            'contact-map',
+        ];
+    @endphp
+    @foreach ($pageBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection

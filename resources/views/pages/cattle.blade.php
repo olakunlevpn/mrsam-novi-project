@@ -11,9 +11,16 @@
 @endpush
 
 @section('content')
-    @include('blocks.page-header-cattle')
-    @include('blocks.breadcrumb-cattle')
-    @include('blocks.product-catalog')
+    @php
+        // Render each section only when its page_block is visible, so the
+        // admin's "Visible on page" toggle takes effect on the frontend.
+        $pageBlocks = ['page-header-cattle', 'breadcrumb-cattle', 'product-catalog'];
+    @endphp
+    @foreach ($pageBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection
 
 @push('scripts')

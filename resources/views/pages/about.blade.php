@@ -16,12 +16,23 @@
 @endpush
 
 @section('content')
-    @include('blocks.page-header-about')
-    @include('blocks.breadcrumb-about')
-    @include('blocks.about-detail')
-    @include('blocks.feature-grid-about')
-    @include('blocks.benefits-about')
-    @include('blocks.journey-growth')
-    @include('blocks.customer-growth')
-    @include('blocks.testimonials')
+    @php
+        // Each section is backed by a page_block of the same type; render only
+        // when visible so the admin's "Visible on page" toggle takes effect.
+        $pageBlocks = [
+            'page-header-about',
+            'breadcrumb-about',
+            'about-detail',
+            'feature-grid-about',
+            'benefits-about',
+            'journey-growth',
+            'customer-growth',
+            'testimonials',
+        ];
+    @endphp
+    @foreach ($pageBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection

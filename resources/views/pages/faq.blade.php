@@ -16,7 +16,14 @@
 @endpush
 
 @section('content')
-    @include('blocks.page-header-faq')
-    @include('blocks.breadcrumb-faq')
-    @include('blocks.faq-accordion')
+    @php
+        // Render each section only when its page_block is visible, so the
+        // admin's "Visible on page" toggle takes effect on the frontend.
+        $pageBlocks = ['page-header-faq', 'breadcrumb-faq', 'faq-accordion'];
+    @endphp
+    @foreach ($pageBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection

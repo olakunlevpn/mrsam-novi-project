@@ -16,7 +16,14 @@
 @endpush
 
 @section('content')
-    @include('blocks.page-header-services')
-    @include('blocks.breadcrumb-services')
-    @include('blocks.service-cards-grid')
+    @php
+        // Render each section only when its page_block is visible, so the
+        // admin's "Visible on page" toggle takes effect on the frontend.
+        $pageBlocks = ['page-header-services', 'breadcrumb-services', 'service-cards-grid'];
+    @endphp
+    @foreach ($pageBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection

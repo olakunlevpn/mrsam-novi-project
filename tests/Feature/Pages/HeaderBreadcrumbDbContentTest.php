@@ -68,13 +68,12 @@ class HeaderBreadcrumbDbContentTest extends TestCase
             ->assertDontSee('Swine Solutions', false);
     }
 
-    public function test_hidden_blocks_are_not_rendered_via_visibleblocks_filter(): void
+    public function test_hidden_block_removes_its_section_entirely(): void
     {
-        // Sanity: visibleBlocks filtering doesn't apply to legacy @include calls.
-        // The current page Blade @includes the partial unconditionally; toggling
-        // is_visible on the DB row hides only data overrides, not the partial.
-        // This test pins down the current behavior: defaults still render
-        // even when the DB row is hidden, because @include is static.
+        // The "Visible on page" toggle controls frontend rendering: hiding a
+        // block's DB row removes its whole section. Page blades gate each
+        // section on $page->shouldRenderBlock(type), so neither the data
+        // override nor the partial's hardcoded default renders when hidden.
         $this->seed(PageSeeder::class);
 
         $page  = Page::where('slug', 'pigs')->first();
@@ -85,9 +84,8 @@ class HeaderBreadcrumbDbContentTest extends TestCase
         ]);
 
         $response = $this->get('/pigs')->assertOk();
-        // Hidden block's data is filtered out by HasBlocks::blocksOfType,
-        // so the partial falls back to its hardcoded default.
-        $response->assertSee('Swine Solutions', false);
+        // Section gone: neither the override nor the default breadcrumb shows.
         $response->assertDontSee('Hidden Override', false);
+        $response->assertDontSee('Swine Solutions', false);
     }
 }
