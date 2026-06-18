@@ -106,6 +106,9 @@ class BlockSchemas
             TextInput::make('submit_label')
                 ->label(__('cms.block_fields.cta_booking.submit_label'))
                 ->maxLength(64),
+            TextInput::make('shadow_title')
+                ->label(__('cms.block_fields.cta_booking.shadow_title'))
+                ->maxLength(64),
             TextInput::make('title')
                 ->label(__('cms.block_fields.cta_booking.title'))
                 ->helperText(__('cms.block_fields.cta_booking.title_help'))
@@ -116,6 +119,10 @@ class BlockSchemas
                 ->url()
                 ->maxLength(500)
                 ->columnSpanFull(),
+            TextInput::make('form_subject')
+                ->label(__('cms.block_fields.cta_booking.form_subject'))
+                ->maxLength(255)
+                ->columnSpanFull(),
             FileUpload::make('background_image')
                 ->label(__('cms.block_fields.cta_booking.background_image'))
                 ->image()
@@ -123,6 +130,14 @@ class BlockSchemas
                 ->directory('blocks/cta-booking')
                 ->imageEditor()
                 ->maxSize(8192)
+                ->columnSpanFull(),
+            FileUpload::make('image_bg')
+                ->label(__('cms.block_fields.cta_booking.image_bg'))
+                ->image()
+                ->disk('public')
+                ->directory('blocks/cta-booking')
+                ->imageEditor()
+                ->maxSize(4096)
                 ->columnSpanFull(),
             FileUpload::make('image_vet')
                 ->label(__('cms.block_fields.cta_booking.image_vet'))

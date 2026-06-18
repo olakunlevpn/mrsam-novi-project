@@ -51,8 +51,11 @@ return [
             'title_help'       => 'Use <br> for line breaks.',
             'submit_label'     => 'Submit button label',
             'form_action'      => 'Form action URL',
+            'form_subject'     => 'Booking email subject',
             'background_image' => 'Background image URL',
+            'image_bg'         => 'Foreground shape image',
             'image_vet'        => 'Side image URL',
+            'shadow_title'     => 'Watermark text',
         ],
         'partners_carousel' => [
             'title'      => 'Section title (HTML allowed)',
