@@ -18,19 +18,21 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request, Post $post): RedirectResponse
     {
+        $status = Comment::defaultStatus();
+
         Comment::create([
             'post_id'    => $post->id,
             'user_id'    => $request->user()->id,
             'parent_id'  => $request->integer('parent_id') ?: null,
             'body'       => $request->string('body')->trim()->value(),
-            'status'     => 'pending',
+            'status'     => $status,
             'ip'         => $request->ip(),
             'user_agent' => $request->userAgent(),
         ]);
 
         return redirect()
             ->to(route('blog.show', $post).'#comments')
-            ->with('comment_status', 'pending')
+            ->with('comment_status', $status)
             ->with('comment_status_post_id', $post->id);
     }
 }

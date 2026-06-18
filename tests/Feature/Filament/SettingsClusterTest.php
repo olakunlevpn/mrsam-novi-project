@@ -3,6 +3,7 @@
 namespace Tests\Feature\Filament;
 
 use App\Filament\Clusters\Settings\Pages\ManageBranding;
+use App\Filament\Clusters\Settings\Pages\ManageComments;
 use App\Filament\Clusters\Settings\Pages\ManageContactInfo;
 use App\Filament\Clusters\Settings\Pages\ManageFooter;
 use App\Filament\Clusters\Settings\Pages\ManageSeo;
@@ -39,6 +40,7 @@ class SettingsClusterTest extends TestCase
             'site'     => [ManageSiteIdentity::class],
             'footer'   => [ManageFooter::class],
             'seo'      => [ManageSeo::class],
+            'comments' => [ManageComments::class],
         ];
     }
 
@@ -73,6 +75,19 @@ class SettingsClusterTest extends TestCase
 
         $this->assertSame('Acme Feeds',            Setting::get('brand.name'));
         $this->assertSame('Better feed, better farm', Setting::get('brand.tagline'));
+    }
+
+    public function test_comments_page_persists_moderation_toggle(): void
+    {
+        Setting::set('comments.moderation', true, 'comments');
+
+        Livewire::actingAs($this->admin)
+            ->test(ManageComments::class)
+            ->fillForm(['comments__moderation' => false])
+            ->call('save')
+            ->assertNotified();
+
+        $this->assertFalse((bool) Setting::get('comments.moderation'));
     }
 
     public function test_branding_page_accepts_logo_and_favicon_uploads(): void

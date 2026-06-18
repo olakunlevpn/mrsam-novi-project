@@ -73,6 +73,25 @@ class CommentPostingTest extends TestCase
         ]);
     }
 
+    public function test_comment_auto_approved_when_moderation_disabled(): void
+    {
+        \App\Models\Setting::set('comments.moderation', false, 'comments');
+
+        $user = User::factory()->create();
+        $post = Post::factory()->published()->create();
+
+        $this->actingAs($user)
+            ->post(route('comments.store', $post), $this->validPayload())
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('comments', [
+            'post_id' => $post->id,
+            'user_id' => $user->id,
+            'status'  => 'approved',
+        ]);
+    }
+
     public function test_top_level_post_with_empty_parent_id_string_succeeds(): void
     {
         $user = User::factory()->create();

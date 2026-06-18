@@ -131,6 +131,14 @@ abstract class AbstractSettingsPage extends Page implements HasForms
         $helperKey   = "cms.settings_cluster.helper.{$group}_{$key}";
         $helperText  = trans()->has($helperKey) ? __($helperKey) : null;
 
+        if ($type === 'toggle') {
+            return \Filament\Forms\Components\Toggle::make($name)
+                ->label(__($meta['label']))
+                ->helperText($helperText)
+                ->default((bool) ($meta['default'] ?? false))
+                ->columnSpanFull();
+        }
+
         if ($type === 'gallery_repeater') {
             return Repeater::make($name)
                 ->label(__($meta['label']))

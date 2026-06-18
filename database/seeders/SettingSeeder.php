@@ -53,6 +53,8 @@ class SettingSeeder extends Seeder
             ['footer.gallery_title',   'Gallery',                                                'footer'],
             ['footer.products_title',  'Products',                                               'footer'],
             ['footer.gallery_images',  $this->prepareGalleryImages(),                            'footer'],
+
+            ['comments.moderation',    true,                                                     'comments'],
         ];
 
         foreach ($settings as [$key, $value, $group]) {

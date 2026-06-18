@@ -29,6 +29,7 @@ return [
     'login_to_comment'      => 'Log in to comment.',
     'verify_to_comment'     => 'Verify your email to comment.',
     'comment_pending'       => 'Your comment is awaiting moderation.',
+    'comment_posted'        => 'Your comment has been posted.',
     'deleted_user'          => 'Deleted user',
     'commented_on'          => 'Commented :date',
     'comments_disabled'     => 'Comments are closed for this post.',

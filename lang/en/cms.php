@@ -195,6 +195,10 @@ return [
                 'nav'   => 'SEO',
                 'title' => 'SEO & robots.txt',
             ],
+            'comments' => [
+                'nav'   => 'Comments',
+                'title' => 'Comment settings',
+            ],
         ],
         'group' => [
             'brand'   => 'Brand',
@@ -203,6 +207,7 @@ return [
             'site'    => 'Site identity',
             'seo'     => 'Search engines',
             'footer'  => 'Footer',
+            'comments' => 'Comments',
         ],
         'group_description' => [
             'brand'   => 'How your brand is shown across the site — name, tagline, logo and favicon.',
@@ -211,8 +216,10 @@ return [
             'site'    => 'Wording that appears in browser tabs and page titles.',
             'seo'     => 'Instructions you give to search-engine crawlers.',
             'footer'  => 'Headings and images for the four columns in the site footer.',
+            'comments' => 'How visitor comments on blog posts are handled.',
         ],
         'field' => [
+            'comments_moderation'        => 'Hold comments for moderation',
             'brand_name'                 => 'Brand name',
             'brand_tagline'              => 'Tagline',
             'brand_logo'                 => 'Logo image',
@@ -240,6 +247,7 @@ return [
             'footer_gallery_add'         => 'Add image',
         ],
         'helper' => [
+            'comments_moderation'        => 'On: every comment waits for your approval before it shows publicly. Off: comments appear immediately after posting.',
             'brand_name'                 => 'Shown in the browser tab and in the footer copyright line. Keep it short — your registered company name is best.',
             'brand_tagline'              => 'A single short sentence used on the home page hero and in metadata.',
             'brand_logo'                 => 'PNG, JPG, SVG or WEBP. Transparent PNG works best. Recommended height around 80–120px. Max 2 MB.',

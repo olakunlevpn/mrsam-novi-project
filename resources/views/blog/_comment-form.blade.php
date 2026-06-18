@@ -10,7 +10,7 @@
     style="background:#fff;border:1px solid #e9ecef;border-radius:8px;">
     @if (session('comment_status') && (int) session('comment_status_post_id') === (int) $post->id)
         <div class="alert alert-success" role="status">
-            {{ __('blog.comment_pending') }}
+            {{ session('comment_status') === 'approved' ? __('blog.comment_posted') : __('blog.comment_pending') }}
         </div>
     @endif
 

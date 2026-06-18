@@ -22,6 +22,24 @@ class Comment extends Model
         'user_agent',
     ];
 
+    /**
+     * Whether new comments are held for admin approval. Driven by the
+     * `comments.moderation` setting (Settings > Comments); defaults to on.
+     */
+    public static function moderationEnabled(): bool
+    {
+        return (bool) Setting::get('comments.moderation', true);
+    }
+
+    /**
+     * Status a freshly posted comment should take: 'pending' when moderation
+     * is on, 'approved' (visible immediately) when it is off.
+     */
+    public static function defaultStatus(): string
+    {
+        return self::moderationEnabled() ? 'pending' : 'approved';
+    }
+
     public function scopeApproved(Builder $query): Builder
     {
         return $query->where('status', 'approved');
