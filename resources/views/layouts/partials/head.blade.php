@@ -3,7 +3,10 @@
     $page = $page ?? null;
     $seo  = $page?->seoMeta;
     $defaultTitle = 'NOVI AGRO LTD';
-    $titleSuffix  = ' | Quality Feeds - Healthy Life';
+    // Admin-editable (Settings > Site Identity). Stored value carries its own
+    // separator (e.g. "| Quality Feeds…"); prepend one space so it reads cleanly.
+    $rawSuffix    = trim((string) ($settings['site.title_suffix'] ?? '| Quality Feeds - Healthy Life'));
+    $titleSuffix  = $rawSuffix === '' ? '' : ' ' . $rawSuffix;
 
     // Resolve <title>: SEO override > page title > yielded section > default
     $resolvedTitle = $seo?->title
