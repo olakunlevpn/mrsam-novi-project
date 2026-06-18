@@ -179,14 +179,26 @@
 @endpush
 
 @section('content')
-    @include('blocks.hero')
-    @include('blocks.feature-grid')
-    @include('blocks.about-intro')
-    @include('blocks.species-cards')
-    @include('blocks.services-summary')
-    @include('blocks.work-process')
-    @include('blocks.benefits')
-    @include('blocks.stats-bar')
-    @include('blocks.cta-booking')
-    @include('blocks.partners-carousel')
+    @php
+        // Home sections, in order, each backed by a page_block of the same type.
+        // Render a section only when its block is visible, so the admin's
+        // "Visible on page" toggle actually shows/hides it on the frontend.
+        $homeBlocks = [
+            'hero',
+            'feature-grid',
+            'about-intro',
+            'species-cards',
+            'services-summary',
+            'work-process',
+            'benefits',
+            'stats-bar',
+            'cta-booking',
+            'partners-carousel',
+        ];
+    @endphp
+    @foreach ($homeBlocks as $blockType)
+        @if ($page->shouldRenderBlock($blockType))
+            @include('blocks.' . $blockType)
+        @endif
+    @endforeach
 @endsection

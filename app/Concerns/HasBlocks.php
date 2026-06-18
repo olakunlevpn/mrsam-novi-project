@@ -30,6 +30,28 @@ trait HasBlocks
     }
 
     /**
+     * Whether a section backed by this block type should render. Gates the
+     * section markup so the admin's "Visible on page" toggle takes effect:
+     *
+     *  - visible block row exists  → render
+     *  - no block row exists       → render (blade falls back to its defaults)
+     *  - row exists but hidden      → do NOT render
+     *
+     * block() returns defaults for a hidden block, so without this gate a
+     * toggled-off section would still show its default content.
+     */
+    public function shouldRenderBlock(string $type): bool
+    {
+        if ($this->blocksOfType($type)->isNotEmpty()) {
+            return true;
+        }
+
+        // No visible block of this type. Render only when no row exists at all
+        // (unmanaged section → defaults); hide when a row exists but is off.
+        return $this->blocks->where('type', $type)->isEmpty();
+    }
+
+    /**
      * The first block of a given type. Useful for sections that should appear once
      * (e.g. a single hero per page).
      */
