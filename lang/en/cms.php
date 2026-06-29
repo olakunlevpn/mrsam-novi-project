@@ -67,15 +67,8 @@ return [
             'add'        => 'Add partner',
         ],
         'testimonials' => [
-            'tagline'     => 'Tagline',
-            'title'       => 'Heading',
-            'items'       => 'Testimonials',
-            'name'        => 'Name',
-            'designation' => 'Designation',
-            'image'       => 'Photo URL',
-            'rating'      => 'Star rating',
-            'content'     => 'Quote',
-            'add'         => 'Add testimonial',
+            'tagline' => 'Tagline',
+            'title'   => 'Heading',
         ],
         'contact_form' => [
             'action_url'      => 'Submit URL',
@@ -351,6 +344,24 @@ return [
         'field' => [
             'question'     => 'Question',
             'answer'       => 'Answer',
+            'order_column' => 'Order',
+            'is_published' => 'Published',
+            'updated_at'   => 'Last updated',
+        ],
+    ],
+
+    'testimonials' => [
+        'nav'   => ['label' => 'Testimonials'],
+        'model' => ['singular' => 'Testimonial', 'plural' => 'Testimonials'],
+        'section' => [
+            'details' => 'Review Details',
+        ],
+        'field' => [
+            'name'         => 'Name',
+            'designation'  => 'Designation',
+            'image'        => 'Photo',
+            'content'      => 'Quote',
+            'rating'       => 'Star rating',
             'order_column' => 'Order',
             'is_published' => 'Published',
             'updated_at'   => 'Last updated',

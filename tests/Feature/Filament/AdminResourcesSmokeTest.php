@@ -13,6 +13,7 @@ use App\Filament\Resources\Posts\PostResource;
 use App\Filament\Resources\ProductCategories\ProductCategoryResource;
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\Tags\TagResource;
+use App\Filament\Resources\Testimonials\TestimonialResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -33,6 +34,7 @@ class AdminResourcesSmokeTest extends TestCase
             'pages'              => [PageResource::class],
             'menus'              => [MenuResource::class],
             'faqs'               => [FaqResource::class],
+            'testimonials'       => [TestimonialResource::class],
             'animals'            => [AnimalResource::class],
             'product-categories' => [ProductCategoryResource::class],
             'products'           => [ProductResource::class],
@@ -70,6 +72,7 @@ class AdminResourcesSmokeTest extends TestCase
         $this->assertSame('Content', PageResource::getNavigationGroup());
         $this->assertSame('Content', MenuResource::getNavigationGroup());
         $this->assertSame('Content', FaqResource::getNavigationGroup());
+        $this->assertSame('Content', TestimonialResource::getNavigationGroup());
         $this->assertSame('Catalog', AnimalResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductCategoryResource::getNavigationGroup());
         $this->assertSame('Catalog', ProductResource::getNavigationGroup());

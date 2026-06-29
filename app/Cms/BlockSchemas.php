@@ -4,7 +4,6 @@ namespace App\Cms;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 
@@ -194,7 +193,8 @@ class BlockSchemas
     }
 
     /**
-     * Testimonials: tagline, title + repeater of {name, designation, image, content, rating}.
+     * Testimonials section heading: tagline + title. The reviews themselves are
+     * managed in the Testimonials resource (App\Models\Testimonial), not here.
      *
      * @return array<int, mixed>
      */
@@ -207,41 +207,6 @@ class BlockSchemas
             TextInput::make('title')
                 ->label(__('cms.block_fields.testimonials.title'))
                 ->maxLength(500),
-            Repeater::make('items')
-                ->label(__('cms.block_fields.testimonials.items'))
-                ->components([
-                    TextInput::make('name')
-                        ->label(__('cms.block_fields.testimonials.name'))
-                        ->required()
-                        ->maxLength(191),
-                    TextInput::make('designation')
-                        ->label(__('cms.block_fields.testimonials.designation'))
-                        ->maxLength(191),
-                    FileUpload::make('image')
-                        ->label(__('cms.block_fields.testimonials.image'))
-                        ->image()
-                        ->disk('public')
-                        ->directory('blocks/testimonials')
-                        ->imageEditor()
-                        ->maxSize(4096),
-                    Select::make('rating')
-                        ->label(__('cms.block_fields.testimonials.rating'))
-                        ->options([1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'])
-                        ->default(5)
-                        ->native(false),
-                    Textarea::make('content')
-                        ->label(__('cms.block_fields.testimonials.content'))
-                        ->required()
-                        ->rows(3)
-                        ->columnSpanFull(),
-                ])
-                ->columns(2)
-                ->reorderable()
-                ->collapsible()
-                ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                ->defaultItems(0)
-                ->addActionLabel(__('cms.block_fields.testimonials.add'))
-                ->columnSpanFull(),
         ];
     }
 
