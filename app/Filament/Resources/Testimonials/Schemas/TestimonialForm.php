@@ -32,7 +32,7 @@ class TestimonialForm
                             ->disk('public')
                             ->directory('testimonials')
                             ->imageEditor()
-                            ->maxSize(4096)
+                            ->maxSize(102400)
                             ->columnSpanFull(),
                         Textarea::make('content')
                             ->label(__('cms.testimonials.field.content'))

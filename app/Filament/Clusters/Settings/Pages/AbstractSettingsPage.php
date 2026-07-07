@@ -183,7 +183,7 @@ abstract class AbstractSettingsPage extends Page implements HasForms
                         ->disk('public')
                         ->directory('footer/gallery')
                         ->imageEditor()
-                        ->maxSize(4096)
+                        ->maxSize(102400)
                         ->helperText(__('cms.settings_cluster.helper.footer_gallery_src')),
                     TextInput::make('alt')
                         ->label(__('cms.settings_cluster.field.footer_gallery_alt'))
@@ -210,7 +210,7 @@ abstract class AbstractSettingsPage extends Page implements HasForms
                 ->disk('public')
                 ->directory($meta['directory'] ?? 'branding')
                 ->imageEditor()
-                ->maxSize($meta['max_size'] ?? 2048)
+                ->maxSize($meta['max_size'] ?? 102400)
                 ->helperText($helperText)
                 ->columnSpanFull();
             if (! empty($meta['accept'])) {

@@ -31,7 +31,7 @@ class ManageBranding extends AbstractSettingsPage
                     'label'     => 'cms.settings_cluster.field.brand_logo',
                     'type'      => 'image_upload',
                     'directory' => 'branding/logo',
-                    'max_size'  => 2048,
+                    'max_size'  => 102400,
                     'accept'    => ['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp'],
                 ],
                 'favicon' => [

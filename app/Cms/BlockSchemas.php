@@ -71,7 +71,7 @@ class BlockSchemas
                 ->disk('public')
                 ->directory('blocks/page-header')
                 ->imageEditor()
-                ->maxSize(8192)
+                ->maxSize(102400)
                 ->columnSpanFull(),
         ];
     }
@@ -128,7 +128,7 @@ class BlockSchemas
                 ->disk('public')
                 ->directory('blocks/cta-booking')
                 ->imageEditor()
-                ->maxSize(8192)
+                ->maxSize(102400)
                 ->columnSpanFull(),
             FileUpload::make('image_bg')
                 ->label(__('cms.block_fields.cta_booking.image_bg'))
@@ -136,7 +136,7 @@ class BlockSchemas
                 ->disk('public')
                 ->directory('blocks/cta-booking')
                 ->imageEditor()
-                ->maxSize(4096)
+                ->maxSize(102400)
                 ->columnSpanFull(),
             FileUpload::make('image_vet')
                 ->label(__('cms.block_fields.cta_booking.image_vet'))
@@ -144,7 +144,7 @@ class BlockSchemas
                 ->disk('public')
                 ->directory('blocks/cta-booking')
                 ->imageEditor()
-                ->maxSize(4096)
+                ->maxSize(102400)
                 ->columnSpanFull(),
         ];
     }
@@ -172,7 +172,7 @@ class BlockSchemas
                         ->disk('public')
                         ->directory('blocks/partners')
                         ->imageEditor()
-                        ->maxSize(2048),
+                        ->maxSize(102400),
                     TextInput::make('url')
                         ->label(__('cms.block_fields.partners_carousel.url'))
                         ->url()

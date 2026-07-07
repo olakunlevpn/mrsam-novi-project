@@ -48,7 +48,7 @@ class SeoMetaSection
                     ->disk('public')
                     ->directory('seo/og')
                     ->imageEditor()
-                    ->maxSize(4096)
+                    ->maxSize(102400)
                     ->columnSpanFull(),
                 Textarea::make('og_description')
                     ->label(__('cms.pages.seo.og_description'))

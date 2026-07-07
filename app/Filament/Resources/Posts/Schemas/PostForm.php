@@ -54,7 +54,7 @@ class PostForm
                             ->disk('public')
                             ->directory('posts/covers')
                             ->imageEditor()
-                            ->maxSize(4096)
+                            ->maxSize(102400)
                             ->helperText(__('cms.posts.help.cover_image'))
                             ->columnSpanFull(),
                         Textarea::make('excerpt')

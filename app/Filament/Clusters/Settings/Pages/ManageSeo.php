@@ -33,7 +33,7 @@ class ManageSeo extends AbstractSettingsPage
                     'type'      => 'image_upload',
                     'label'     => 'cms.settings_cluster.field.seo_og_image',
                     'directory' => 'seo',
-                    'max_size'  => 4096,
+                    'max_size'  => 102400,
                 ],
                 'robots_txt' => [
                     'label'       => 'cms.settings_cluster.field.seo_robots_txt',
