@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_1_image', '/assets/images/generated/service_additives.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_1_image', '/assets/images/generated/service_additives.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_1_icon', 'icon-grass') }}"></i>
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_2_image', '/assets/images/generated/booking_vet1.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_2_image', '/assets/images/generated/booking_vet1.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_2_icon', 'icon-group') }}"></i>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_3_image', '/assets/images/generated/gallery_support.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_3_image', '/assets/images/generated/gallery_support.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_3_icon', 'fas fa-stethoscope') }}"></i>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_4_image', '/assets/images/generated/gallery_pasture.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_4_image', '/assets/images/generated/gallery_pasture.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_4_icon', 'fas fa-hands-helping') }}"></i>
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_5_image', '/assets/images/generated/gallery_poultry.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_5_image', '/assets/images/generated/gallery_poultry.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_5_icon', 'fas fa-graduation-cap') }}"></i>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <div class="service-one__item__image">
-                                <img loading="lazy" src="{{ $page->block('service-cards-grid', 'card_6_image', '/assets/images/generated/services_bg.png') }}" alt="Novi-Agro">
+                                <img loading="lazy" src="{{ $page->blockAsset('service-cards-grid', 'card_6_image', '/assets/images/generated/services_bg.png') }}" alt="Novi-Agro">
                                 <div class="service-one__item__iconwrap">
                                     <div class="service-one__item__icon">
                                         <i class="{{ $page->block('service-cards-grid', 'card_6_icon', 'fas fa-shipping-fast') }}"></i>

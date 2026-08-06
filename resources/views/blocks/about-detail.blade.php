@@ -4,9 +4,9 @@
                     <div class="col-lg-6">
                         <div class="about-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="about-one__shapetop"></div>
-                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->block('about-detail', 'image_main', '/assets/images/about12_1.jpg') }}" alt="Novi">
+                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->blockAsset('about-detail', 'image_main', '/assets/images/about12_1.jpg') }}" alt="Novi">
                             <div class="about-one__smimage">
-                                <img loading="lazy" src="{{ $page->block('about-detail', 'image_thumb', '/assets/images/About_2.jpg') }}" alt="Novi">
+                                <img loading="lazy" src="{{ $page->blockAsset('about-detail', 'image_thumb', '/assets/images/About_2.jpg') }}" alt="Novi">
                             </div>
 
                             <div class="about-one__shapebottom"></div>

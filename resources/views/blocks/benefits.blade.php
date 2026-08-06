@@ -64,10 +64,10 @@
                     <div class="our-benefits-one__right">
                         <div class="our-benefits-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="our-benefits-one__shapetop"></div>
-                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->block('benefits', 'image_main', '/assets/images/generated/benefits_hero.png') }}"
+                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->blockAsset('benefits', 'image_main', '/assets/images/generated/benefits_hero.png') }}"
                                 alt="Success in Farming">
                             <div class="our-benefits-one__smimage">
-                                <img loading="lazy" src="{{ $page->block('benefits', 'image_thumb', '/assets/images/generated/benefits_thumb.png') }}" alt="Modern Infrastructure">
+                                <img loading="lazy" src="{{ $page->blockAsset('benefits', 'image_thumb', '/assets/images/generated/benefits_thumb.png') }}" alt="Modern Infrastructure">
                             </div>
                         </div>
                     </div><!-- /.col-lg-6 -->

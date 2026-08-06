@@ -109,24 +109,36 @@ class BlockRegistry
         // Home page blocks
         $this->register('hero',                'blocks.hero',                'Hero Video',                  'Home',
             fn () => BlockSchemas::hero());
-        $this->register('feature-grid',        'blocks.feature-grid',        'Feature Grid',                'Home');
-        $this->register('about-intro',         'blocks.about-intro',         'About Intro',                 'Home');
-        $this->register('species-cards',       'blocks.species-cards',       'Species Cards',               'Home');
-        $this->register('services-summary',    'blocks.services-summary',    'Services Summary',            'Home');
-        $this->register('work-process',        'blocks.work-process',        'Work Process',                'Home');
-        $this->register('benefits',            'blocks.benefits',            'Benefits',                    'Home');
-        $this->register('stats-bar',           'blocks.stats-bar',           'Stats Bar',                   'Home');
+        $this->register('feature-grid',        'blocks.feature-grid',        'Feature Grid',                'Home',
+            fn () => BlockSchemas::featureGrid());
+        $this->register('about-intro',         'blocks.about-intro',         'About Intro',                 'Home',
+            fn () => BlockSchemas::aboutIntro());
+        $this->register('species-cards',       'blocks.species-cards',       'Species Cards',               'Home',
+            fn () => BlockSchemas::speciesCards());
+        $this->register('services-summary',    'blocks.services-summary',    'Services Summary',            'Home',
+            fn () => BlockSchemas::servicesSummary());
+        $this->register('work-process',        'blocks.work-process',        'Work Process',                'Home',
+            fn () => BlockSchemas::workProcess());
+        $this->register('benefits',            'blocks.benefits',            'Benefits',                    'Home',
+            fn () => BlockSchemas::benefits());
+        $this->register('stats-bar',           'blocks.stats-bar',           'Stats Bar',                   'Home',
+            fn () => BlockSchemas::statsBar());
         $this->register('cta-booking',         'blocks.cta-booking',         'CTA Booking',                 'Home',
             fn () => BlockSchemas::ctaBooking());
         $this->register('partners-carousel',   'blocks.partners-carousel',   'Partners Carousel',           'Home',
             fn () => BlockSchemas::partnersCarousel());
 
         // About page blocks
-        $this->register('about-detail',        'blocks.about-detail',        'About Detail',                'About');
-        $this->register('feature-grid-about',  'blocks.feature-grid-about',  'Feature Grid (About)',        'About');
-        $this->register('benefits-about',      'blocks.benefits-about',      'Benefits (About)',            'About');
-        $this->register('journey-growth',      'blocks.journey-growth',      'Journey & Growth',            'About');
-        $this->register('customer-growth',     'blocks.customer-growth',     'Customer Growth',             'About');
+        $this->register('about-detail',        'blocks.about-detail',        'About Detail',                'About',
+            fn () => BlockSchemas::aboutDetail());
+        $this->register('feature-grid-about',  'blocks.feature-grid-about',  'Feature Grid (About)',        'About',
+            fn () => BlockSchemas::featureGridAbout());
+        $this->register('benefits-about',      'blocks.benefits-about',      'Benefits (About)',            'About',
+            fn () => BlockSchemas::benefitsAbout());
+        $this->register('journey-growth',      'blocks.journey-growth',      'Journey & Growth',            'About',
+            fn () => BlockSchemas::journeyGrowth());
+        $this->register('customer-growth',     'blocks.customer-growth',     'Customer Growth',             'About',
+            fn () => BlockSchemas::customerGrowth());
         $this->register('testimonials',        'blocks.testimonials',        'Testimonials',                'About',
             fn () => BlockSchemas::testimonials());
 
@@ -163,9 +175,12 @@ class BlockRegistry
         }
 
         // Catalog / Services / Contact / FAQ
-        $this->register('product-catalog',      'blocks.product-catalog',      'Product Catalog',            'Catalog');
-        $this->register('service-cards-grid',   'blocks.service-cards-grid',   'Service Cards Grid',         'Services');
-        $this->register('contact-info-cards',   'blocks.contact-info-cards',   'Contact Info Cards',         'Contact');
+        $this->register('product-catalog',      'blocks.product-catalog',      'Product Catalog',            'Catalog',
+            fn () => BlockSchemas::productCatalog());
+        $this->register('service-cards-grid',   'blocks.service-cards-grid',   'Service Cards Grid',         'Services',
+            fn () => BlockSchemas::serviceCardsGrid());
+        $this->register('contact-info-cards',   'blocks.contact-info-cards',   'Contact Info Cards',         'Contact',
+            fn () => BlockSchemas::contactInfoCards());
         $this->register('contact-form',         'blocks.contact-form',         'Contact Form',               'Contact',
             fn () => BlockSchemas::contactForm());
         $this->register('contact-map',          'blocks.contact-map',          'Contact Map',                'Contact',

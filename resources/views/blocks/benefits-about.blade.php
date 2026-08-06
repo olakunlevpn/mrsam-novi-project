@@ -85,7 +85,7 @@
                     </div><!-- /.col-lg-6 -->
                     <div class="our-benefits-one__right">
                         <div class="our-benefits-one__image wow fadeInLeft" data-wow-delay="100ms">
-                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->block('benefits-about', 'image', '/assets/images/About_3.jpg') }}" alt="Novi">
+                            <img loading="lazy" class="our-benefits-one__bigimage" src="{{ $page->blockAsset('benefits-about', 'image', '/assets/images/About_3.jpg') }}" alt="Novi">
                         </div>
                         <div class="our-benefits-one__shapetwo">
                             <div class="our-benefits-one__shapetwo__shapenormal">

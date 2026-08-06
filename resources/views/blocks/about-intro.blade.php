@@ -4,10 +4,10 @@
                     <div class="col-lg-6">
                         <div class="about-one__image wow fadeInLeft" data-wow-delay="100ms">
                             <div class="about-one__shapetop"></div>
-                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->block('about-intro', 'image_main', '/assets/images/generated/about_main.png') }}"
+                            <img loading="lazy" class="about-one__bigimage" src="{{ $page->blockAsset('about-intro', 'image_main', '/assets/images/generated/about_main.png') }}"
                                 alt="About Novi-Agro">
                             <div class="about-one__smimage">
-                                <img loading="lazy" src="{{ $page->block('about-intro', 'image_thumb', '/assets/images/generated/about_thumbnail.png') }}"
+                                <img loading="lazy" src="{{ $page->blockAsset('about-intro', 'image_thumb', '/assets/images/generated/about_thumbnail.png') }}"
                                     alt="Premium Feed Detail">
                             </div>
 

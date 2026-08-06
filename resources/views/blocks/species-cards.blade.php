@@ -18,7 +18,7 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.poultry') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_1_image', '/assets/images/backgrounds/hens-factory-chicken-cages.jpg') }}" alt="Poultry">
+                                <img loading="lazy" src="{{ $page->blockAsset('species-cards', 'card_1_image', '/assets/images/backgrounds/hens-factory-chicken-cages.jpg') }}" alt="Poultry">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--dark">
                                     <span class="species-card__label-title">{{ $page->block('species-cards', 'card_1_label', 'Poultry') }}</span>
@@ -37,7 +37,7 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.cattle') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_2_image', '/assets/images/backgrounds/photorealistic-view-cow-grazing-outdoors.jpg') }}"
+                                <img loading="lazy" src="{{ $page->blockAsset('species-cards', 'card_2_image', '/assets/images/backgrounds/photorealistic-view-cow-grazing-outdoors.jpg') }}"
                                     alt="Cattle" style="object-position: center top;">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--green">
@@ -57,7 +57,7 @@
                     <div class="col-sm-6 col-lg-4">
                         <a href="{{ route('animals.pigs') }}" class="text-decoration-none">
                             <div class="species-card">
-                                <img loading="lazy" src="{{ $page->block('species-cards', 'card_3_image', '/assets/images/backgrounds/selective-closeup-shot-pink-pigs-barn.jpg') }}"
+                                <img loading="lazy" src="{{ $page->blockAsset('species-cards', 'card_3_image', '/assets/images/backgrounds/selective-closeup-shot-pink-pigs-barn.jpg') }}"
                                     alt="Pigs">
                                 <div class="species-card__overlay"></div>
                                 <div class="species-card__label species-card__label--dark">
