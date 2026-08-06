@@ -31,7 +31,7 @@ const ProductCard = (function () {
         return `
             <div class="${classNames}">
                 <a href="${detailUrl}" class="${itemClass} text-decoration-none" data-id="${product.id}" style="cursor:pointer; width:100%;">
-                    <div class="product__item__img" style="aspect-ratio:4/3; overflow:hidden; background:#fff;">
+                    <div class="product__item__img" style="overflow:hidden; background:#fff;">
                         <img src="${product.image}" alt="${product.name}" loading="lazy"
                              style="width:100%;height:100%; object-fit:cover; display:block;">
                         ${animalBadge}

@@ -9,7 +9,7 @@
 <div class="col-sm-6 col-md-4 mb-4 d-flex align-items-stretch">
     <a href="{{ route('products.show', $product) }}" class="product__item related-product-item text-decoration-none"
         style="width: 100%; cursor: pointer;">
-        <div class="product__item__img" style="aspect-ratio: 4/3; overflow: hidden; background: #fff;">
+        <div class="product__item__img" style="overflow: hidden; background: #fff;">
             <img loading="lazy" src="{{ $cardImage }}" alt="{{ $product->name }}"
                 style="width: 100%; height: 100%; object-fit: cover; display: block;">
             @if ($cardAnimal)

@@ -19935,7 +19935,6 @@ body.boxed-wrapper .main-header__wellcome__tagline {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1 / 1;
 }
 
 .product__item__img--premium img {

@@ -594,7 +594,6 @@ body {
     position: relative;
     overflow: hidden;
     background: #fff;
-    aspect-ratio: 1 / 1;
     height: auto !important;
 }
 .product__item__img img {
