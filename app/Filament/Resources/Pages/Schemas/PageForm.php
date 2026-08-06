@@ -6,6 +6,8 @@ use App\Cms\BlockRegistry;
 use App\Cms\BlockSchemas;
 use App\Filament\Schemas\SeoMetaSection;
 use App\Filament\Support\SlugField;
+use App\Models\PageBlock;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
@@ -250,7 +252,7 @@ class PageForm
      * @param  array<string, mixed>  $data
      * @return array<string, mixed>
      */
-    private static function packDataForSave(array $data): array
+    private static function packDataForSave(array $data, ?Model $record = null): array
     {
         $type = $data['type'] ?? null;
 
@@ -261,12 +263,20 @@ class PageForm
             // Filament omits emptied fields from the dehydrated state, so a
             // cleared field would vanish from `data` and block() would fall
             // back to the Blade default — making "deleted" text reappear.
-            // Persist every registered scalar field key so a cleared field is
-            // stored as '' and renders empty. Repeater fields are skipped to
-            // keep their array shape intact.
+            // A field that existed in the stored data but is now gone was
+            // cleared: keep it as '' so it renders empty. A field that was
+            // never stored but arrives empty is not "managed" — drop it so it
+            // keeps its Blade default instead of blanking. Repeater fields are
+            // skipped to preserve their array shape.
+            $original = ($record instanceof PageBlock && is_array($record->data)) ? $record->data : [];
             foreach (self::scalarFieldKeys($type) as $key) {
-                if (! array_key_exists($key, $payload)) {
+                $wasStored = array_key_exists($key, $original);
+                $inPayload = array_key_exists($key, $payload);
+
+                if ($wasStored && ! $inPayload) {
                     $payload[$key] = '';
+                } elseif (! $wasStored && $inPayload && in_array($payload[$key], [null, ''], true)) {
+                    unset($payload[$key]);
                 }
             }
 

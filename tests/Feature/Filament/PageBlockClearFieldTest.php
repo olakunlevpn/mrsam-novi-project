@@ -51,4 +51,28 @@ class PageBlockClearFieldTest extends TestCase
         $this->assertStringNotContainsString('comprehensive range of high-quality livestock feeds additives', $html);
         $this->assertStringContainsString('Novi Agro Nig. Ltd', $html);
     }
+
+    public function test_saving_an_unseeded_block_keeps_its_blade_defaults(): void
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+
+        $page = Page::create([
+            'slug' => 'home', 'title' => 'Home', 'layout' => 'home',
+            'status' => 'published', 'is_homepage' => true, 'published_at' => now(),
+        ]);
+        // Unseeded block (data null) — the real prod state before the seeder runs.
+        $block = PageBlock::create([
+            'page_id' => $page->id, 'type' => 'about-intro', 'order_column' => 0,
+            'is_visible' => true, 'data' => null,
+        ]);
+
+        $component = Livewire::actingAs($admin)->test(EditPage::class, ['record' => $page->getRouteKey()]);
+        $component->call('save')->assertHasNoFormErrors();
+
+        // Saving must not backfill empty keys onto an unseeded block, which
+        // would blank its Blade defaults on the site.
+        $this->assertEmpty($block->fresh()->data ?? []);
+        $this->get('/')->assertOk()
+            ->assertSee('committed to revolutionizing the agricultural landscape', false);
+    }
 }
