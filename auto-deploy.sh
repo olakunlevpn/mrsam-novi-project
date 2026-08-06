@@ -45,8 +45,9 @@ fi
 
 # TEMPORARY (one-off): backfill page block content into the DB so admin
 # forms open pre-filled and images copy onto the public disk. Idempotent
-# and non-destructive (only fills blocks with empty data). Remove this line
+# and non-destructive (only fills blocks with empty data). Remove this block
 # in a follow-up commit once it has run on the server.
+echo "--- Running one-off PageSeeder at $(date '+%Y-%m-%d %H:%M:%S') ---"
 "$PHP_BIN" artisan db:seed --class=PageSeeder --force --no-interaction
 
 "$PHP_BIN" artisan optimize:clear
