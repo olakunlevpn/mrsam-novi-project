@@ -42,6 +42,13 @@ fi
 
 # Apply any new database migrations shipped in this push (forward-only).
 "$PHP_BIN" artisan migrate --force --no-interaction
+
+# TEMPORARY (one-off): backfill page block content into the DB so admin
+# forms open pre-filled and images copy onto the public disk. Idempotent
+# and non-destructive (only fills blocks with empty data). Remove this line
+# in a follow-up commit once it has run on the server.
+"$PHP_BIN" artisan db:seed --class=PageSeeder --force --no-interaction
+
 "$PHP_BIN" artisan optimize:clear
 "$PHP_BIN" artisan optimize
 "$PHP_BIN" artisan filament:optimize
