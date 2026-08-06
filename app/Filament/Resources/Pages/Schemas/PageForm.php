@@ -257,6 +257,19 @@ class PageForm
         if ($type && app(BlockRegistry::class)->hasFieldsFor($type)) {
             $rowKeys = BlockSchemas::ROW_KEYS;
             $payload = Arr::except($data, $rowKeys);
+
+            // Filament omits emptied fields from the dehydrated state, so a
+            // cleared field would vanish from `data` and block() would fall
+            // back to the Blade default — making "deleted" text reappear.
+            // Persist every registered scalar field key so a cleared field is
+            // stored as '' and renders empty. Repeater fields are skipped to
+            // keep their array shape intact.
+            foreach (self::scalarFieldKeys($type) as $key) {
+                if (! array_key_exists($key, $payload)) {
+                    $payload[$key] = '';
+                }
+            }
+
             $row = Arr::only($data, $rowKeys);
             $row['data'] = $payload;
             return $row;
@@ -270,5 +283,30 @@ class PageForm
         $row = Arr::only($data, BlockSchemas::ROW_KEYS);
         $row['data'] = $payload;
         return $row;
+    }
+
+    /**
+     * Top-level scalar field names for a block type (TextInput / Textarea /
+     * FileUpload), excluding Repeater fields whose value is array-shaped.
+     * Used to backfill cleared fields so they persist as '' rather than
+     * reverting to the Blade default.
+     *
+     * @return array<int, string>
+     */
+    private static function scalarFieldKeys(string $type): array
+    {
+        $keys = [];
+
+        foreach (app(BlockRegistry::class)->fieldsFor($type) as $field) {
+            if ($field instanceof Repeater) {
+                continue;
+            }
+
+            if (method_exists($field, 'getName')) {
+                $keys[] = $field->getName();
+            }
+        }
+
+        return $keys;
     }
 }
